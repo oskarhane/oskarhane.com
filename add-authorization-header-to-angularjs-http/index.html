@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Add Authorization header to AngularJS $http | oskarhane.com</title>
+  <meta name="author" content="Oskar Hane">
+  
+  <meta name="description" content="I recently had to add an Authorization header to all $http requests in an AngularJS app.  
+Here’s how I did it in Coffeescript.
+#AuthData.coffee
+
+angu">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Add Authorization header to AngularJS $http"/>
+  <meta property="og:site_name" content="oskarhane.com"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="oskarhane.com" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">oskarhane.com</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-14T11:40:46.000Z"><a href="/add-authorization-header-to-angularjs-http/">2014-10-14</a></time>
+      
+      
+  
+    <h1 class="title">Add Authorization header to AngularJS $http</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I recently had to add an <a href="http://en.wikipedia.org/wiki/Basic_access_authentication" target="_blank" rel="external">Authorization header</a> to all <a href="https://docs.angularjs.org/api/ng/service/$http" target="_blank" rel="external">$http</a> requests in an AngularJS app.  </p>
+<p>Here’s how I did it in Coffeescript.</p>
+<pre><code><span class="comment">#AuthData.coffee</span>
+
+angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
+.factory <span class="string">'AuthDataService'</span>, [
+  <span class="string">'localStorageService'</span>
+  <span class="string">'$base64'</span>
+  <span class="string">'$http'</span>
+  (localStorageService, <span class="variable">$base64</span>, <span class="variable">$http</span>) -&gt;
+    current_auth_data = localStorageService.get(<span class="string">'authorization_token'</span>)
+    if current_auth_data
+      <span class="variable">$http</span>.defaults.headers.common[<span class="string">'Authorization'</span>] = <span class="string">"Basic <span class="subst">#{current_auth_data}</span>"</span>
+
+    <span class="keyword">return</span> {
+      <span class="symbol">setAuthData:</span> (authdata) -&gt;
+        <span class="keyword">return</span> <span class="keyword">unless</span> authdata
+        encoded = <span class="variable">$base64</span>.encode(authdata)
+        localStorageService.set(<span class="string">'authorization_token'</span>, encoded)
+        <span class="variable">$http</span>.defaults.headers.common[<span class="string">'Authorization'</span>] = <span class="string">"Basic <span class="subst">#{encoded}</span>"</span>
+      <span class="symbol">clearAuthData:</span> -&gt;
+        localStorageService.remove(<span class="string">'authorization_token'</span>)
+        <span class="variable">$http</span>.defaults.headers.common[<span class="string">'Authorization'</span>] = <span class="string">''</span>
+      <span class="symbol">getAuthData:</span> -&gt;
+        <span class="keyword">return</span> localStorageService.get(<span class="string">'authorization_token'</span>)
+    }
+]
+</code></pre><p>Upon initialization it checks if there’s a <code>authorization_token</code> saved in your local storage. If there is, set it as a <code>Authorization</code> header on $http.  </p>
+<p>Whenever you set or clear the auth data, the header for $http changes as well.</p>
+<p>EDIT: I’ve written another post about how to <a href="/again-add-authorization-header-to-angularjs-http/">add Authorization header to AngularJS $http</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Client-Side/">Client Side</a>, <a href="/tags/Coding/">Coding</a>, <a href="/tags/General/">General</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="widget tag">
+  <img width="100%" height="auto" src="/post_img/2013/02/4f339050f44c11e1a3461231381315e1_7.jpg">
+    <h3 class="title"> MY LIFE CONSISTS OF…</h3>
+      <p class="entry">
+        ... coding, family, humor, and general whining about stuff that's not done right.
+        <br>
+        I'm an introvert (<a href="http://www.typelogic.com/intp.html">INTP</a>) who loves to program, build stuff, and solve problems.
+        <br>Works @ <a href="http://neo4j.com/">Neo4j</a>.
+        <br>I can be reached at <a href="http://twitter.com/oskarhane">@oskarhane</a>, &nbsp; <a href="http://www.facebook.com/ohane">ohane</a>
+        &nbsp; and &nbsp;
+        <a href="mailto:blog@oskrhane.com">blog@oskarhane.com</a>.
+      </p>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/angular-bootstrap-jade-stylus-coffeescript-boilerplate-webapp-with-yeoman/">Angular - Bootstrap - Jade - Stylus - CoffeeScript boilerplate webapp with Yeoman</a>
+      </li>
+    
+      <li>
+        <a href="/again-add-authorization-header-to-angularjs-http/">Again: Add Authorization header to AngularJS $http</a>
+      </li>
+    
+      <li>
+        <a href="/add-authorization-header-to-angularjs-http/">Add Authorization header to AngularJS $http</a>
+      </li>
+    
+      <li>
+        <a href="/create-a-nested-array-recursively-in-coffeescript/">Create a nested array recursively in CoffeeScript</a>
+      </li>
+    
+      <li>
+        <a href="/angularjs-watch-and-timeout/">AngularJS: $watch and $timeout</a>
+      </li>
+    
+      <li>
+        <a href="/neo4j-docker-image/">Neo4j Docker Image</a>
+      </li>
+    
+      <li>
+        <a href="/two-factor-auth-for-wordpress-5000-downloads/">Two Factor Auth for Wordpress &gt; 5000 downloads</a>
+      </li>
+    
+      <li>
+        <a href="/today-im-joining-the-neo4j-team/">Today I&#39;m joining the Neo4j team!</a>
+      </li>
+    
+      <li>
+        <a href="/note-to-self-on-updating-wordpress-plugins-via-git-svn/">Note to self on updating Wordpress plugins via git-svn</a>
+      </li>
+    
+      <li>
+        <a href="/use-your-synology-as-a-local-dns-cache/">Use your Synology as a local DNS cache</a>
+      </li>
+    
+      <li>
+        <a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">Make:r - How I did a fishing lure / jerk bait </a>
+      </li>
+    
+      <li>
+        <a href="/angular-js-filter-to-make-urls-in-text-clickable/">Angular.JS filter to make url:s in text clickable</a>
+      </li>
+    
+      <li>
+        <a href="/proxy-app-a-native-proxy-for-os-x/">Proxy.app - A native proxy for OS X</a>
+      </li>
+    
+      <li>
+        <a href="/does-that-html5-css3-thing-work-in/">Does that HTML5/ CSS3 thing work in ...?</a>
+      </li>
+    
+      <li>
+        <a href="/docker-image-wordpress-nginx-ssh-updated/">Docker image &quot;Wordpress NGiNX SSH&quot; updated</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/BitCoin/">BitCoin</a><small>2</small></li>
+  
+    <li><a href="/tags/Client-Side/">Client Side</a><small>34</small></li>
+  
+    <li><a href="/tags/Coding/">Coding</a><small>54</small></li>
+  
+    <li><a href="/tags/Crypto/">Crypto</a><small>11</small></li>
+  
+    <li><a href="/tags/Docker/">Docker</a><small>4</small></li>
+  
+    <li><a href="/tags/Food/">Food</a><small>2</small></li>
+  
+    <li><a href="/tags/General/">General</a><small>20</small></li>
+  
+    <li><a href="/tags/Hacks/">Hacks</a><small>17</small></li>
+  
+    <li><a href="/tags/Humor/">Humor</a><small>5</small></li>
+  
+    <li><a href="/tags/Impressive/">Impressive</a><small>13</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>11</small></li>
+  
+    <li><a href="/tags/PHP/">PHP</a><small>5</small></li>
+  
+    <li><a href="/tags/Raspberry-Pi/">Raspberry Pi</a><small>5</small></li>
+  
+    <li><a href="/tags/Server-Side/">Server Side</a><small>59</small></li>
+  
+    <li><a href="/tags/Training/">Training</a><small>7</small></li>
+  
+    <li><a href="/tags/Whine/">Whine</a><small>6</small></li>
+  
+    <li><a href="/tags/WordPress/">WordPress</a><small>17</small></li>
+  
+    <li><a href="/tags/javascript-coffeescript/">javascript, coffeescript</a><small>0</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.hanehub.com/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//piwik.hanehub.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+</body>
+</html>

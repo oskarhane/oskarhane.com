@@ -1,0 +1,838 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>oskarhane.com</title>
+  <meta name="author" content="Oskar Hane">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="oskarhane.com"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="oskarhane.com" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">oskarhane.com</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-12T20:08:20.000Z"><a href="/angular-bootstrap-jade-stylus-coffeescript-boilerplate-webapp-with-yeoman/">2014-11-12</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/angular-bootstrap-jade-stylus-coffeescript-boilerplate-webapp-with-yeoman/">Angular - Bootstrap - Jade - Stylus - CoffeeScript boilerplate webapp with Yeoman</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Sorry about all the buzzwords in the title but it really describes what this note-to-self post is about.  </p>
+<p>How to create a boilerplate web app using <a href="https://angularjs.org" target="_blank" rel="external">AngularJS</a> as framework, <a href="http://getbootstrap.com" target="_blank" rel="external">Bootstrap</a> as HTML/CSS base, <a href="http://jade-lang.com" target="_blank" rel="external">Jade</a> as HTML replacement, <a href="http://learnboost.github.io/stylus/" target="_blank" rel="external">Stylus</a> as CSS replacement, and <a href="http://coffeescript.org" target="_blank" rel="external">CoffeeScript</a> as a Javascript replacement/generator/transpiler. All using <a href="http://gruntjs.com" target="_blank" rel="external">Grunt</a> as the glue that keeps everything together.  </p>
+<p><a href="https://www.npmjs.org" target="_blank" rel="external">Npm</a> and <a href="http://bower.io" target="_blank" rel="external">Bower</a> makes sure all dependencies are in place. And Karma for the testing.</p>
+<p>To create the scaffolding I use a tool named <a href="http://yeoman.io" target="_blank" rel="external">Yeoman</a> that has all these <em>generators</em> that installs all tolls you need, configures Grunt, npm and Bower and generates a basic app file structure so you can jump straight into the code.</p>
+<p>Lots of tools and replacements/generators/transpiler languages and there certainly are better or faster ones out there, but these makes me comfortable and I can get to work in 2 min.</p>
+<p>Anyway, this is how I do it:</p>
+<pre><code>npm install --<span class="keyword">global</span> yo bower grunt-<span class="keyword">cli</span>
+npm install --<span class="keyword">global</span> generator-angular-jade-stylus
+
+<span class="keyword">mkdir</span> newapp &amp;&amp; <span class="keyword">cd</span> <span class="label">$_</span>
+yo angular-jade-stylus --coffee --jade --stylus newapp
+</code></pre><p>Run <code>npm cache clean</code> and repeat the last line if it fails.  </p>
+<p>Answer yes to all questions.</p>
+<p>Run <code>grunt serve</code> and point your browser to localhost:9000 unless it does so for you.</p>
+<p>Bam, done.  </p>
+<p>Thank you <a href="http://yeoman.io" target="_blank" rel="external">Yeoman</a>.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-07T14:17:37.000Z"><a href="/again-add-authorization-header-to-angularjs-http/">2014-11-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/again-add-authorization-header-to-angularjs-http/">Again: Add Authorization header to AngularJS $http</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In my last post I showed <a href="/add-authorization-header-to-angularjs-http/">how I add an <code>Authorisation</code> header</a> to outgoing $http calls in AngularJS. I’ve changed the way I do it, this which I think is easier to read.</p>
+<pre><code>angular.<span class="function"><span class="title">module</span><span class="params">(<span class="string">'app'</span>)</span></span>
+  .factory(<span class="string">'RequestInterceptor'</span>, [
+    <span class="string">'AuthDataService'</span>
+    (AuthDataService) -&gt;
+      interceptor = 
+        request: (config) -&gt;
+          <span class="tag">header</span> = AuthDataService.<span class="function"><span class="title">getAuthData</span><span class="params">()</span></span>
+          <span class="keyword">if</span> <span class="tag">header</span> then config<span class="class">.headers</span>[<span class="string">'Authorization'</span>] = <span class="string">"Basic #{header}"</span>
+          config
+      interceptor
+])
+
+angular.<span class="function"><span class="title">module</span><span class="params">(<span class="string">'app'</span>)</span></span>.<span class="function"><span class="title">config</span><span class="params">([<span class="string">'$httpProvider'</span>, (<span class="variable">$httpProvider</span>)</span></span> -&gt;
+  <span class="variable">$httpProvider</span><span class="class">.interceptors</span><span class="class">.push</span> <span class="string">'RequestInterceptor'</span>
+])
+</code></pre><p>The <code>AuthDataService</code> is the same as in my last post, but without the the setting of <code>$http.defaults.headers.common[&#39;Authorization&#39;]</code>.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-10-14T11:40:46.000Z"><a href="/add-authorization-header-to-angularjs-http/">2014-10-14</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/add-authorization-header-to-angularjs-http/">Add Authorization header to AngularJS $http</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I recently had to add an <a href="http://en.wikipedia.org/wiki/Basic_access_authentication" target="_blank" rel="external">Authorization header</a> to all <a href="https://docs.angularjs.org/api/ng/service/$http" target="_blank" rel="external">$http</a> requests in an AngularJS app.  </p>
+<p>Here’s how I did it in Coffeescript.</p>
+<pre><code><span class="comment">#AuthData.coffee</span>
+
+angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
+.factory <span class="string">'AuthDataService'</span>, [
+  <span class="string">'localStorageService'</span>
+  <span class="string">'$base64'</span>
+  <span class="string">'$http'</span>
+  (localStorageService, <span class="variable">$base64</span>, <span class="variable">$http</span>) -&gt;
+    current_auth_data = localStorageService.get(<span class="string">'authorization_token'</span>)
+    if current_auth_data
+      <span class="variable">$http</span>.defaults.headers.common[<span class="string">'Authorization'</span>] = <span class="string">"Basic <span class="subst">#{current_auth_data}</span>"</span>
+
+    <span class="keyword">return</span> {
+      <span class="symbol">setAuthData:</span> (authdata) -&gt;
+        <span class="keyword">return</span> <span class="keyword">unless</span> authdata
+        encoded = <span class="variable">$base64</span>.encode(authdata)
+        localStorageService.set(<span class="string">'authorization_token'</span>, encoded)
+        <span class="variable">$http</span>.defaults.headers.common[<span class="string">'Authorization'</span>] = <span class="string">"Basic <span class="subst">#{encoded}</span>"</span>
+      <span class="symbol">clearAuthData:</span> -&gt;
+        localStorageService.remove(<span class="string">'authorization_token'</span>)
+        <span class="variable">$http</span>.defaults.headers.common[<span class="string">'Authorization'</span>] = <span class="string">''</span>
+      <span class="symbol">getAuthData:</span> -&gt;
+        <span class="keyword">return</span> localStorageService.get(<span class="string">'authorization_token'</span>)
+    }
+]
+</code></pre><p>Upon initialization it checks if there’s a <code>authorization_token</code> saved in your local storage. If there is, set it as a <code>Authorization</code> header on $http.  </p>
+<p>Whenever you set or clear the auth data, the header for $http changes as well.</p>
+<p>EDIT: I’ve written another post about how to <a href="/again-add-authorization-header-to-angularjs-http/">add Authorization header to AngularJS $http</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-24T03:56:28.000Z"><a href="/create-a-nested-array-recursively-in-coffeescript/">2014-09-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/create-a-nested-array-recursively-in-coffeescript/">Create a nested array recursively in CoffeeScript</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In an old post called <a href="/create-a-nested-array-recursively-in-javascript/">Create a nested array recursively in Javascript</a> I wrote how to go from</p>
+<pre><code>[
+    {<span class="string">id:</span> <span class="number">1</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">0</span>},
+    {<span class="string">id:</span> <span class="number">2</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">0</span>},
+    {<span class="string">id:</span> <span class="number">3</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">1</span>},
+    {<span class="string">id:</span> <span class="number">4</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">3</span>},
+    {<span class="string">id:</span> <span class="number">5</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">4</span>},
+    {<span class="string">id:</span> <span class="number">6</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">4</span>},
+    {<span class="string">id:</span> <span class="number">7</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">3</span>},
+    {<span class="string">id:</span> <span class="number">8</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">2</span>}
+]
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/create-a-nested-array-recursively-in-coffeescript/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-11T03:55:00.000Z"><a href="/angularjs-watch-and-timeout/">2014-09-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/angularjs-watch-and-timeout/">AngularJS: $watch and $timeout</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>As you might know, AngularJS has an event loop, called $digest, that checks and updates all bindings and values.  </p>
+<p>You can have a DOM element only show when a scope variable has a certain value, like this:</p>
+<pre><code>&lt;<span class="keyword">div</span> ng-show=<span class="string">"show_div"</span>&gt;Text <span class="keyword">in</span> <span class="keyword">div</span>&lt;/<span class="keyword">div</span>&gt;
+</code></pre><p>Whenever the $digest runs, it checks if <code>$scope.show_div</code> is true and if it is, the div is shown. If not true, the div is hidden.</p>
+<p>That means that in your controller you can toggle the visibility of the div by simply setting <code>$scope.show_div = true/false</code>. However, if you do this on mouseover an element or change the value very frequently some other way the $digest might not have had the time to finish it’s loop and the div won’t toggle as it should.</p>
+<p>That’s where <code>$timeout</code> comes in. It’s a wrapper for javascript’s <code>setTimeout</code> with the addition that it triggers a $digest loop at the end meaning that anything you changed will be updated as it should.  </p>
+<p>So instead of <code>$scope.show_div = true</code> and then <code>$scope.show_div = false</code> you do:</p>
+<pre><code><span class="variable">$timeout</span>(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{ <span class="variable">$scope</span>.show_div = <span class="keyword">true</span>; }, <span class="number">0</span>);
+<span class="comment">//and</span>
+<span class="variable">$timeout</span>(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{ <span class="variable">$scope</span>.show_div = <span class="keyword">false</span>; }, <span class="number">0</span>);
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-08-08T11:08:41.000Z"><a href="/neo4j-docker-image/">2014-08-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/neo4j-docker-image/">Neo4j Docker Image</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I forked <a href="https://github.com/tpires/neo4j" target="_blank" rel="external">tpires/neo4j</a> to make a Docker image for Neo4j that has version tags so I very easily can start a Neo4j instance to make API calls to.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-08-03T13:30:04.000Z"><a href="/two-factor-auth-for-wordpress-5000-downloads/">2014-08-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/two-factor-auth-for-wordpress-5000-downloads/">Two Factor Auth for Wordpress &gt; 5000 downloads</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Wow, this is pretty cool, I just passed the 5000 downloaded mark for my <a href="http://wordpress.org/plugins/two-factor-auth/" target="_blank" rel="external">Two Factor Auth for Wordpress plugin</a>.</p>
+<p>(but I see that there’s something wrong with the changelog for v4.4. I really don’t like WP Plugin repository and readme parsing. This is not the first time.)</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-08-01T07:51:39.000Z"><a href="/today-im-joining-the-neo4j-team/">2014-08-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/today-im-joining-the-neo4j-team/">Today I&#39;m joining the Neo4j team!</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>As of today I start working with the team @ <a href="http://www.neotechnology.com" target="_blank" rel="external">Neo Technology</a> on a part of their <a href="http://neo4j.com" target="_blank" rel="external">Graph Database Neo4j</a>.</p>
+<p>I’ll be responsible to make their fantastic <a href="http://www.neo4j.org/develop/visualize" target="_blank" rel="external">Neo4j Browser</a> even better by adding more features and make it what the customers want.</p>
+<p><img src="/post_img/2014/08/orreMBA-2014-08-01-kl.-11.47.12.png" alt="browser example"></p>
+<p>This will be great!</p>
+<p><code>(graphs)-[:ARE]-&gt;(everywhere)</code></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-07-29T11:12:45.000Z"><a href="/note-to-self-on-updating-wordpress-plugins-via-git-svn/">2014-07-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/note-to-self-on-updating-wordpress-plugins-via-git-svn/">Note to self on updating Wordpress plugins via git-svn</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I host my <a href="http://wordpress.org/plugins/two-factor-auth/" target="_blank" rel="external">Two Factor Auth Wordpress Plugin</a> on <a href="https://github.com/oskarhane/wp-two-factor-auth" target="_blank" rel="external">Github</a> and I run <a href="https://www.kernel.org/pub/software/scm/git/docs/git-svn.html" target="_blank" rel="external">git svn</a> locally to be able to sync the Github git repo with the Wordpress plugins SVN repo.</p>
+<p>But, it’s a bit of a hassle and I don’t update the plugin often enough to remember what step to take.</p>
+<p>The assumption is that you’ve followed <a href="https://gist.github.com/kasparsd/3749872" target="_blank" rel="external">this guide</a> to setup you local repo with svn and git remotes.</p>
+<h2 id="1">1</h2><p>Write code in local git feature branches as usual. Push the finished code to Githubs master branch and add a git tag.</p>
+<h2 id="2">2</h2><p>Create a new local git branch (or use a clean old one) and merge local master branch (remember to squash all commits!) into this one. It has to have a straight history.</p>
+<h2 id="3">3</h2><p>Run <code>git svn rebase</code> the see that the history matches with the remote Worpress svn repo.</p>
+<h2 id="4">4</h2><p>Run <code>git svn dcommit --username yourusername</code> to push the code to Wordpress svn repo. Remember that you have to change all the tags in your readme.txt and you main plugin file to match the new release version.</p>
+<h2 id="5">5</h2><p>Run <code>git svn tag x.x</code> to copy trunk and create a new remote tag/release from it.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-06-30T13:02:54.000Z"><a href="/use-your-synology-as-a-local-dns-cache/">2014-06-30</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/use-your-synology-as-a-local-dns-cache/">Use your Synology as a local DNS cache</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>It is totally unnecessary to have all your computers, iPad’s and iPhone’s ask your router to resolve domain names to an external DNS server whenever you click a link or enter a domain name.  </p>
+<p>Why not have something that sits on your local network and forwards unknown DNS requests and then saves the cache so the next time that request would take ≈ 1 ms instead of ≈ 50 ms (or ever more if you use your ISP’s DNS service)?  </p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/use-your-synology-as-a-local-dns-cache/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-06-12T07:08:10.000Z"><a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">2014-06-12</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">Make:r - How I did a fishing lure / jerk bait </a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This is going to be a odd post in contrast to all other posts I’ve written. I like to make things, it doesn’t matter if it’s software or hardware. Recently I started to fish again after a few years on hold.</p>
+<p>This time I wanted to fish for pike with a method called jerk bait fishing. These baits/lures does not have their own movement pattern like most lures has. These baits you have to jerk to get them moving in a, for the fish, compelling way. So it’s one step back to a more manual way of fishing.  </p>
+<p>To be able to jerk efficiently you have to have a really stiff and short pole (pun intended) and a non elastic wire.</p>
+<p>What’s nice with these baits is that you quite easily can make your own since they don’t have to move by them selves in a specific way.<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/maker-how-i-did-a-fishing-lure-jerk-bait/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-06-02T06:00:46.000Z"><a href="/angular-js-filter-to-make-urls-in-text-clickable/">2014-06-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/angular-js-filter-to-make-urls-in-text-clickable/">Angular.JS filter to make url:s in text clickable</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This is a simple filter I made for Angular.JS to make url’s in text clickable. Make sure you place the content and filter in the <code>ng-bind-html</code> attribute of the HTML element. Otherwise the HTML won’t be parsed.</p>
+<p>E.g. <code>&lt;p ng-bind-html=&quot;comment.body | parseUrl&quot;&gt;&lt;/p&gt;</code></p>
+<p>Here’s the <code>parseUrl</code> filter:</p>
+<pre><code>angular.module(<span class="string">'filters'</span>, [])
+.<span class="built_in">filter</span>(<span class="string">'parseUrl'</span>, <span class="function"><span class="keyword">function</span>() {</span>
+    var urls = /(\b(<span class="keyword">https</span>?|<span class="keyword">ftp</span>):\/\/[A-Z0-<span class="number">9</span>+&amp;@<span class="comment">#\/%?=~_|!:,.;-]*[-A-Z0-9+&amp;@#\/%=~_|])/gim</span>
+    var emails = /(\w+@[<span class="operator">a</span>-zA-Z_]+?\.[<span class="operator">a</span>-zA-Z]{<span class="number">2</span>,<span class="number">6</span>})/gim
+
+    <span class="constant">return</span> <span class="function"><span class="keyword">function</span>(<span class="title">text</span>) {        </span>
+        <span class="keyword">if</span>(<span class="keyword">text</span>.match(urls)) {
+            <span class="keyword">text</span> = <span class="keyword">text</span>.<span class="built_in">replace</span>(urls, <span class="string">"&lt;a href=\"$1\" target=\"_blank\"&gt;$1&lt;/a&gt;"</span>)
+        }
+        <span class="keyword">if</span>(<span class="keyword">text</span>.match(emails)) {
+            <span class="keyword">text</span> = <span class="keyword">text</span>.<span class="built_in">replace</span>(emails, <span class="string">"&lt;a href=\"mailto:$1\"&gt;$1&lt;/a&gt;"</span>)
+        }
+
+        <span class="constant">return</span> <span class="keyword">text</span>       
+    }
+})
+</code></pre><p>Also, make sure you inject <code>filters</code> in your main module / app.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-23T11:47:14.000Z"><a href="/proxy-app-a-native-proxy-for-os-x/">2014-05-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/proxy-app-a-native-proxy-for-os-x/">Proxy.app - A native proxy for OS X</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I’ve used the excellent Charles to intercept connections, but this new app seems quite nice!</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-14T05:02:45.000Z"><a href="/does-that-html5-css3-thing-work-in/">2014-05-14</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/does-that-html5-css3-thing-work-in/">Does that HTML5/ CSS3 thing work in ...?</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>A nice resource to check what elements and API:s the different browsers supports.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-17T06:38:36.000Z"><a href="/docker-image-wordpress-nginx-ssh-updated/">2014-04-17</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/docker-image-wordpress-nginx-ssh-updated/">Docker image &quot;Wordpress NGiNX SSH&quot; updated</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Yesterday I updated my Docker image <a href="https://index.docker.io/u/oskarhane/docker-wordpress-nginx-ssh/" target="_blank" rel="external">docker-wordpress-nginx-ssh</a> <a href="https://github.com/oskarhane/docker-wordpress-nginx-ssh" target="_blank" rel="external">github</a> so it adds memcached and the superb Wordpress plugin <a href="http://wordpress.org/plugins/wp-ffpc/" target="_blank" rel="external">WP-FFPC</a> to Wordpress.</p>
+<p>This makes NGiNX serve cached pages straight from memcached without going into PHP and Wordpress. It’s amazingly fast (try to reload this page you’re on now).</p>
+<p>One thing though, you have to login and press the “Save” button on the settings page of WP-FFPC to activate it. But that’s all there’s to it, all NGiNX settings are already there.</p>
+<p>To try it, just type <code>docker pull  oskarhane/docker-wordpress-nginx-ssh</code> or to start a container straight away: <code>sudo docker run -p 80 -p 22 -d -t oskarhane/docker-wordpress-nginx-ssh</code></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+  
+    <a href="/page/2/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="widget tag">
+  <img width="100%" height="auto" src="/post_img/2013/02/4f339050f44c11e1a3461231381315e1_7.jpg">
+    <h3 class="title"> MY LIFE CONSISTS OF…</h3>
+      <p class="entry">
+        ... coding, family, humor, and general whining about stuff that's not done right.
+        <br>
+        I'm an introvert (<a href="http://www.typelogic.com/intp.html">INTP</a>) who loves to program, build stuff, and solve problems.
+        <br>Works @ <a href="http://neo4j.com/">Neo4j</a>.
+        <br>I can be reached at <a href="http://twitter.com/oskarhane">@oskarhane</a>, &nbsp; <a href="http://www.facebook.com/ohane">ohane</a>
+        &nbsp; and &nbsp;
+        <a href="mailto:blog@oskrhane.com">blog@oskarhane.com</a>.
+      </p>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/angular-bootstrap-jade-stylus-coffeescript-boilerplate-webapp-with-yeoman/">Angular - Bootstrap - Jade - Stylus - CoffeeScript boilerplate webapp with Yeoman</a>
+      </li>
+    
+      <li>
+        <a href="/again-add-authorization-header-to-angularjs-http/">Again: Add Authorization header to AngularJS $http</a>
+      </li>
+    
+      <li>
+        <a href="/add-authorization-header-to-angularjs-http/">Add Authorization header to AngularJS $http</a>
+      </li>
+    
+      <li>
+        <a href="/create-a-nested-array-recursively-in-coffeescript/">Create a nested array recursively in CoffeeScript</a>
+      </li>
+    
+      <li>
+        <a href="/angularjs-watch-and-timeout/">AngularJS: $watch and $timeout</a>
+      </li>
+    
+      <li>
+        <a href="/neo4j-docker-image/">Neo4j Docker Image</a>
+      </li>
+    
+      <li>
+        <a href="/two-factor-auth-for-wordpress-5000-downloads/">Two Factor Auth for Wordpress &gt; 5000 downloads</a>
+      </li>
+    
+      <li>
+        <a href="/today-im-joining-the-neo4j-team/">Today I&#39;m joining the Neo4j team!</a>
+      </li>
+    
+      <li>
+        <a href="/note-to-self-on-updating-wordpress-plugins-via-git-svn/">Note to self on updating Wordpress plugins via git-svn</a>
+      </li>
+    
+      <li>
+        <a href="/use-your-synology-as-a-local-dns-cache/">Use your Synology as a local DNS cache</a>
+      </li>
+    
+      <li>
+        <a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">Make:r - How I did a fishing lure / jerk bait </a>
+      </li>
+    
+      <li>
+        <a href="/angular-js-filter-to-make-urls-in-text-clickable/">Angular.JS filter to make url:s in text clickable</a>
+      </li>
+    
+      <li>
+        <a href="/proxy-app-a-native-proxy-for-os-x/">Proxy.app - A native proxy for OS X</a>
+      </li>
+    
+      <li>
+        <a href="/does-that-html5-css3-thing-work-in/">Does that HTML5/ CSS3 thing work in ...?</a>
+      </li>
+    
+      <li>
+        <a href="/docker-image-wordpress-nginx-ssh-updated/">Docker image &quot;Wordpress NGiNX SSH&quot; updated</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/BitCoin/">BitCoin</a><small>2</small></li>
+  
+    <li><a href="/tags/Client-Side/">Client Side</a><small>34</small></li>
+  
+    <li><a href="/tags/Coding/">Coding</a><small>54</small></li>
+  
+    <li><a href="/tags/Crypto/">Crypto</a><small>11</small></li>
+  
+    <li><a href="/tags/Docker/">Docker</a><small>4</small></li>
+  
+    <li><a href="/tags/Food/">Food</a><small>2</small></li>
+  
+    <li><a href="/tags/General/">General</a><small>20</small></li>
+  
+    <li><a href="/tags/Hacks/">Hacks</a><small>17</small></li>
+  
+    <li><a href="/tags/Humor/">Humor</a><small>5</small></li>
+  
+    <li><a href="/tags/Impressive/">Impressive</a><small>13</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>11</small></li>
+  
+    <li><a href="/tags/PHP/">PHP</a><small>5</small></li>
+  
+    <li><a href="/tags/Raspberry-Pi/">Raspberry Pi</a><small>5</small></li>
+  
+    <li><a href="/tags/Server-Side/">Server Side</a><small>59</small></li>
+  
+    <li><a href="/tags/Training/">Training</a><small>7</small></li>
+  
+    <li><a href="/tags/Whine/">Whine</a><small>6</small></li>
+  
+    <li><a href="/tags/WordPress/">WordPress</a><small>17</small></li>
+  
+    <li><a href="/tags/javascript-coffeescript/">javascript, coffeescript</a><small>0</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.hanehub.com/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//piwik.hanehub.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+</body>
+</html>

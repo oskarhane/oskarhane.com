@@ -1,0 +1,814 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 6 | oskarhane.com</title>
+  <meta name="author" content="Oskar Hane">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="oskarhane.com"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="oskarhane.com" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">oskarhane.com</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-04-17T14:46:51.000Z"><a href="/loopia-och-dyndns-med-raspberry-pi/">2013-04-17</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/loopia-och-dyndns-med-raspberry-pi/">Loopia och DynDNS med Raspberry Pi</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I mitt <a href="/uppdatera-doman-till-raspberry-pi-med-dynamiskt-ip-pa-loopia/">förra inlägg</a> visade jag hur man med en Raspberry Pi kan uppdatera en domän med sitt IP.<br>Dock verkar Loopia ha någon bugg i sitt API som gör att allt ser korrekt ut i kontrollpanelen men själva DNS-servrarna uppdateras inte.</p>
+<p>Nu såg jag att Loopia har stöd för <a href="http://en.wikipedia.org/wiki/Dynamic_DNS" target="_blank" rel="external">DynDNS</a> som just är till för att hålla domäner kopplade till servrar med dynamiskt IP.</p>
+<p>För detta kan man använda en färdig DynDNS-klient som heter <a href="http://sourceforge.net/projects/ddclient/" target="_blank" rel="external">DDclient</a>.<br>Installera enkelt:</p>
+<pre><code>apt-<span class="keyword">get</span> install ddclient
+</code></pre><p>Du kommer att promptas med ett par frågor om inställningar, men fyll i vad som helst. Dessa kommer du att skriva över sen.</p>
+<p>När installationen är klar, öppna och editera /etc/ddclient.conf.</p>
+<p>Detta ska stå i den:</p>
+<pre><code><span class="comment"># /etc/ddclient.conf</span>
+
+<span class="variable">daemon=</span><span class="number">300</span>
+<span class="variable">ssl=</span>yes
+
+<span class="variable">protocol=</span>dyndns2
+<span class="variable">custom=</span>yes
+<span class="variable">server=</span>dns.loopia.se/XDynDNSServer/XDynDNS.php
+<span class="variable">use=</span>web, <span class="variable">web=</span>dns.loopia.se/checkip/checkip.php,<span class="variable">web-skip=</span>'Current IP Address:'
+
+<span class="variable">login=</span>user
+<span class="variable">password=</span>'xxx'
+
+<span class="comment">#Skriv nedan domän du uppdatera ip:t på</span>
+rpi1.domain.com
+</code></pre><p>Starta sedan om ddclient och allt ska fungera!</p>
+<pre><code><span class="regexp">/etc/i</span>nit.d<span class="regexp">/ddclient restart</span>
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-04-15T15:16:31.000Z"><a href="/raspberry-pi-install-node-js-and-npm/">2013-04-15</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/raspberry-pi-install-node-js-and-npm/">Raspberry Pi: Install Node.js and npm</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>It’s become easy to install Node.js on Raspberry Pi with Raspbian.</p>
+<p>First of all, download the arm version of the latest Node.js <a href="http://nodejs.org/dist/" target="_blank" rel="external">here</a>.<br>Change below to the version you downloaded.</p>
+<pre><code><span class="shebang">#!/bin/bash
+</span>
+<span class="comment">#Make a new dir where you'll put the binary</span>
+sudo mkdir /opt/node
+
+<span class="comment">#Get it</span>
+wget http://nodejs.org/dist/v0.<span class="number">10.4</span>/node-v0.<span class="number">10.4</span>-linux-arm-pi.tar.gz
+
+<span class="comment">#unpack</span>
+tar xvzf node-v0.<span class="number">10.4</span>-linux-arm-pi.tar.gz
+
+<span class="comment">#Copy to the dir you made as the first step</span>
+sudo cp -r node-v0.<span class="number">10.2</span>-linux-arm-pi/* /opt/node
+
+<span class="comment">#Add node to your path so you can call it with just "node"</span>
+<span class="built_in">cd</span> ~
+nano .bash_profile
+
+<span class="comment">#Add these lines to the file you opened</span>
+PATH=<span class="variable">$PATH</span>:/opt/node/bin
+<span class="built_in">export</span> PATH
+<span class="comment">#Save and exit</span>
+
+<span class="comment">#Test</span>
+node -v
+npm -v
+</code></pre><p>EDIT<br>Thanks to johnmclear in the comments who pointed out a huge error in my code. I changed the instructions above so they are correct.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-04-15T14:58:10.000Z"><a href="/make-your-raspberry-pis-and-other-servers-a-botnet-controlled-via-xmpp/">2013-04-15</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/make-your-raspberry-pis-and-other-servers-a-botnet-controlled-via-xmpp/">Make your Raspberry Pi&#39;s (and other servers) a botnet controlled via XMPP</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I was playing around a bit with XMPP (Extensible Messaging and Presence Protocol) and thought of the idea to make my servers and Raspberry Pi’s be able to talk to me without having to logging in via SSH.</p>
+<p>Of course, this requires <a href="http://www.raspbian.org">Raspbian</a> or other Linux dist where you can login via SSH and install <a href="http://nodejs.org">Node.js</a>. A guide can be found here: <a href="/raspberry-pi-install-node-js-and-npm/">Install nodejs and npm on Raspberry Pi</a>.<br>This is very easy to do if you have node.js installed. Some smart people out there are building npm packages so you easily can install and use them without any hassle.</p>
+<p>First of all, you want to have a XMPP server. You can install one of your own or you can connect to a existing one. After some research I chose <a href="http://prosody.im">Prosody</a> since it looked like the fastest and most recent written one. Installation and configuration is simple so I won’t go in to that. Add a user (which will be the master of the bot net when you’re done) and try to connect with your XMPP client of choice. If you’re on OS X I recommend <a href="http://adium.im">Adium</a> which is fast and lightweight.</p>
+<p>Now to the fun part!</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/make-your-raspberry-pis-and-other-servers-a-botnet-controlled-via-xmpp/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-04-12T09:50:10.000Z"><a href="/wordpress-json-api-plugin/">2013-04-12</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/wordpress-json-api-plugin/">Wordpress JSON API Plugin</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Man was I glad when I found this Wordpress plugin!<br>Finally.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-04-11T08:51:16.000Z"><a href="/svensk-marknadsplats-for-bitcoins/">2013-04-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/svensk-marknadsplats-for-bitcoins/">Svensk marknadsplats för Bitcoins</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Kapiton.se är den första svenska marknadsplatsen för Bitcoins som jag sett. Inga jättevolymer som tradas och kursen är rätt hög. Men ändå trevligt, mer sånt tack.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-04-10T04:10:02.000Z"><a href="/wordfence-after-a-few-days-installed/">2013-04-10</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/wordfence-after-a-few-days-installed/">Wordfence - after a few days installed</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This is scary. Since I installed the plugin <a href="http://wordpress.org/extend/plugins/wordfence/" target="_blank" rel="external">Wordfence</a> for Wordpress and with that got a log of failed login attempts I can really recommend you to be serious about your Wordpress admin password (and username, please don’t use “admin”).</p>
+<p>Look at this log.<br><a href="/post_img/2013/04/orreMBA-2013-04-09-kl.-22.55.25.png"><img src="/post_img/2013/04/orreMBA-2013-04-09-kl.-22.55.25.png" alt="orreMBA 2013-04-09 kl. 22.55.25"></a></p>
+<p>I this site isn’t even a known och big site at all. I can only image what the bigger sites will get flooded with login attempts.</p>
+<p>Anyway, it’s a great plugin!</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-04-09T11:00:05.000Z"><a href="/bitcoin-passes-200/">2013-04-09</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/bitcoin-passes-200/">BitCoin passes $200</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Wow, BitCoin just passed $200/BTC at MtGox trading. Since the trading volume is quite large, I wonder where this is going to end. I don’t mind the raise but it’s been so fast so I think we’ll see a dip soon. Or not.</p>
+<p>There’s been a lot of posts recently about BitCoin and that it’s a bubble, a commodity and not a currency, that it’s both a commodity and a currency etc so I won’t go in to that here.</p>
+<p>I like that there’s a good alternative to the banksters currencies and the number of sites where you can pay with BitCoin are increasing every day.</p>
+<p>I will for sure as hell not sell my BitCoins, I bought them as a currency. Not for speculation.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-04-08T05:52:22.000Z"><a href="/blocket-easter-eggs-sista-uppgiften/">2013-04-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blocket-easter-eggs-sista-uppgiften/">Blocket Easter Eggs - Sista uppgiften</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Här kommer min lösning på sista uppgiften i Blockets tävling. Tyvärr fick jag bara 6 poäng för den och jag antar att det beror på att jag lade in ett beroende till <a href="https://github.com/nodejitsu/forever" target="_blank" rel="external">Forever</a> för att göra servicen till en daemon.</p>
+<p>Hur som helst, jag tycker det var en bra lösning som förtjänade mer.</p>
+<p>[gist id=”5334944”][/gist]</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-04-08T05:36:18.000Z"><a href="/security-plugin-for-wordpress/">2013-04-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/security-plugin-for-wordpress/">Security plugin for WordPress</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This is a great security plugin for WordPress. It scans all your files (and compares them to the official repo) and plugins. It blocks IP:s after a certain amount of failed logins etc.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-04-07T05:54:22.000Z"><a href="/uppdatera-doman-till-raspberry-pi-med-dynamiskt-ip-pa-loopia/">2013-04-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/uppdatera-doman-till-raspberry-pi-med-dynamiskt-ip-pa-loopia/">Uppdatera domän till Raspberry Pi med dynamiskt IP på Loopia</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>No Content Found</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-04-04T16:00:06.000Z"><a href="/basic-raspberry-pi-setup-with-raspbian/">2013-04-04</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/basic-raspberry-pi-setup-with-raspbian/">Raspberry Pi basic setup with Raspbian</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I just got my first Raspberry Pi and read a lot of guides on how to set it up but I’ll think I will write this down myself to have as a future reference. This is done with OS X 10.8.</p>
+<p>This will set up a Raspberry Pi model B to run Raspbian and have the file system on a USB device instead of running on sensitive SD-Cards.</p>
+<p>There are two reasons to do this. As I mentioned the SD-Cards are more sensitive to power breaks and USB-devices and you can end up with a corrupt file system if you are unfortunate.<br>The second reason is write speed, USB are faster so you end up with a overall faster RPi if you run a lot disc io operations.</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/basic-raspberry-pi-setup-with-raspbian/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-04-03T05:56:04.000Z"><a href="/letterpress-business-cards/">2013-04-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/letterpress-business-cards/">Letterpress Business Cards </a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>No Content Found</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-03-28T08:14:27.000Z"><a href="/blocket-eastereggs/">2013-03-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blocket-eastereggs/">Blocket Easter Eggs</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Blocket startade i helgen en <a href="http://www.blocket.se/eastereggs" target="_blank" rel="external">tävling</a> för att rekrytera 7 nya programmerare. Tävlingen går ut på att lösa 10 stycken uppgifter med varierande svårighetsgrad där rätt tänk visar sig viktigare än färdigheter inom programmering.</p>
+<p>Vilket är helt rätt av dem.<br>Syntax och ramverk är lätt att lära sig, att tänka rätt tar ofta många år att få till.</p>
+<p>Jag tyckte tävlingen var rätt kul och klurig. Blocket hade gjort en hel del snygga lösningar/uppgifter.<br>Nu är alla ägg klarade, men sista ägget gav en följduppgift som ska mailas in.</p>
+<p>Jag vet inte om jag orkar göra det då jag egentligen inte är intresserad av jobbet.<br>Å andra sidan är jag tävlingsmänniska och vill visa vad jag kan. :)<br>Vi får se.</p>
+<p><img src="/post_img/2013/03/orreMBA-2013-03-28-kl.-09.57.06.png" alt="orreMBA 2013-03-28 kl. 09.57.06"></p>
+<p><strong>EDIT</strong><br>Jag gjorde den sista uppgiften och kommer att visa min lösning efter den 7/4, som är sista inlämningsdag.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-03-24T18:17:09.000Z"><a href="/wordpress-updates-via-ssh/">2013-03-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/wordpress-updates-via-ssh/">Wordpress updates via SSH</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>So, you hate to manually upload theme and plugin upgrades to your Wordpress installation and you for sure don’t want to install FTP on your server since you work over SSH/SCP?</p>
+<p>Yep, me too.</p>
+<p>Wordpress can handle updates via SSH with SSH-keys!<br>First of all you need to have php5-ssh2 installed. Oh, yeah, this guide is for Debian/Ubuntu. Everybody else need to search how to compile PHP with the SSH2 package.</p>
+<pre><code>apt-<span class="keyword">get</span> install php5-ssh2
+</code></pre><p>Lets generate some SSH keys for WP to use.</p>
+<pre><code>ssh-keygen
+</code></pre><p>You will be prompted where to put the file and for a password. Name the file something like id_rsa-wp so you know what it is for. Leave password empty if you want.<br>Now, we have to put the public key in a file called authorized_keys so SSH can find it.</p>
+<pre><code>cd ~/<span class="class">.ssh</span>
+cat id_rsa-wp<span class="class">.pub</span> &gt;&gt; authorized_keys
+</code></pre><p>If WP/Apache run as your user, this is all you need to do. If it runs as www-data, you ned to set permissions</p>
+<pre><code>chmod 644 id_rsa-wp<span class="keyword">*</span>
+</code></pre><p>The next step is to put some info in your wp-config so you don’t have to enter the file path every time it’s time for an update.</p>
+<pre><code><span class="class"><span class="keyword">define</span></span>(<span class="string">'FTP_PUBKEY'</span>,<span class="string">'/home/your_user/.ssh/id_rsa-wp.pub'</span>);
+<span class="class"><span class="keyword">define</span></span>(<span class="string">'FTP_PRIKEY'</span>,<span class="string">'/home/your_user/.ssh/id_rsa-wp'</span>);
+<span class="class"><span class="keyword">define</span></span>(<span class="string">'FTP_USER'</span>,<span class="string">'your_user'</span>);
+<span class="class"><span class="keyword">define</span></span>(<span class="string">'FTP_PASS'</span>,<span class="string">''</span>);
+<span class="class"><span class="keyword">define</span></span>(<span class="string">'FTP_HOST'</span>,<span class="string">'your.server.com:22'</span>);
+</code></pre><p>And thats it!<br>Just click SSH2 on the update/install page in WP and smile!</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-03-21T18:17:19.000Z"><a href="/change-screen-shot-filename-type-and-target-dir/">2013-03-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/change-screen-shot-filename-type-and-target-dir/">Change Screen Shot Filename, Type and Target Dir</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In OS X, you can change the default filename, filetype and location where the file ends up, with some Terminal magic.</p>
+<p>To change the prefix (the default varies by language, in US it’s “Screen Shot”) open Terminal and type this:</p>
+<pre><code>defaults write com<span class="class">.apple</span><span class="class">.screencapture</span> name <span class="string">"MacBook-Pro-SS"</span>
+</code></pre><p>To change the filetype of the screen shot. (png, pdf, tiff, gif, and jpg are available)<br>png is the default.</p>
+<pre><code>defaults write com<span class="class">.apple</span><span class="class">.screencapture</span> type pdf
+</code></pre><p>To change the save location to your homedir/ScreenShots/, you can type this</p>
+<pre><code>defaults write com<span class="class">.apple</span><span class="class">.screencapture</span> location ~/ScreenShots/
+</code></pre><p>When you’re done, type this to activate your new settings:</p>
+<pre><code><span class="title">killall</span> SystemUIServer
+</code></pre><p>Confirm by taking a screen shot. Either by cmd+shift+3 (the whole screen), cmd+shift+4 (to draw an area to capture), or cmd+shift+4 and then the spacebar (for a complete window).</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/5/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/page/7/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="widget tag">
+  <img width="100%" height="auto" src="/post_img/2013/02/4f339050f44c11e1a3461231381315e1_7.jpg">
+    <h3 class="title"> MY LIFE CONSISTS OF…</h3>
+      <p class="entry">
+        ... coding, family, humor, and general whining about stuff that's not done right.
+        <br>
+        I'm an introvert (<a href="http://www.typelogic.com/intp.html">INTP</a>) who loves to program, build stuff, and solve problems.
+        <br>Works @ <a href="http://neo4j.com/">Neo4j</a>.
+        <br>I can be reached at <a href="http://twitter.com/oskarhane">@oskarhane</a>, &nbsp; <a href="http://www.facebook.com/ohane">ohane</a>
+        &nbsp; and &nbsp;
+        <a href="mailto:blog@oskrhane.com">blog@oskarhane.com</a>.
+      </p>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/angular-bootstrap-jade-stylus-coffeescript-boilerplate-webapp-with-yeoman/">Angular - Bootstrap - Jade - Stylus - CoffeeScript boilerplate webapp with Yeoman</a>
+      </li>
+    
+      <li>
+        <a href="/again-add-authorization-header-to-angularjs-http/">Again: Add Authorization header to AngularJS $http</a>
+      </li>
+    
+      <li>
+        <a href="/add-authorization-header-to-angularjs-http/">Add Authorization header to AngularJS $http</a>
+      </li>
+    
+      <li>
+        <a href="/create-a-nested-array-recursively-in-coffeescript/">Create a nested array recursively in CoffeeScript</a>
+      </li>
+    
+      <li>
+        <a href="/angularjs-watch-and-timeout/">AngularJS: $watch and $timeout</a>
+      </li>
+    
+      <li>
+        <a href="/neo4j-docker-image/">Neo4j Docker Image</a>
+      </li>
+    
+      <li>
+        <a href="/two-factor-auth-for-wordpress-5000-downloads/">Two Factor Auth for Wordpress &gt; 5000 downloads</a>
+      </li>
+    
+      <li>
+        <a href="/today-im-joining-the-neo4j-team/">Today I&#39;m joining the Neo4j team!</a>
+      </li>
+    
+      <li>
+        <a href="/note-to-self-on-updating-wordpress-plugins-via-git-svn/">Note to self on updating Wordpress plugins via git-svn</a>
+      </li>
+    
+      <li>
+        <a href="/use-your-synology-as-a-local-dns-cache/">Use your Synology as a local DNS cache</a>
+      </li>
+    
+      <li>
+        <a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">Make:r - How I did a fishing lure / jerk bait </a>
+      </li>
+    
+      <li>
+        <a href="/angular-js-filter-to-make-urls-in-text-clickable/">Angular.JS filter to make url:s in text clickable</a>
+      </li>
+    
+      <li>
+        <a href="/proxy-app-a-native-proxy-for-os-x/">Proxy.app - A native proxy for OS X</a>
+      </li>
+    
+      <li>
+        <a href="/does-that-html5-css3-thing-work-in/">Does that HTML5/ CSS3 thing work in ...?</a>
+      </li>
+    
+      <li>
+        <a href="/docker-image-wordpress-nginx-ssh-updated/">Docker image &quot;Wordpress NGiNX SSH&quot; updated</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/BitCoin/">BitCoin</a><small>2</small></li>
+  
+    <li><a href="/tags/Client-Side/">Client Side</a><small>34</small></li>
+  
+    <li><a href="/tags/Coding/">Coding</a><small>54</small></li>
+  
+    <li><a href="/tags/Crypto/">Crypto</a><small>11</small></li>
+  
+    <li><a href="/tags/Docker/">Docker</a><small>4</small></li>
+  
+    <li><a href="/tags/Food/">Food</a><small>2</small></li>
+  
+    <li><a href="/tags/General/">General</a><small>20</small></li>
+  
+    <li><a href="/tags/Hacks/">Hacks</a><small>17</small></li>
+  
+    <li><a href="/tags/Humor/">Humor</a><small>5</small></li>
+  
+    <li><a href="/tags/Impressive/">Impressive</a><small>13</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>11</small></li>
+  
+    <li><a href="/tags/PHP/">PHP</a><small>5</small></li>
+  
+    <li><a href="/tags/Raspberry-Pi/">Raspberry Pi</a><small>5</small></li>
+  
+    <li><a href="/tags/Server-Side/">Server Side</a><small>59</small></li>
+  
+    <li><a href="/tags/Training/">Training</a><small>7</small></li>
+  
+    <li><a href="/tags/Whine/">Whine</a><small>6</small></li>
+  
+    <li><a href="/tags/WordPress/">WordPress</a><small>17</small></li>
+  
+    <li><a href="/tags/javascript-coffeescript/">javascript, coffeescript</a><small>0</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.hanehub.com/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//piwik.hanehub.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+</body>
+</html>

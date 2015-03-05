@@ -1,0 +1,783 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 4 | oskarhane.com</title>
+  <meta name="author" content="Oskar Hane">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="oskarhane.com"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="oskarhane.com" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">oskarhane.com</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-09-26T15:20:36.000Z"><a href="/backup-mysql-with-git/">2013-09-26</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/backup-mysql-with-git/">Backup MySQL with Git</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>One advantage <a href="http://sqlite.org">SQLite</a> has over <a href="http://www.mysql.com">MySQL</a> is that it’s portable. Just move the db file anywhere and you’re able run your app straight away. MySQL has to have a server installed and you have to import a MySQL dump to get it up and running, and thats after you created the MySQL user etc.</p>
+<p>As I wrote before, <a href="/gitlab-host-your-own-github-site/">I’ve installed GitLab</a> and wanted to have my MySQL dumps versioned there. And note, this is for small sites with small databases (&lt; 10MB). It’s probably not recommended for big database dumps.</p>
+<p>With small databases it’s ok not to compress them as well, making git only send the diffs. If you have a big database you’re better off running rsync with tar-gz compression support.</p>
+<p>So, what I want is <strong>1)</strong> - Take a mysql dump and save it in a directory, <strong>2)</strong> - Git push that to my GitLab repo.<br>These steps are done in Debian, they may vary in other distros.</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/backup-mysql-with-git/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-09-26T09:13:53.000Z"><a href="/two-factor-auth-for-wordpress-1300-downloads/">2013-09-26</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/two-factor-auth-for-wordpress-1300-downloads/">Two Factor Auth for Wordpress - 1300 downloads</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>My Wordpress plugin <strong>Two Factor Auth</strong> now has 1300 downloads!</p>
+<p>Thats a far greater number that I could imagine since it makes you take another step when logging in to your Wordpress admin.</p>
+<p>Thanks for all the feedback as well!</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-09-22T18:27:47.000Z"><a href="/gitlab-host-your-own-github-site/">2013-09-22</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/gitlab-host-your-own-github-site/">GitLab - Host your own GitHub site</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I have a lot of git repos that I want to have centralized repos on since I also have a lot of servers that I need to push/fetch code to/from.</p>
+<p><a href="http://github.com">Github</a> is great but I don’t want to keep all my repos public and I’d prefer to host them myself. I’ve been watching this project called <a href="http://gitlab.org">GitLab</a> for a while and last week I decided that it was time to try it.</p>
+<p>TL;DR;<br><a href="http://gitlab.org">GitLab</a> is great if you or your business partners want to have a central place for your git repos but you don’t want to be over at Github.</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/gitlab-host-your-own-github-site/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-09-15T11:03:23.000Z"><a href="/recursion-in-javascript/">2013-09-15</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/recursion-in-javascript/">Recursion in Javascript</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I found this question on <a href="http://stackoverflow.com">StackOverflow</a> which was about sorting and printing a letter frequency analysis result object that was returned from a function (lets call it <code>counter</code>).</p>
+<p><code>counter</code> looked like this:</p>
+<pre><code>function <span class="keyword">count</span>(<span class="keyword">str</span>){
+  var arr = {},
+      i = <span class="keyword">str</span>.length,
+      j;
+  <span class="keyword">while</span>( i-- ){
+    j = arr[<span class="keyword">str</span>[i]];
+    <span class="keyword">if</span>(arr[<span class="keyword">str</span>[i]] = j){
+      arr[<span class="keyword">str</span>[i]] = j+<span class="number">1</span>;
+    }
+    <span class="keyword">else</span> arr[<span class="keyword">str</span>[i]] = <span class="number">1</span>;
+  }
+  <span class="keyword">return</span> arr;
+}
+console.log(<span class="keyword">count</span>(<span class="string">"ra ta ta ratata"</span>));
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/recursion-in-javascript/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-09-12T18:17:47.000Z"><a href="/create-a-nodejs-docker-io-image/">2013-09-12</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/create-a-nodejs-docker-io-image/">Create a Node.js Docker.io image</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Hopefully you’ve read my last post on <a href="/install-docker-io-on-a-vps-under-xen/">how to install Docker.io on a VPS (XEN)</a> that runs Ubuntu. No it’s time to actually use <a href="http://www.docker.io">Docker.io</a> and take advantage of how easy it is to create images to deploy on other servers.</p>
+<p>Just for fun, I will create an Ubuntu base image that has <a href="http://nodejs.org">node.js</a> and npm installed.</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/create-a-nodejs-docker-io-image/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-09-12T15:22:16.000Z"><a href="/install-docker-io-on-a-vps-under-xen/">2013-09-12</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/install-docker-io-on-a-vps-under-xen/">Install Docker.io on a VPS under XEN</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><a href="http://www.docker.io">Docker.io</a> is really hyped nowadays, and there’s a good reason for that.<br>I’m not going to go in och any details of what Docker is here, this will be an installation guide for me to remember.</p>
+<p>I’ll assume a VPS running Ubuntu Precise 12.04 (LTS) (64-bit) under XEN.</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/install-docker-io-on-a-vps-under-xen/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-08-27T18:57:06.000Z"><a href="/hide-encrypted-files-inside-videos/">2013-08-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/hide-encrypted-files-inside-videos/">Hide encrypted files inside videos</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I read an really interesting post the other day. It was about <a href="http://en.wikipedia.org/wiki/Steganography">Steganography</a> which is the art and science of writing hidden messages in such a way that no one, apart from the sender and intended recipient, suspects the existence of the message.</p>
+<p>What really caught my eye was that in this case, you could hide a complete encrypted and secure <a href="http://www.truecrypt.org">TrueCrypt</a> volume inside a video. The video still plays the way it should and the only difference is the filesize. It’s almost impossible to to find the encrypted volume but I assume you can check the bit rate of the video and calculate how big it should be.</p>
+<p>And the best part, it’s easy to do and you can mount your encrypted volume and add/remove files anytime you want without any hassle.</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/hide-encrypted-files-inside-videos/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-08-21T05:13:29.000Z"><a href="/screencapture-to-gif/">2013-08-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/screencapture-to-gif/">Screencapture to .gif</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This is pretty neat, LICEcap records your screen and saves it as a .gif animation straight away. Check this out.</p>
+<p><img src="/post_img/2013/08/blogpost.gif" alt="Writing this blog post"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-07-31T13:10:21.000Z"><a href="/rot-shift-cipher-generator-and-solver/">2013-07-31</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/rot-shift-cipher-generator-and-solver/">ROT / Shift cipher generator and solver</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>[rot_solver]</p>
+<hr>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/rot-shift-cipher-generator-and-solver/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-07-24T17:45:14.000Z"><a href="/my-leap-motion-has-arrived/">2013-07-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/my-leap-motion-has-arrived/">My LEAP Motion has arrived</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This is pretty cool!</p>
+<p>FedEx just showed up with a <a href="http://www.leapmotion.com" target="_blank" rel="external">LEAP Motion</a> that i preordered a long time ago. I had forgot about it so it was a nice surprise!</p>
+<p>I just played with it for a few moments and as far as I can tell, you need some training to control it. They launched an <a href="https://airspace.leapmotion.com/" target="_blank" rel="external">App Store for LEAP Motion</a> and I’ve played around with a few free apps.</p>
+<p>It’s pretty cool but for my line of work I cant really see a good use for it right now.<br>In front of a TV instead of a remote for sure, but in front of a laptop, no.</p>
+<p><img src="/post_img/2013/07/IMG_20130724_204327_Snapseed-1024x767.jpg" alt="LEAP Motion"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-07-18T17:43:53.000Z"><a href="/bitmessage-secure-messages-email-text/">2013-07-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/bitmessage-secure-messages-email-text/">BitMessage - Secure Messages / Email / Text</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Today I looked at the <a href="https://bitmessage.org/wiki/Main_Page" target="_blank" rel="external">BitMessage</a> project again to see if it has matured. And it sure has!</p>
+<p>This is a really interesting project with good spam defenses, unspoofable sender, encrypted messages and if you like to, anonymous senders and receivers.</p>
+<p>This is what we need. Encrypted and secure by default.</p>
+<p>It’s still not ready for the general public due to installation errors and heavy CPU usage. Someone at Reddit made an .app for OS X and it work fine for me.</p>
+<p>Try it out, and say hi to me!<br>Download the .app <a href="https://mega.co.nz/#!PJFB3bjQ!N_4SGGxo5gcr65ubabowd1dZPTpIOdf_Pb2j7hBO9js" target="_blank" rel="external">here &gt;&gt;</a> and send a message to me:<br><strong>BM-2D9fN9AjjfaAPUomMYMumEGLYvLoUVy77K</strong></p>
+<p>Have fun.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-07-10T07:20:24.000Z"><a href="/heml-is-messenger/">2013-07-10</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/heml-is-messenger/">Heml.is messenger</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>It’s time for a secure messenger and three people from Sweden is determined to make it happen.</p>
+<p>It’s about end user encryption (with PGP over XMPP), the way it should be done.<br>Hopefully they deliver the service to all platforms (phones, computers) in the future and release the source.</p>
+<p>Click on the link to back their project.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-07-08T20:03:23.000Z"><a href="/vigenere-cipher-helpers/">2013-07-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/vigenere-cipher-helpers/">Vigenère Cipher helpers</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>[vigenere_solver]</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/vigenere-cipher-helpers/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-07-08T05:37:56.000Z"><a href="/notepad-in-the-browser/">2013-07-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/notepad-in-the-browser/">Notepad in the browser</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This is pretty cool, you can use your browser as a notepad. See the comments for great tips and versions of it.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-07-01T13:02:46.000Z"><a href="/playing-with-ciphers/">2013-07-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/playing-with-ciphers/">Playing with ciphers</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I’ve been playing a bit with ciphers lately and thought of a fun idea after reading about <a href="https://en.wikipedia.org/wiki/One-time_pad" target="_blank" rel="external">One Time Pads</a>.</p>
+<p>Let’s make kind of a <a href="http://en.wikipedia.org/wiki/Vigenère_cipher" target="_blank" rel="external">Vigenère cipher</a> that makes ciphers that has many meanings depending on the key used to decipher it.</p>
+<p>This means that the ciphertext will have the length of the longest plaintext and the key will match that length as well. It may not be practical with such long keys, but it was a fun thing to do.</p>
+<p>I also modified the <a href="http://en.wikipedia.org/wiki/Tabula_recta" target="_blank" rel="external">Table Recta</a> to include upper and lower case chars as well as dash (-).</p>
+<p>Check out <a href="/deniable-vigenere-cipher/">the demo &gt;&gt;</a></p>
+<p>It’s written in JavaScript so check the source of the demo if you’re interested.</p>
+<p>I’ve also made a Javascript implementation of real Vigenère cipher where you can encode and decode messages. Try out the post with <a href="/vigenere-cipher-helpers/">Vigenère cipher helpers &gt;&gt;</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/3/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/page/5/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="widget tag">
+  <img width="100%" height="auto" src="/post_img/2013/02/4f339050f44c11e1a3461231381315e1_7.jpg">
+    <h3 class="title"> MY LIFE CONSISTS OF…</h3>
+      <p class="entry">
+        ... coding, family, humor, and general whining about stuff that's not done right.
+        <br>
+        I'm an introvert (<a href="http://www.typelogic.com/intp.html">INTP</a>) who loves to program, build stuff, and solve problems.
+        <br>Works @ <a href="http://neo4j.com/">Neo4j</a>.
+        <br>I can be reached at <a href="http://twitter.com/oskarhane">@oskarhane</a>, &nbsp; <a href="http://www.facebook.com/ohane">ohane</a>
+        &nbsp; and &nbsp;
+        <a href="mailto:blog@oskrhane.com">blog@oskarhane.com</a>.
+      </p>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/angular-bootstrap-jade-stylus-coffeescript-boilerplate-webapp-with-yeoman/">Angular - Bootstrap - Jade - Stylus - CoffeeScript boilerplate webapp with Yeoman</a>
+      </li>
+    
+      <li>
+        <a href="/again-add-authorization-header-to-angularjs-http/">Again: Add Authorization header to AngularJS $http</a>
+      </li>
+    
+      <li>
+        <a href="/add-authorization-header-to-angularjs-http/">Add Authorization header to AngularJS $http</a>
+      </li>
+    
+      <li>
+        <a href="/create-a-nested-array-recursively-in-coffeescript/">Create a nested array recursively in CoffeeScript</a>
+      </li>
+    
+      <li>
+        <a href="/angularjs-watch-and-timeout/">AngularJS: $watch and $timeout</a>
+      </li>
+    
+      <li>
+        <a href="/neo4j-docker-image/">Neo4j Docker Image</a>
+      </li>
+    
+      <li>
+        <a href="/two-factor-auth-for-wordpress-5000-downloads/">Two Factor Auth for Wordpress &gt; 5000 downloads</a>
+      </li>
+    
+      <li>
+        <a href="/today-im-joining-the-neo4j-team/">Today I&#39;m joining the Neo4j team!</a>
+      </li>
+    
+      <li>
+        <a href="/note-to-self-on-updating-wordpress-plugins-via-git-svn/">Note to self on updating Wordpress plugins via git-svn</a>
+      </li>
+    
+      <li>
+        <a href="/use-your-synology-as-a-local-dns-cache/">Use your Synology as a local DNS cache</a>
+      </li>
+    
+      <li>
+        <a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">Make:r - How I did a fishing lure / jerk bait </a>
+      </li>
+    
+      <li>
+        <a href="/angular-js-filter-to-make-urls-in-text-clickable/">Angular.JS filter to make url:s in text clickable</a>
+      </li>
+    
+      <li>
+        <a href="/proxy-app-a-native-proxy-for-os-x/">Proxy.app - A native proxy for OS X</a>
+      </li>
+    
+      <li>
+        <a href="/does-that-html5-css3-thing-work-in/">Does that HTML5/ CSS3 thing work in ...?</a>
+      </li>
+    
+      <li>
+        <a href="/docker-image-wordpress-nginx-ssh-updated/">Docker image &quot;Wordpress NGiNX SSH&quot; updated</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/BitCoin/">BitCoin</a><small>2</small></li>
+  
+    <li><a href="/tags/Client-Side/">Client Side</a><small>34</small></li>
+  
+    <li><a href="/tags/Coding/">Coding</a><small>54</small></li>
+  
+    <li><a href="/tags/Crypto/">Crypto</a><small>11</small></li>
+  
+    <li><a href="/tags/Docker/">Docker</a><small>4</small></li>
+  
+    <li><a href="/tags/Food/">Food</a><small>2</small></li>
+  
+    <li><a href="/tags/General/">General</a><small>20</small></li>
+  
+    <li><a href="/tags/Hacks/">Hacks</a><small>17</small></li>
+  
+    <li><a href="/tags/Humor/">Humor</a><small>5</small></li>
+  
+    <li><a href="/tags/Impressive/">Impressive</a><small>13</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>11</small></li>
+  
+    <li><a href="/tags/PHP/">PHP</a><small>5</small></li>
+  
+    <li><a href="/tags/Raspberry-Pi/">Raspberry Pi</a><small>5</small></li>
+  
+    <li><a href="/tags/Server-Side/">Server Side</a><small>59</small></li>
+  
+    <li><a href="/tags/Training/">Training</a><small>7</small></li>
+  
+    <li><a href="/tags/Whine/">Whine</a><small>6</small></li>
+  
+    <li><a href="/tags/WordPress/">WordPress</a><small>17</small></li>
+  
+    <li><a href="/tags/javascript-coffeescript/">javascript, coffeescript</a><small>0</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.hanehub.com/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//piwik.hanehub.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+</body>
+</html>

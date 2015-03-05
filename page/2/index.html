@@ -1,0 +1,773 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 2 | oskarhane.com</title>
+  <meta name="author" content="Oskar Hane">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="oskarhane.com"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="oskarhane.com" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">oskarhane.com</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-11T17:29:22.000Z"><a href="/matrix-in-the-terminal/">2014-04-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/matrix-in-the-terminal/">Matrix in the terminal</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Paste this your terminal.</p>
+<pre><code><span class="built_in">echo</span> <span class="operator">-e</span> <span class="string">"\e[1;40m"</span> ; clear ; <span class="keyword">while</span> :; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$LINES</span> <span class="variable">$COLUMNS</span> $(( <span class="variable">$RANDOM</span> % <span class="variable">$COLUMNS</span>)) $(( <span class="variable">$RANDOM</span> % <span class="number">72</span> )) ;sleep <span class="number">0.05</span>; <span class="keyword">done</span>|awk <span class="string">'{ letters="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&amp;*()"; c=$4; letter=substr(letters,c,1);a[$3]=0;for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s",o,x,letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,letter;if (a[x] &gt;= $1) { a[x]=0; } }}'</span>
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-11T17:11:44.000Z"><a href="/a-simple-terminal-bash-password-generator/">2014-04-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/a-simple-terminal-bash-password-generator/">A simple terminal / bash password generator</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><code>n=$RANDOM; r=$((n%20+10)); pw=$(head -c$r /dev/urandom | base64); echo $pw</code></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-04-02T06:38:37.000Z"><a href="/inspecting-the-firmware-of-a-d-link-dwr-923-4g-modem/">2014-04-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/inspecting-the-firmware-of-a-d-link-dwr-923-4g-modem/">Inspecting the firmware of a D-Link DWR-923 4G Modem</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This will be a step by step on how to extract different parts of the firmware on a D-Link 4G router. This is just for fun and out of curiosity to see what they are using.</p>
+<p>First, let get some tools. When inspecting/extracting and reverse engineering something you can’t live without a tool called <a href="http://binwalk.org">binwalk</a>. I downloaded 1.2.2 from <a href="https://code.google.com/p/binwalk/downloads/list">here</a> and after <code>brew install libmagic</code> I got it to compile on OS X Mavericks.</p>
+<p>Remember to edit your <code>~/.bash_profile</code> and add <code>export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH</code> to it to get it to compile.</p>
+<p>The firmware for the modem I got from this <a href="http://tekniksmart.se/2013/d-link-dwr-923-ny-firmware-slppt-till-4g-modemet/">Swedish tech site</a>.</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/inspecting-the-firmware-of-a-d-link-dwr-923-4g-modem/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-28T09:06:16.000Z"><a href="/nginx-as-a-reverse-proxy-in-front-of-your-docker-containers/">2014-03-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/nginx-as-a-reverse-proxy-in-front-of-your-docker-containers/">Nginx as a reverse proxy in front of your Docker containers</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I have and create a lot of Wordpress sites for clients. As of now, I manually create new Docker container, create a nginx (or <a href="/haproxy-as-a-static-reverse-proxy-for-docker-containers/">HAProxy</a>) config file so the site can be reached on port 80 from the outside. And it’s a pain.</p>
+<p>So I created this Python script that takes care of the container and config file creation. All you have to do i to reload nginx and the site will be up.</p>
+<p>Check it out: <a href="https://github.com/oskarhane/dockerpress/blob/master/dockerpress">Script to create wordpress docker container and nginx config file as reverse proxy</a>.</p>
+<p>This image illustrates what the setup will look like.  </p>
+<p><img src="/post_img/2014/03/orreMBA-2014-03-28-kl.-10.59.02.png" alt="nginx reverse proxy"></p>
+<p>Here’s how you use it.</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/nginx-as-a-reverse-proxy-in-front-of-your-docker-containers/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-20T19:52:05.000Z"><a href="/kevin-rose-interview-with-elon-musk-a-great-piece/">2014-03-20</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/kevin-rose-interview-with-elon-musk-a-great-piece/">Kevin Rose interview with Elon Musk. A great piece!</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>No Content Found</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-20T08:06:32.000Z"><a href="/going-from-audio-to-waveform-image-and-back-to-audio/">2014-03-20</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/going-from-audio-to-waveform-image-and-back-to-audio/">Going from audio to waveform image and back to audio</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>In my last post I showed how I found a great audio to waveform plugin and I also created a .PNG image with the waveform so I could save it.  </p>
+<p>But what if I wanted to read the waveform and create audio from it, i.e. convert it back.</p>
+<p>The sampling frequency / resolution of the waveform plays a important role of course. In my last post the resolution was 100 pixels / second which is way too low (CD quality would be 44100 px/s).  </p>
+<p>Since it’s Javascript run in the browser it takes some time to generate an waveform image of decent resolution. My MBA seemed to take a resolution of 4000 px/s but not more.  </p>
+<p>So, I had to go with that.</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/going-from-audio-to-waveform-image-and-back-to-audio/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-19T20:09:42.000Z"><a href="/visualize-sounds/">2014-03-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/visualize-sounds/">Visualize sound</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I find the visualization of sound interesting and I’ve found this fantastic js library to draw an audio file’s waveform on a canvas. Really cool stuff!</p>
+<p>I converted it to an image as well, just for fun. </p>
+<p>Now I want an audio player that can play a waveform image, so if you’ve ever heard of one please let me know!</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/visualize-sounds/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-13T12:46:27.000Z"><a href="/my-first-docker-image-in-the-docker-index/">2014-03-13</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/my-first-docker-image-in-the-docker-index/">My first Docker image in the Docker Index</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I’ve forked a good WordPress-Nginx container and added SSH to it so I could SSH into it and edit files etc. And now I’ve released it as a Trusted Build on the <a href="https://index.docker.io" target="_blank" rel="external">Docker Index</a>.</p>
+<p>Try it out: <a href="https://index.docker.io/u/oskarhane/docker-wordpress-nginx-ssh/" target="_blank" rel="external">Docker image for Wordpress, Nginx and SSH</a></p>
+<p>Feel free to fork / merge request / raise issues on the project page on github: <a href="https://github.com/oskarhane/docker-wordpress-nginx-ssh" target="_blank" rel="external">Github repo for Wordpress and Nginx Docker image</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-05T17:53:12.000Z"><a href="/book-nginx-module-extension/">2014-03-05</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/book-nginx-module-extension/">Book - Nginx Module Extension</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I’ve read another Nginx book (see my last review <a href="/nginx-http-server-second-edition/">here</a>) and this one is all about Nginx’s modular way and what modules are available. It’s called <a href="http://www.packtpub.com/nginx-module-extension/book">Nginx Module Extension</a></p>
+<p><img src="/post_img/2014/03/3046OS_cover.jpg.png" alt="cover"></p>
+<p>It starts off with a basic walkthrough on how Nginx is built philosophically with its modularity and takes you through the config of the main module. Pretty basic stuff if you’ve used Nginx before.<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/book-nginx-module-extension/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-04T17:12:29.000Z"><a href="/cryptocat-now-for-ios/">2014-03-04</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/cryptocat-now-for-ios/">Cryptocat - Now for iOS</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>No Content Found</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-03-03T09:12:40.000Z"><a href="/deniable-one-time-pad-with-vigeneres-tabula-recta-one-piece-of-text-many-solutions/">2014-03-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/deniable-one-time-pad-with-vigeneres-tabula-recta-one-piece-of-text-many-solutions/">Deniable One Time Pad with Vigenére&#39;s Tabula Recta. One piece of text, many solutions.</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>[otp_solver]</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-02-25T08:59:52.000Z"><a href="/haproxy-as-a-static-reverse-proxy-for-docker-containers/">2014-02-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/haproxy-as-a-static-reverse-proxy-for-docker-containers/">HAProxy as a static reverse proxy for Docker containers</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I like <a href="https://www.docker.io">Docker</a>. A lot.  </p>
+<p>Everything I build and deploy now ends up in their own container on some server/VPS of mine. One reason for this is because of how easy it is to move the site or service to another server if needed. Just export and import the Docker container and you’re done. No config on web and database servers needed, it’s all done.</p>
+<p>But there’s one thing you need to do. You can’t have lots of containers listening on the same public port 80, so you have to have your containers listening on some random port like 4553, 4566, 4333 etc. But your site’s visitors are coming to port 80 so you need to somehow listen to port 80 and forward requests to the right Docker container on the right port.</p>
+<p>There are several ways to do this and I started out with Nginx as a reverse proxy. This works fine but I don’t want a web server doing that. I’ve used <a href="http://haproxy.1wt.eu">HAProxy</a> in the past for load balancing. And it is actually just what I need, a load balancer is made for forwarding requests.</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/haproxy-as-a-static-reverse-proxy-for-docker-containers/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-02-18T21:12:21.000Z"><a href="/avoid-cors-with-nginx-proxy_pass/">2014-02-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/avoid-cors-with-nginx-proxy_pass/">Avoid CORS with Nginx proxy_pass</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I recently had to make cross origin AJAX requests (CORS), which was fine since I had control over the API server and simply adding these headers will make modern browsers ask  the API server for permission and then make the request.</p>
+<pre><code><span class="attribute">Access-Control-Allow-Origin</span>: <span class="string">*</span>
+<span class="attribute">Access-Control-Allow-Methods</span>: <span class="string">POST,GET,PUT,DELETE</span>
+<span class="attribute">Access-Control-Allow-Headers</span>: <span class="string">Authorization, Lang</span>
+</code></pre><p>But, of course, Internet Explorer want to be a pita and IE 8 &amp; 9 does not support this (a part of it is supported, check out <a href="http://caniuse.com/cors">this table</a>). And I have to support IE 9 at least.</p>
+<p>So, nginx to the rescue like many times in the past.</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/avoid-cors-with-nginx-proxy_pass/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-02-13T21:21:13.000Z"><a href="/reddit-for-cross-country-skiing-reddit-for-langdskidor/">2014-02-13</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/reddit-for-cross-country-skiing-reddit-for-langdskidor/">Reddit for cross country skiing - Reddit för längdskidor</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Site built with AngularJS and Twitter Bootstrap.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-02-05T10:34:11.000Z"><a href="/neo4j-cypher-if-not-exists-get-that-instead/">2014-02-05</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/neo4j-cypher-if-not-exists-get-that-instead/">Neo4j / Cypher: If not exists, get that instead</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I’m starting to learn Cypher recetly since I’m doing a project backed with a Neo4j database.</p>
+<p>One thing I bumped in to recently was a situation like this:</p>
+<blockquote><br><br>&gt;<br>&gt; A user can post a link. Users can comment on that link, and on other comments as well. (think reddit).<br>  If someone comments on your link or on one of your comments, you should get an email saying so.<br>&gt;<br>&gt;<br></blockquote>
+
+
+
+<p>So, we have: <code>(n:user)&lt;-[:POSTED_BY]-(m:link)</code> for the link.</p>
+<p>And for the comments we have <code>(n:user)-[:POSTED]-&gt;(o:comment)-[:COMMENT]-(m:link)</code></p>
+<p>When you post a link or add a comment, a SUBSCRIBES_TO relation is added. Like this:</p>
+<p><code>(n:user)-[:SUBSCRIBES_TO]-&gt;(m:link)</code><br>or<br><code>(n:user)-[:SUBSCRIBES_TO]-&gt;(o:comment)</code></p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/neo4j-cypher-if-not-exists-get-that-instead/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/page/3/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="widget tag">
+  <img width="100%" height="auto" src="/post_img/2013/02/4f339050f44c11e1a3461231381315e1_7.jpg">
+    <h3 class="title"> MY LIFE CONSISTS OF…</h3>
+      <p class="entry">
+        ... coding, family, humor, and general whining about stuff that's not done right.
+        <br>
+        I'm an introvert (<a href="http://www.typelogic.com/intp.html">INTP</a>) who loves to program, build stuff, and solve problems.
+        <br>Works @ <a href="http://neo4j.com/">Neo4j</a>.
+        <br>I can be reached at <a href="http://twitter.com/oskarhane">@oskarhane</a>, &nbsp; <a href="http://www.facebook.com/ohane">ohane</a>
+        &nbsp; and &nbsp;
+        <a href="mailto:blog@oskrhane.com">blog@oskarhane.com</a>.
+      </p>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/angular-bootstrap-jade-stylus-coffeescript-boilerplate-webapp-with-yeoman/">Angular - Bootstrap - Jade - Stylus - CoffeeScript boilerplate webapp with Yeoman</a>
+      </li>
+    
+      <li>
+        <a href="/again-add-authorization-header-to-angularjs-http/">Again: Add Authorization header to AngularJS $http</a>
+      </li>
+    
+      <li>
+        <a href="/add-authorization-header-to-angularjs-http/">Add Authorization header to AngularJS $http</a>
+      </li>
+    
+      <li>
+        <a href="/create-a-nested-array-recursively-in-coffeescript/">Create a nested array recursively in CoffeeScript</a>
+      </li>
+    
+      <li>
+        <a href="/angularjs-watch-and-timeout/">AngularJS: $watch and $timeout</a>
+      </li>
+    
+      <li>
+        <a href="/neo4j-docker-image/">Neo4j Docker Image</a>
+      </li>
+    
+      <li>
+        <a href="/two-factor-auth-for-wordpress-5000-downloads/">Two Factor Auth for Wordpress &gt; 5000 downloads</a>
+      </li>
+    
+      <li>
+        <a href="/today-im-joining-the-neo4j-team/">Today I&#39;m joining the Neo4j team!</a>
+      </li>
+    
+      <li>
+        <a href="/note-to-self-on-updating-wordpress-plugins-via-git-svn/">Note to self on updating Wordpress plugins via git-svn</a>
+      </li>
+    
+      <li>
+        <a href="/use-your-synology-as-a-local-dns-cache/">Use your Synology as a local DNS cache</a>
+      </li>
+    
+      <li>
+        <a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">Make:r - How I did a fishing lure / jerk bait </a>
+      </li>
+    
+      <li>
+        <a href="/angular-js-filter-to-make-urls-in-text-clickable/">Angular.JS filter to make url:s in text clickable</a>
+      </li>
+    
+      <li>
+        <a href="/proxy-app-a-native-proxy-for-os-x/">Proxy.app - A native proxy for OS X</a>
+      </li>
+    
+      <li>
+        <a href="/does-that-html5-css3-thing-work-in/">Does that HTML5/ CSS3 thing work in ...?</a>
+      </li>
+    
+      <li>
+        <a href="/docker-image-wordpress-nginx-ssh-updated/">Docker image &quot;Wordpress NGiNX SSH&quot; updated</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/BitCoin/">BitCoin</a><small>2</small></li>
+  
+    <li><a href="/tags/Client-Side/">Client Side</a><small>34</small></li>
+  
+    <li><a href="/tags/Coding/">Coding</a><small>54</small></li>
+  
+    <li><a href="/tags/Crypto/">Crypto</a><small>11</small></li>
+  
+    <li><a href="/tags/Docker/">Docker</a><small>4</small></li>
+  
+    <li><a href="/tags/Food/">Food</a><small>2</small></li>
+  
+    <li><a href="/tags/General/">General</a><small>20</small></li>
+  
+    <li><a href="/tags/Hacks/">Hacks</a><small>17</small></li>
+  
+    <li><a href="/tags/Humor/">Humor</a><small>5</small></li>
+  
+    <li><a href="/tags/Impressive/">Impressive</a><small>13</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>11</small></li>
+  
+    <li><a href="/tags/PHP/">PHP</a><small>5</small></li>
+  
+    <li><a href="/tags/Raspberry-Pi/">Raspberry Pi</a><small>5</small></li>
+  
+    <li><a href="/tags/Server-Side/">Server Side</a><small>59</small></li>
+  
+    <li><a href="/tags/Training/">Training</a><small>7</small></li>
+  
+    <li><a href="/tags/Whine/">Whine</a><small>6</small></li>
+  
+    <li><a href="/tags/WordPress/">WordPress</a><small>17</small></li>
+  
+    <li><a href="/tags/javascript-coffeescript/">javascript, coffeescript</a><small>0</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.hanehub.com/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//piwik.hanehub.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+</body>
+</html>

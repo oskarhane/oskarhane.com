@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[oskarhane.com]]></title>
+  
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://oskarhane.com/"/>
+  <updated>2015-03-05T12:42:59.000Z</updated>
+  <id>http://oskarhane.com/</id>
+  
+  <author>
+    <name><![CDATA[Oskar Hane]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Angular - Bootstrap - Jade - Stylus - CoffeeScript boilerplate webapp with Yeoman]]></title>
+    <link href="http://oskarhane.com/angular-bootstrap-jade-stylus-coffeescript-boilerplate-webapp-with-yeoman/"/>
+    <id>http://oskarhane.com/angular-bootstrap-jade-stylus-coffeescript-boilerplate-webapp-with-yeoman/</id>
+    <published>2014-11-12T20:08:20.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>Sorry about all the buzzwords in the title but it really describes what this note-to-self post is about.  </p>
+<p>How to create a boilerplate web app using <a href="https://angularjs.org" target="_blank" rel="external">AngularJS</a> as framework, <a href="http://getbootstrap.com" target="_blank" rel="external">Bootstrap</a> as HTML/CSS base, <a href="http://jade-lang.com" target="_blank" rel="external">Jade</a> as HTML replacement, <a href="http://learnboost.github.io/stylus/" target="_blank" rel="external">Stylus</a> as CSS replacement, and <a href="http://coffeescript.org" target="_blank" rel="external">CoffeeScript</a> as a Javascript replacement/generator/transpiler. All using <a href="http://gruntjs.com" target="_blank" rel="external">Grunt</a> as the glue that keeps everything together.  </p>
+<p><a href="https://www.npmjs.org" target="_blank" rel="external">Npm</a> and <a href="http://bower.io" target="_blank" rel="external">Bower</a> makes sure all dependencies are in place. And Karma for the testing.</p>
+<p>To create the scaffolding I use a tool named <a href="http://yeoman.io" target="_blank" rel="external">Yeoman</a> that has all these <em>generators</em> that installs all tolls you need, configures Grunt, npm and Bower and generates a basic app file structure so you can jump straight into the code.</p>
+<p>Lots of tools and replacements/generators/transpiler languages and there certainly are better or faster ones out there, but these makes me comfortable and I can get to work in 2 min.</p>
+<p>Anyway, this is how I do it:</p>
+<pre><code>npm install --<span class="keyword">global</span> yo bower grunt-<span class="keyword">cli</span>
+npm install --<span class="keyword">global</span> generator-angular-jade-stylus
+
+<span class="keyword">mkdir</span> newapp &amp;&amp; <span class="keyword">cd</span> <span class="label">$_</span>
+yo angular-jade-stylus --coffee --jade --stylus newapp
+</code></pre><p>Run <code>npm cache clean</code> and repeat the last line if it fails.  </p>
+<p>Answer yes to all questions.</p>
+<p>Run <code>grunt serve</code> and point your browser to localhost:9000 unless it does so for you.</p>
+<p>Bam, done.  </p>
+<p>Thank you <a href="http://yeoman.io" target="_blank" rel="external">Yeoman</a>.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Sorry about all the buzzwords in the title but it really describes what this note-to-self post is about.  </p>
+<p>How to create a boilerp]]>
+    </summary>
+    
+      <category term="Client Side" scheme="http://oskarhane.com/tags/Client-Side/"/>
+    
+      <category term="Coding" scheme="http://oskarhane.com/tags/Coding/"/>
+    
+      <category term="General" scheme="http://oskarhane.com/tags/General/"/>
+    
+      <category term="Impressive" scheme="http://oskarhane.com/tags/Impressive/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Again: Add Authorization header to AngularJS $http]]></title>
+    <link href="http://oskarhane.com/again-add-authorization-header-to-angularjs-http/"/>
+    <id>http://oskarhane.com/again-add-authorization-header-to-angularjs-http/</id>
+    <published>2014-11-07T14:17:37.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>In my last post I showed <a href="/add-authorization-header-to-angularjs-http/">how I add an <code>Authorisation</code> header</a> to outgoing $http calls in AngularJS. I’ve changed the way I do it, this which I think is easier to read.</p>
+<pre><code>angular.<span class="function"><span class="title">module</span><span class="params">(<span class="string">'app'</span>)</span></span>
+  .factory(<span class="string">'RequestInterceptor'</span>, [
+    <span class="string">'AuthDataService'</span>
+    (AuthDataService) -&gt;
+      interceptor = 
+        request: (config) -&gt;
+          <span class="tag">header</span> = AuthDataService.<span class="function"><span class="title">getAuthData</span><span class="params">()</span></span>
+          <span class="keyword">if</span> <span class="tag">header</span> then config<span class="class">.headers</span>[<span class="string">'Authorization'</span>] = <span class="string">"Basic #{header}"</span>
+          config
+      interceptor
+])
+
+angular.<span class="function"><span class="title">module</span><span class="params">(<span class="string">'app'</span>)</span></span>.<span class="function"><span class="title">config</span><span class="params">([<span class="string">'$httpProvider'</span>, (<span class="variable">$httpProvider</span>)</span></span> -&gt;
+  <span class="variable">$httpProvider</span><span class="class">.interceptors</span><span class="class">.push</span> <span class="string">'RequestInterceptor'</span>
+])
+</code></pre><p>The <code>AuthDataService</code> is the same as in my last post, but without the the setting of <code>$http.defaults.headers.common[&#39;Authorization&#39;]</code>.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>In my last post I showed <a href="/add-authorization-header-to-angularjs-http/">how I add an <code>Authorisation</code> header</a> to out]]>
+    </summary>
+    
+      <category term="Client Side" scheme="http://oskarhane.com/tags/Client-Side/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Add Authorization header to AngularJS $http]]></title>
+    <link href="http://oskarhane.com/add-authorization-header-to-angularjs-http/"/>
+    <id>http://oskarhane.com/add-authorization-header-to-angularjs-http/</id>
+    <published>2014-10-14T11:40:46.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>I recently had to add an <a href="http://en.wikipedia.org/wiki/Basic_access_authentication" target="_blank" rel="external">Authorization header</a> to all <a href="https://docs.angularjs.org/api/ng/service/$http" target="_blank" rel="external">$http</a> requests in an AngularJS app.  </p>
+<p>Here’s how I did it in Coffeescript.</p>
+<pre><code><span class="comment">#AuthData.coffee</span>
+
+angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
+.factory <span class="string">'AuthDataService'</span>, [
+  <span class="string">'localStorageService'</span>
+  <span class="string">'$base64'</span>
+  <span class="string">'$http'</span>
+  (localStorageService, <span class="variable">$base64</span>, <span class="variable">$http</span>) -&gt;
+    current_auth_data = localStorageService.get(<span class="string">'authorization_token'</span>)
+    if current_auth_data
+      <span class="variable">$http</span>.defaults.headers.common[<span class="string">'Authorization'</span>] = <span class="string">"Basic <span class="subst">#{current_auth_data}</span>"</span>
+
+    <span class="keyword">return</span> {
+      <span class="symbol">setAuthData:</span> (authdata) -&gt;
+        <span class="keyword">return</span> <span class="keyword">unless</span> authdata
+        encoded = <span class="variable">$base64</span>.encode(authdata)
+        localStorageService.set(<span class="string">'authorization_token'</span>, encoded)
+        <span class="variable">$http</span>.defaults.headers.common[<span class="string">'Authorization'</span>] = <span class="string">"Basic <span class="subst">#{encoded}</span>"</span>
+      <span class="symbol">clearAuthData:</span> -&gt;
+        localStorageService.remove(<span class="string">'authorization_token'</span>)
+        <span class="variable">$http</span>.defaults.headers.common[<span class="string">'Authorization'</span>] = <span class="string">''</span>
+      <span class="symbol">getAuthData:</span> -&gt;
+        <span class="keyword">return</span> localStorageService.get(<span class="string">'authorization_token'</span>)
+    }
+]
+</code></pre><p>Upon initialization it checks if there’s a <code>authorization_token</code> saved in your local storage. If there is, set it as a <code>Authorization</code> header on $http.  </p>
+<p>Whenever you set or clear the auth data, the header for $http changes as well.</p>
+<p>EDIT: I’ve written another post about how to <a href="/again-add-authorization-header-to-angularjs-http/">add Authorization header to AngularJS $http</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I recently had to add an <a href="http://en.wikipedia.org/wiki/Basic_access_authentication" target="_blank" rel="external">Authorization ]]>
+    </summary>
+    
+      <category term="Client Side" scheme="http://oskarhane.com/tags/Client-Side/"/>
+    
+      <category term="Coding" scheme="http://oskarhane.com/tags/Coding/"/>
+    
+      <category term="General" scheme="http://oskarhane.com/tags/General/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Create a nested array recursively in CoffeeScript]]></title>
+    <link href="http://oskarhane.com/create-a-nested-array-recursively-in-coffeescript/"/>
+    <id>http://oskarhane.com/create-a-nested-array-recursively-in-coffeescript/</id>
+    <published>2014-09-24T03:56:28.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>In an old post called <a href="/create-a-nested-array-recursively-in-javascript/">Create a nested array recursively in Javascript</a> I wrote how to go from</p>
+<pre><code>[
+    {<span class="string">id:</span> <span class="number">1</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">0</span>},
+    {<span class="string">id:</span> <span class="number">2</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">0</span>},
+    {<span class="string">id:</span> <span class="number">3</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">1</span>},
+    {<span class="string">id:</span> <span class="number">4</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">3</span>},
+    {<span class="string">id:</span> <span class="number">5</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">4</span>},
+    {<span class="string">id:</span> <span class="number">6</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">4</span>},
+    {<span class="string">id:</span> <span class="number">7</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">3</span>},
+    {<span class="string">id:</span> <span class="number">8</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">2</span>}
+]
+</code></pre><a id="more"></a>
+<p>to</p>
+<pre><code>[
+    {<span class="string">id:</span> <span class="number">1</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">0</span>, <span class="string">children:</span> [
+        {<span class="string">id:</span> <span class="number">3</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">1</span>, <span class="string">children:</span> [
+            {<span class="string">id:</span> <span class="number">4</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">3</span>, <span class="string">children:</span> [
+                {<span class="string">id:</span> <span class="number">5</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">4</span>},
+                {<span class="string">id:</span> <span class="number">6</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">4</span>}
+            ]},
+            {<span class="string">id:</span> <span class="number">7</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">3</span>}
+        ]}
+    ]},
+    {<span class="string">id:</span> <span class="number">2</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">0</span>, <span class="string">children:</span> [
+        {<span class="string">id:</span> <span class="number">8</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">2</span>}
+    ]}
+]
+</code></pre><p>with a recursive Javascript function.  </p>
+<p>I’ve been asked to show how to do this in Coffeescript.</p>
+<pre><code>getNestedChildren = (arr, parent) -&gt;
+  out = []
+  <span class="keyword">for</span> item <span class="keyword">in</span> arr
+    continue unless item<span class="class">.parent</span> is parent
+    children = getNestedChildren arr, item<span class="class">.id</span>    
+    item<span class="class">.children</span> = children <span class="keyword">if</span> children<span class="class">.length</span>
+    out<span class="class">.push</span> item
+  out
+</code></pre><p>which compiles to this Javascript:</p>
+<pre><code>var getNestedChildren;
+
+getNestedChildren = function(arr, parent) {
+  var children, <span class="property">item</span>, out, _i, _len;
+  out = [];
+  <span class="keyword">for</span> (_i = <span class="number">0</span>, _len = arr.<span class="property">length</span>; _i &lt; _len; _i++) {
+    <span class="property">item</span> = arr[_i];
+    <span class="keyword">if</span> (<span class="property">item</span>.parent !== parent) {
+      <span class="keyword">continue</span>;
+    }
+    children = getNestedChildren(arr, <span class="property">item</span>.<span class="property">id</span>);
+    <span class="keyword">if</span> (children.<span class="property">length</span>) {
+      <span class="property">item</span>.children = children;
+    }
+    out.push(<span class="property">item</span>);
+  }
+<span class="command">  return</span> out;
+};
+</code></pre><p>On <a href="http://js2coffee.org" target="_blank" rel="external">js2coffee</a> you can convert Javascript to and form Coffeescript.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>In an old post called <a href="/create-a-nested-array-recursively-in-javascript/">Create a nested array recursively in Javascript</a> I wrote how to go from</p>
+<pre><code>[
+    {<span class="string">id:</span> <span class="number">1</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">0</span>},
+    {<span class="string">id:</span> <span class="number">2</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">0</span>},
+    {<span class="string">id:</span> <span class="number">3</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">1</span>},
+    {<span class="string">id:</span> <span class="number">4</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">3</span>},
+    {<span class="string">id:</span> <span class="number">5</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">4</span>},
+    {<span class="string">id:</span> <span class="number">6</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">4</span>},
+    {<span class="string">id:</span> <span class="number">7</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">3</span>},
+    {<span class="string">id:</span> <span class="number">8</span>, <span class="string">title:</span> <span class="string">'hello'</span>, <span class="string">parent:</span> <span class="number">2</span>}
+]
+</code></pre>]]>
+    
+    </summary>
+    
+      <category term="Client Side" scheme="http://oskarhane.com/tags/Client-Side/"/>
+    
+      <category term="Training" scheme="http://oskarhane.com/tags/Training/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[AngularJS: $watch and $timeout]]></title>
+    <link href="http://oskarhane.com/angularjs-watch-and-timeout/"/>
+    <id>http://oskarhane.com/angularjs-watch-and-timeout/</id>
+    <published>2014-09-11T03:55:00.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>As you might know, AngularJS has an event loop, called $digest, that checks and updates all bindings and values.  </p>
+<p>You can have a DOM element only show when a scope variable has a certain value, like this:</p>
+<pre><code>&lt;<span class="keyword">div</span> ng-show=<span class="string">"show_div"</span>&gt;Text <span class="keyword">in</span> <span class="keyword">div</span>&lt;/<span class="keyword">div</span>&gt;
+</code></pre><p>Whenever the $digest runs, it checks if <code>$scope.show_div</code> is true and if it is, the div is shown. If not true, the div is hidden.</p>
+<p>That means that in your controller you can toggle the visibility of the div by simply setting <code>$scope.show_div = true/false</code>. However, if you do this on mouseover an element or change the value very frequently some other way the $digest might not have had the time to finish it’s loop and the div won’t toggle as it should.</p>
+<p>That’s where <code>$timeout</code> comes in. It’s a wrapper for javascript’s <code>setTimeout</code> with the addition that it triggers a $digest loop at the end meaning that anything you changed will be updated as it should.  </p>
+<p>So instead of <code>$scope.show_div = true</code> and then <code>$scope.show_div = false</code> you do:</p>
+<pre><code><span class="variable">$timeout</span>(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{ <span class="variable">$scope</span>.show_div = <span class="keyword">true</span>; }, <span class="number">0</span>);
+<span class="comment">//and</span>
+<span class="variable">$timeout</span>(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{ <span class="variable">$scope</span>.show_div = <span class="keyword">false</span>; }, <span class="number">0</span>);
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>As you might know, AngularJS has an event loop, called $digest, that checks and updates all bindings and values.  </p>
+<p>You can have a ]]>
+    </summary>
+    
+      <category term="Client Side" scheme="http://oskarhane.com/tags/Client-Side/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Neo4j Docker Image]]></title>
+    <link href="http://oskarhane.com/neo4j-docker-image/"/>
+    <id>http://oskarhane.com/neo4j-docker-image/</id>
+    <published>2014-08-08T11:08:41.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>I forked <a href="https://github.com/tpires/neo4j" target="_blank" rel="external">tpires/neo4j</a> to make a Docker image for Neo4j that has version tags so I very easily can start a Neo4j instance to make API calls to.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I forked <a href="https://github.com/tpires/neo4j" target="_blank" rel="external">tpires/neo4j</a> to make a Docker image for Neo4j that ]]>
+    </summary>
+    
+      <category term="Docker" scheme="http://oskarhane.com/tags/Docker/"/>
+    
+      <category term="Server Side" scheme="http://oskarhane.com/tags/Server-Side/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Two Factor Auth for Wordpress > 5000 downloads]]></title>
+    <link href="http://oskarhane.com/two-factor-auth-for-wordpress-5000-downloads/"/>
+    <id>http://oskarhane.com/two-factor-auth-for-wordpress-5000-downloads/</id>
+    <published>2014-08-03T13:30:04.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>Wow, this is pretty cool, I just passed the 5000 downloaded mark for my <a href="http://wordpress.org/plugins/two-factor-auth/" target="_blank" rel="external">Two Factor Auth for Wordpress plugin</a>.</p>
+<p>(but I see that there’s something wrong with the changelog for v4.4. I really don’t like WP Plugin repository and readme parsing. This is not the first time.)</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Wow, this is pretty cool, I just passed the 5000 downloaded mark for my <a href="http://wordpress.org/plugins/two-factor-auth/" target="_]]>
+    </summary>
+    
+      <category term="Crypto" scheme="http://oskarhane.com/tags/Crypto/"/>
+    
+      <category term="WordPress" scheme="http://oskarhane.com/tags/WordPress/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Today I'm joining the Neo4j team!]]></title>
+    <link href="http://oskarhane.com/today-im-joining-the-neo4j-team/"/>
+    <id>http://oskarhane.com/today-im-joining-the-neo4j-team/</id>
+    <published>2014-08-01T07:51:39.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>As of today I start working with the team @ <a href="http://www.neotechnology.com" target="_blank" rel="external">Neo Technology</a> on a part of their <a href="http://neo4j.com" target="_blank" rel="external">Graph Database Neo4j</a>.</p>
+<p>I’ll be responsible to make their fantastic <a href="http://www.neo4j.org/develop/visualize" target="_blank" rel="external">Neo4j Browser</a> even better by adding more features and make it what the customers want.</p>
+<p><img src="/post_img/2014/08/orreMBA-2014-08-01-kl.-11.47.12.png" alt="browser example"></p>
+<p>This will be great!</p>
+<p><code>(graphs)-[:ARE]-&gt;(everywhere)</code></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>As of today I start working with the team @ <a href="http://www.neotechnology.com" target="_blank" rel="external">Neo Technology</a> on a]]>
+    </summary>
+    
+      <category term="Coding" scheme="http://oskarhane.com/tags/Coding/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Note to self on updating Wordpress plugins via git-svn]]></title>
+    <link href="http://oskarhane.com/note-to-self-on-updating-wordpress-plugins-via-git-svn/"/>
+    <id>http://oskarhane.com/note-to-self-on-updating-wordpress-plugins-via-git-svn/</id>
+    <published>2014-07-29T11:12:45.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>I host my <a href="http://wordpress.org/plugins/two-factor-auth/" target="_blank" rel="external">Two Factor Auth Wordpress Plugin</a> on <a href="https://github.com/oskarhane/wp-two-factor-auth" target="_blank" rel="external">Github</a> and I run <a href="https://www.kernel.org/pub/software/scm/git/docs/git-svn.html" target="_blank" rel="external">git svn</a> locally to be able to sync the Github git repo with the Wordpress plugins SVN repo.</p>
+<p>But, it’s a bit of a hassle and I don’t update the plugin often enough to remember what step to take.</p>
+<p>The assumption is that you’ve followed <a href="https://gist.github.com/kasparsd/3749872" target="_blank" rel="external">this guide</a> to setup you local repo with svn and git remotes.</p>
+<h2 id="1">1</h2><p>Write code in local git feature branches as usual. Push the finished code to Githubs master branch and add a git tag.</p>
+<h2 id="2">2</h2><p>Create a new local git branch (or use a clean old one) and merge local master branch (remember to squash all commits!) into this one. It has to have a straight history.</p>
+<h2 id="3">3</h2><p>Run <code>git svn rebase</code> the see that the history matches with the remote Worpress svn repo.</p>
+<h2 id="4">4</h2><p>Run <code>git svn dcommit --username yourusername</code> to push the code to Wordpress svn repo. Remember that you have to change all the tags in your readme.txt and you main plugin file to match the new release version.</p>
+<h2 id="5">5</h2><p>Run <code>git svn tag x.x</code> to copy trunk and create a new remote tag/release from it.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I host my <a href="http://wordpress.org/plugins/two-factor-auth/" target="_blank" rel="external">Two Factor Auth Wordpress Plugin</a> on ]]>
+    </summary>
+    
+      <category term="WordPress" scheme="http://oskarhane.com/tags/WordPress/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Use your Synology as a local DNS cache]]></title>
+    <link href="http://oskarhane.com/use-your-synology-as-a-local-dns-cache/"/>
+    <id>http://oskarhane.com/use-your-synology-as-a-local-dns-cache/</id>
+    <published>2014-06-30T13:02:54.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>It is totally unnecessary to have all your computers, iPad’s and iPhone’s ask your router to resolve domain names to an external DNS server whenever you click a link or enter a domain name.  </p>
+<p>Why not have something that sits on your local network and forwards unknown DNS requests and then saves the cache so the next time that request would take ≈ 1 ms instead of ≈ 50 ms (or ever more if you use your ISP’s DNS service)?  </p>
+<a id="more"></a>
+<p>You can use a Raspberry Pi to do this as well (let me know if you want a post on how to do that) but since I have a Synology RackStation at home, I’ll use that instead.</p>
+<p>First of all, I click to en Synology Package Center and installed a package call ‘DNS server’.  </p>
+<p><img src="/post_img/2014/06/orreMBA-2014-06-30-kl.-14.41.21.png" alt="dns"></p>
+<p>After that I entered the settings page for the DNS server and activated it as well as activated forwarding to Googles DNS servers. Here you can enter anyones you want. I find Google’s fast and reliable.  </p>
+<p><img src="/post_img/2014/06/orreMBA-2014-06-30-kl.-14.41.37.png" alt="settings"></p>
+<p>And then I adjusted some of the size settings.  </p>
+<p><img src="/post_img/2014/06/orreMBA-2014-06-30-kl.-14.41.46.png" alt="size"></p>
+<p>Just to try it out I did a series of 30 parallell queries on a domain on my computer.  </p>
+<p>Type this in your terminal to query your current DNS 30 times for <code>oskarhane.com</code> and print the average time.</p>
+<pre><code><span class="flow">for</span> i <span class="flow">in</span> {<span class="number">1</span>..<span class="number">30</span>}; <span class="flow">do</span> <span class="keyword">echo</span> oskarhane.com;done | xargs -I^ -P10 dig ^ | grep <span class="built_in">time</span> | awk /<span class="built_in">time</span>/'{sum+=$<span class="number">4</span>} END { <span class="built_in">print</span> "Average query = ",sum/NR,"ms"}'
+</code></pre><p>I got <code>Average query =  51,1333 ms</code> going straight to Google’s DNS servers.</p>
+<p>To test the Synology I entered Network Settings on my Mac and entered the local ip to my Synology as the DNS server to use.  </p>
+<p><img src="/post_img/2014/06/orreMBA-2014-06-30-kl.-14.42.10.png" alt="network"></p>
+<p>And then I ran the test again, this time getting <code>Average query =  23,3 ms</code>. Cut by half, but remember, the first query is not cached so that probably took at least 50 ms!.  </p>
+<p>Running the query once more should return just cached responses.</p>
+<p><code>Average query =  1,1 ms</code></p>
+<p><strong>Indeed, this is fast!</strong></p>
+<p>Anyway, if I just leave it with this and take my computer outside my home network, I’m not going to be able to resolve any domains since my computer won’t be able to find my local DNS server.  </p>
+<p>So, remove the ip to the Synology in the network settings no the mac (leave it empty, defaulting to the current router/gateway).  </p>
+<p>I want to efter this in my routers settings so everyone on my home network gets tt benefit from this.</p>
+<p>I have an Apple Airport Extreme (which actually has a DNS cache itself so this will not have any impact) so I start the app Airport Utility and enter the local ip to my Synology in <strong>BOTH</strong> DNS server IP fields.</p>
+<p>Refer to your router’s manual on how to change DNS server settings.  </p>
+<p>All done.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>It is totally unnecessary to have all your computers, iPad’s and iPhone’s ask your router to resolve domain names to an external DNS server whenever you click a link or enter a domain name.  </p>
+<p>Why not have something that sits on your local network and forwards unknown DNS requests and then saves the cache so the next time that request would take ≈ 1 ms instead of ≈ 50 ms (or ever more if you use your ISP’s DNS service)?  </p>]]>
+    
+    </summary>
+    
+      <category term="Impressive" scheme="http://oskarhane.com/tags/Impressive/"/>
+    
+      <category term="Server Side" scheme="http://oskarhane.com/tags/Server-Side/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Make:r - How I did a fishing lure / jerk bait ]]></title>
+    <link href="http://oskarhane.com/maker-how-i-did-a-fishing-lure-jerk-bait/"/>
+    <id>http://oskarhane.com/maker-how-i-did-a-fishing-lure-jerk-bait/</id>
+    <published>2014-06-12T07:08:10.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>This is going to be a odd post in contrast to all other posts I’ve written. I like to make things, it doesn’t matter if it’s software or hardware. Recently I started to fish again after a few years on hold.</p>
+<p>This time I wanted to fish for pike with a method called jerk bait fishing. These baits/lures does not have their own movement pattern like most lures has. These baits you have to jerk to get them moving in a, for the fish, compelling way. So it’s one step back to a more manual way of fishing.  </p>
+<p>To be able to jerk efficiently you have to have a really stiff and short pole (pun intended) and a non elastic wire.</p>
+<p>What’s nice with these baits is that you quite easily can make your own since they don’t have to move by them selves in a specific way.<br><a id="more"></a></p>
+<p>So, here’s how I made mine!</p>
+<h3 id="Draw_a_shape_and_saw_it_from_wood-_Start_to_cut_the_shape_you_want-">Draw a shape and saw it from wood. Start to cut the shape you want.</h3><p><img src="/post_img/2014/06/IMG_0050.jpg" alt="One"></p>
+<h3 id="Grind_with_sand_paper_to_make_it_smooth-">Grind with sand paper to make it smooth.</h3><p><img src="/post_img/2014/06/IMG_0051.jpg" alt="Two"></p>
+<h3 id="Drill_some_holes_for_the_lead_to_make_it_hold_position_in_the_water_and_to_make_it_sink_slow-_Dip_it_once_in_epoxy-">Drill some holes for the lead to make it hold position in the water and to make it sink slow. Dip it once in epoxy.</h3><p><img src="/post_img/2014/06/IMG_0052.jpg" alt="three"></p>
+<h3 id="Drill_a_hole_for_a_rattle_ball-_I_used_the_head_of_a_nail_as_the_ball-">Drill a hole for a rattle ball. I used the head of a nail as the ball.</h3><p><img src="/post_img/2014/06/file_thumb-1.cgi_.jpeg" alt="four"></p>
+<h3 id="Fill_the_holes_with_lead_and_glue_metal_plates_enclosing_the_rattle_ball-">Fill the holes with lead and glue metal plates enclosing the rattle ball.</h3><p><img src="/post_img/2014/06/file_thumb.cgi_kopia.jpeg" alt="five">  </p>
+<p>[video width=”1280” height=”720” mp4=”/post_img/2014/06/IMG_0043.mp4”][/video]</p>
+<h3 id="Putty_the_wholes">Putty the wholes</h3><p><img src="/post_img/2014/06/IMG_0045.jpg" alt="six"></p>
+<h3 id="Grind_the_putty_to_make_it_smooth">Grind the putty to make it smooth</h3><p><img src="/post_img/2014/06/IMG_0046.jpg" alt="seven"></p>
+<h3 id="Dip_it_in_epoxy-_Dry-_Paint-_I_used_spray_cans_to_paint,_which_I_don’t_recommend-_Use_airbrush_if_you_can-">Dip it in epoxy. Dry. Paint. I used spray cans to paint, which I don’t recommend. Use airbrush if you can.</h3><p><img src="/post_img/2014/06/IMG_0040.jpg" alt="eight">  </p>
+<p><img src="/post_img/2014/06/IMG_0041.jpg" alt="nine">  </p>
+<p><img src="/post_img/2014/06/IMG_0037.jpg" alt="ten">  </p>
+<p><img src="/post_img/2014/06/IMG_0039.jpg" alt="eleven"></p>
+<p>The only thing left is to test it in water and catch some pikes!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>This is going to be a odd post in contrast to all other posts I’ve written. I like to make things, it doesn’t matter if it’s software or hardware. Recently I started to fish again after a few years on hold.</p>
+<p>This time I wanted to fish for pike with a method called jerk bait fishing. These baits/lures does not have their own movement pattern like most lures has. These baits you have to jerk to get them moving in a, for the fish, compelling way. So it’s one step back to a more manual way of fishing.  </p>
+<p>To be able to jerk efficiently you have to have a really stiff and short pole (pun intended) and a non elastic wire.</p>
+<p>What’s nice with these baits is that you quite easily can make your own since they don’t have to move by them selves in a specific way.<br>]]>
+    
+    </summary>
+    
+      <category term="General" scheme="http://oskarhane.com/tags/General/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Angular.JS filter to make url:s in text clickable]]></title>
+    <link href="http://oskarhane.com/angular-js-filter-to-make-urls-in-text-clickable/"/>
+    <id>http://oskarhane.com/angular-js-filter-to-make-urls-in-text-clickable/</id>
+    <published>2014-06-02T06:00:46.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>This is a simple filter I made for Angular.JS to make url’s in text clickable. Make sure you place the content and filter in the <code>ng-bind-html</code> attribute of the HTML element. Otherwise the HTML won’t be parsed.</p>
+<p>E.g. <code>&lt;p ng-bind-html=&quot;comment.body | parseUrl&quot;&gt;&lt;/p&gt;</code></p>
+<p>Here’s the <code>parseUrl</code> filter:</p>
+<pre><code>angular.module(<span class="string">'filters'</span>, [])
+.<span class="built_in">filter</span>(<span class="string">'parseUrl'</span>, <span class="function"><span class="keyword">function</span>() {</span>
+    var urls = /(\b(<span class="keyword">https</span>?|<span class="keyword">ftp</span>):\/\/[A-Z0-<span class="number">9</span>+&amp;@<span class="comment">#\/%?=~_|!:,.;-]*[-A-Z0-9+&amp;@#\/%=~_|])/gim</span>
+    var emails = /(\w+@[<span class="operator">a</span>-zA-Z_]+?\.[<span class="operator">a</span>-zA-Z]{<span class="number">2</span>,<span class="number">6</span>})/gim
+
+    <span class="constant">return</span> <span class="function"><span class="keyword">function</span>(<span class="title">text</span>) {        </span>
+        <span class="keyword">if</span>(<span class="keyword">text</span>.match(urls)) {
+            <span class="keyword">text</span> = <span class="keyword">text</span>.<span class="built_in">replace</span>(urls, <span class="string">"&lt;a href=\"$1\" target=\"_blank\"&gt;$1&lt;/a&gt;"</span>)
+        }
+        <span class="keyword">if</span>(<span class="keyword">text</span>.match(emails)) {
+            <span class="keyword">text</span> = <span class="keyword">text</span>.<span class="built_in">replace</span>(emails, <span class="string">"&lt;a href=\"mailto:$1\"&gt;$1&lt;/a&gt;"</span>)
+        }
+
+        <span class="constant">return</span> <span class="keyword">text</span>       
+    }
+})
+</code></pre><p>Also, make sure you inject <code>filters</code> in your main module / app.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>This is a simple filter I made for Angular.JS to make url’s in text clickable. Make sure you place the content and filter in the <code>ng]]>
+    </summary>
+    
+      <category term="Client Side" scheme="http://oskarhane.com/tags/Client-Side/"/>
+    
+      <category term="Coding" scheme="http://oskarhane.com/tags/Coding/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Proxy.app - A native proxy for OS X]]></title>
+    <link href="http://oskarhane.com/proxy-app-a-native-proxy-for-os-x/"/>
+    <id>http://oskarhane.com/proxy-app-a-native-proxy-for-os-x/</id>
+    <published>2014-05-23T11:47:14.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>I’ve used the excellent Charles to intercept connections, but this new app seems quite nice!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I’ve used the excellent Charles to intercept connections, but this new app seems quite nice!</p>
+]]>
+    </summary>
+    
+      <category term="Client Side" scheme="http://oskarhane.com/tags/Client-Side/"/>
+    
+      <category term="Hacks" scheme="http://oskarhane.com/tags/Hacks/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Does that HTML5/ CSS3 thing work in ...?]]></title>
+    <link href="http://oskarhane.com/does-that-html5-css3-thing-work-in/"/>
+    <id>http://oskarhane.com/does-that-html5-css3-thing-work-in/</id>
+    <published>2014-05-14T05:02:45.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>A nice resource to check what elements and API:s the different browsers supports.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>A nice resource to check what elements and API:s the different browsers supports.</p>
+]]>
+    </summary>
+    
+      <category term="Client Side" scheme="http://oskarhane.com/tags/Client-Side/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Docker image "Wordpress NGiNX SSH" updated]]></title>
+    <link href="http://oskarhane.com/docker-image-wordpress-nginx-ssh-updated/"/>
+    <id>http://oskarhane.com/docker-image-wordpress-nginx-ssh-updated/</id>
+    <published>2014-04-17T06:38:36.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>Yesterday I updated my Docker image <a href="https://index.docker.io/u/oskarhane/docker-wordpress-nginx-ssh/" target="_blank" rel="external">docker-wordpress-nginx-ssh</a> <a href="https://github.com/oskarhane/docker-wordpress-nginx-ssh" target="_blank" rel="external">github</a> so it adds memcached and the superb Wordpress plugin <a href="http://wordpress.org/plugins/wp-ffpc/" target="_blank" rel="external">WP-FFPC</a> to Wordpress.</p>
+<p>This makes NGiNX serve cached pages straight from memcached without going into PHP and Wordpress. It’s amazingly fast (try to reload this page you’re on now).</p>
+<p>One thing though, you have to login and press the “Save” button on the settings page of WP-FFPC to activate it. But that’s all there’s to it, all NGiNX settings are already there.</p>
+<p>To try it, just type <code>docker pull  oskarhane/docker-wordpress-nginx-ssh</code> or to start a container straight away: <code>sudo docker run -p 80 -p 22 -d -t oskarhane/docker-wordpress-nginx-ssh</code></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Yesterday I updated my Docker image <a href="https://index.docker.io/u/oskarhane/docker-wordpress-nginx-ssh/" target="_blank" rel="extern]]>
+    </summary>
+    
+      <category term="Server Side" scheme="http://oskarhane.com/tags/Server-Side/"/>
+    
+      <category term="WordPress" scheme="http://oskarhane.com/tags/WordPress/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Matrix in the terminal]]></title>
+    <link href="http://oskarhane.com/matrix-in-the-terminal/"/>
+    <id>http://oskarhane.com/matrix-in-the-terminal/</id>
+    <published>2014-04-11T17:29:22.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>Paste this your terminal.</p>
+<pre><code><span class="built_in">echo</span> <span class="operator">-e</span> <span class="string">"\e[1;40m"</span> ; clear ; <span class="keyword">while</span> :; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$LINES</span> <span class="variable">$COLUMNS</span> $(( <span class="variable">$RANDOM</span> % <span class="variable">$COLUMNS</span>)) $(( <span class="variable">$RANDOM</span> % <span class="number">72</span> )) ;sleep <span class="number">0.05</span>; <span class="keyword">done</span>|awk <span class="string">'{ letters="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&amp;*()"; c=$4; letter=substr(letters,c,1);a[$3]=0;for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s",o,x,letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,letter;if (a[x] &gt;= $1) { a[x]=0; } }}'</span>
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>Paste this your terminal.</p>
+<pre><code><span class="built_in">echo</span> <span class="operator">-e</span> <span class="string">"\e[1;4]]>
+    </summary>
+    
+      <category term="Coding" scheme="http://oskarhane.com/tags/Coding/"/>
+    
+      <category term="Hacks" scheme="http://oskarhane.com/tags/Hacks/"/>
+    
+      <category term="Impressive" scheme="http://oskarhane.com/tags/Impressive/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[A simple terminal / bash password generator]]></title>
+    <link href="http://oskarhane.com/a-simple-terminal-bash-password-generator/"/>
+    <id>http://oskarhane.com/a-simple-terminal-bash-password-generator/</id>
+    <published>2014-04-11T17:11:44.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p><code>n=$RANDOM; r=$((n%20+10)); pw=$(head -c$r /dev/urandom | base64); echo $pw</code></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><code>n=$RANDOM; r=$((n%20+10)); pw=$(head -c$r /dev/urandom | base64); echo $pw</code></p>
+]]>
+    </summary>
+    
+      <category term="General" scheme="http://oskarhane.com/tags/General/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Inspecting the firmware of a D-Link DWR-923 4G Modem]]></title>
+    <link href="http://oskarhane.com/inspecting-the-firmware-of-a-d-link-dwr-923-4g-modem/"/>
+    <id>http://oskarhane.com/inspecting-the-firmware-of-a-d-link-dwr-923-4g-modem/</id>
+    <published>2014-04-02T06:38:37.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>This will be a step by step on how to extract different parts of the firmware on a D-Link 4G router. This is just for fun and out of curiosity to see what they are using.</p>
+<p>First, let get some tools. When inspecting/extracting and reverse engineering something you can’t live without a tool called <a href="http://binwalk.org" target="_blank" rel="external">binwalk</a>. I downloaded 1.2.2 from <a href="https://code.google.com/p/binwalk/downloads/list" target="_blank" rel="external">here</a> and after <code>brew install libmagic</code> I got it to compile on OS X Mavericks.</p>
+<p>Remember to edit your <code>~/.bash_profile</code> and add <code>export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH</code> to it to get it to compile.</p>
+<p>The firmware for the modem I got from this <a href="http://tekniksmart.se/2013/d-link-dwr-923-ny-firmware-slppt-till-4g-modemet/" target="_blank" rel="external">Swedish tech site</a>.</p>
+<a id="more"></a>
+<h2 id="Lets_binwalk">Lets binwalk</h2><p>Open the terminal and go to the dir where your firmware is and type <code>binwalk OG3611_v1.4.18.37_gui.img</code>.  </p>
+<p><img src="/post_img/2014/04/orreMBA-2014-04-02-kl.-09.49.32.png" alt="binwalk"></p>
+<pre><code>DECIMAL     HEX         DESCRIPTION
+<span class="comment">-------------------------------------------------------------------------------------------------------------------</span>
+<span class="number">14156</span>       <span class="number">0x374C</span>      gzip compressed data, <span class="built_in">from</span> Unix, <span class="keyword">last</span> modified: Fri Oct  <span class="number">4</span> <span class="number">04</span>:<span class="number">31</span>:<span class="number">47</span> <span class="number">2013</span>, <span class="built_in">max</span> compression
+<span class="number">2589708</span>     <span class="number">0x27840C</span>    gzip compressed data, was <span class="string">"rootfs.ext2"</span>, <span class="built_in">from</span> Unix, <span class="keyword">last</span> modified: Fri Oct  <span class="number">4</span> <span class="number">04</span>:<span class="number">32</span>:<span class="number">16</span> <span class="number">2013</span>, <span class="built_in">max</span> compression
+<span class="number">4980736</span>     <span class="number">0x4C0000</span>    Squashfs filesystem, little endian, <span class="built_in">version</span> <span class="number">4.0</span>, compression:gzip, size: <span class="number">20383349</span> <span class="keyword">bytes</span>,  <span class="number">1506</span> inodes, blocksize: <span class="number">131072</span> <span class="keyword">bytes</span>, created: Fri Oct  <span class="number">4</span> <span class="number">04</span>:<span class="number">32</span>:<span class="number">55</span> <span class="number">2013</span> 
+</code></pre><p>As you can see, there are three layers in this image: [Some data][rootfs][filesystem].  </p>
+<p>Right now, I’m interested in the filesystem. As you can see, it’s a Squashfs filesystem (very common fs in firmwares).</p>
+<h2 id="Chop_off_what_we_want">Chop off what we want</h2><p>I want to check out the filesystem at the end of the firmware. To do that I use <code>dd</code> which exists in all Mac’s. I want to start the chopping as address <code>4980736</code> and I want it to be <code>20383349</code> bytes long.</p>
+<pre><code>dd <span class="variable">if=</span>OG3611_v1.<span class="number">4.18</span>.<span class="number">37</span>_gui.img <span class="variable">bs=</span><span class="number">1</span> <span class="variable">skip=</span><span class="number">4980736</span> <span class="variable">count=</span><span class="number">20383349</span> <span class="variable">of=</span>d923.squashfs
+</code></pre><p>That will create a file called d923.squashfs in the same dir as you’re in.</p>
+<h2 id="Read_squashfs">Read squashfs</h2><p>To read a squashfs filesystem, there is a tool called <a href="http://sourceforge.net/projects/squashfs/files/" target="_blank" rel="external">squashfs tools</a>.  </p>
+<p>Download and unpack it.  </p>
+<p>Install it on OS X like this.</p>
+<pre><code>cd squashfs-tools
+
+sed -<span class="tag">i</span><span class="class">.orig</span> <span class="string">'s/FNM_EXTMATCH/0/; s/sysinfo.h/sysctl.h/; s/^inline/static inline/'</span> mksquashfs<span class="class">.c</span> unsquashfs<span class="class">.c</span>
+
+<span class="comment">//Paste all these rows (until END) at the same time</span>
+cat &lt;&lt;END &gt;&gt; xattr<span class="class">.h</span>
+<span class="hexcolor">#def</span>ine <span class="function"><span class="title">llistxattr</span><span class="params">(path, list, size)</span></span> \
+(<span class="function"><span class="title">listxattr</span><span class="params">(path, list, size, XATTR_NOFOLLOW)</span></span>)
+<span class="hexcolor">#def</span>ine <span class="function"><span class="title">lgetxattr</span><span class="params">(path, name, value, size)</span></span> \
+(<span class="function"><span class="title">getxattr</span><span class="params">(path, name, value, size, <span class="number">0</span>, XATTR_NOFOLLOW)</span></span>)
+<span class="hexcolor">#def</span>ine <span class="function"><span class="title">lsetxattr</span><span class="params">(path, name, value, size, flags)</span></span> \
+(<span class="function"><span class="title">setxattr</span><span class="params">(path, name, value, size, <span class="number">0</span>, flags | XATTR_NOFOLLOW)</span></span>)
+END
+
+make
+
+sudo cp mksquashfs unsquashfs /usr/local/bin
+</code></pre><p>Lets try it.</p>
+<pre><code><span class="title">unsquashfs</span> d923.squashfs
+</code></pre><p>Wow, that creates a dir called <code>squashfs-root</code> in the dir.  </p>
+<p><img src="/post_img/2014/04/orreMBA-2014-04-02-kl.-10.26.24.png" alt="unsquashed"></p>
+<p>Now you can browse all files and check them out. In <code>/var/www</code> you have all HTML pages for the admin UI for the modem.  </p>
+<p><img src="/post_img/2014/04/orreMBA-2014-04-02-kl.-10.29.08.png" alt="www"></p>
+<p>All lua (lua is like a lightweight PHP, Python, Ruby, whatever that is commonly used in these types of firmware since it’s… well… lightweight) files are in <code>/share/lua/5.1/</code>.  </p>
+<p>And you can see that the creators of these files are TeamF1.</p>
+<p>And that’s it!  </p>
+<p>Let me know if you find anything interesting.</p>
+<p>This post was inspired by The Hacker blogs post on <a href="http://thehackerblog.com/linksys-wrt56g-backdoor-payload/" target="_blank" rel="external">backdooring the Linksys WRT54G</a>.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>This will be a step by step on how to extract different parts of the firmware on a D-Link 4G router. This is just for fun and out of curiosity to see what they are using.</p>
+<p>First, let get some tools. When inspecting/extracting and reverse engineering something you can’t live without a tool called <a href="http://binwalk.org">binwalk</a>. I downloaded 1.2.2 from <a href="https://code.google.com/p/binwalk/downloads/list">here</a> and after <code>brew install libmagic</code> I got it to compile on OS X Mavericks.</p>
+<p>Remember to edit your <code>~/.bash_profile</code> and add <code>export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH</code> to it to get it to compile.</p>
+<p>The firmware for the modem I got from this <a href="http://tekniksmart.se/2013/d-link-dwr-923-ny-firmware-slppt-till-4g-modemet/">Swedish tech site</a>.</p>]]>
+    
+    </summary>
+    
+      <category term="Coding" scheme="http://oskarhane.com/tags/Coding/"/>
+    
+      <category term="General" scheme="http://oskarhane.com/tags/General/"/>
+    
+      <category term="Hacks" scheme="http://oskarhane.com/tags/Hacks/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Nginx as a reverse proxy in front of your Docker containers]]></title>
+    <link href="http://oskarhane.com/nginx-as-a-reverse-proxy-in-front-of-your-docker-containers/"/>
+    <id>http://oskarhane.com/nginx-as-a-reverse-proxy-in-front-of-your-docker-containers/</id>
+    <published>2014-03-28T09:06:16.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>I have and create a lot of Wordpress sites for clients. As of now, I manually create new Docker container, create a nginx (or <a href="/haproxy-as-a-static-reverse-proxy-for-docker-containers/">HAProxy</a>) config file so the site can be reached on port 80 from the outside. And it’s a pain.</p>
+<p>So I created this Python script that takes care of the container and config file creation. All you have to do i to reload nginx and the site will be up.</p>
+<p>Check it out: <a href="https://github.com/oskarhane/dockerpress/blob/master/dockerpress" target="_blank" rel="external">Script to create wordpress docker container and nginx config file as reverse proxy</a>.</p>
+<p>This image illustrates what the setup will look like.  </p>
+<p><img src="/post_img/2014/03/orreMBA-2014-03-28-kl.-10.59.02.png" alt="nginx reverse proxy"></p>
+<p>Here’s how you use it.</p>
+<a id="more"></a>
+<pre><code>//Git clone <span class="built_in">and</span> <span class="keyword">cd</span> into the dir
+git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/oskarhane/dockerpress.git &amp;&amp; <span class="keyword">cd</span> $_
+
+//Add execution permission
+chmod +<span class="keyword">x</span> ./dockerpress
+
+//Create your <span class="keyword">first</span> site. The URL MUST <span class="built_in">match</span> the URL <span class="keyword">to</span> <span class="keyword">be</span> used.
+./dockerpress --url www.yoursite.<span class="keyword">com</span>
+
+//If <span class="keyword">all</span> <span class="keyword">is</span> ok, reload nginx
+service nginx reload
+//<span class="built_in">or</span>
+/etc/init.<span class="keyword">d</span>/nginx reload
+</code></pre><p>If you already pointed the A-record in the DNS to this servers IP, you should be able to see the site. If not, you can reach it via <code>http://server-ip:http-port</code>. You find the http-port by typing <code>docker ps</code> and read the port (49xxx something) forwarded to 80. It look something like this:</p>
+<blockquote><br>  0.0.0.0:49222-&gt;80/tcp<br></blockquote>
+
+
+
+<p>Wehere 49222 is the port number to enter.</p>
+<p>Even though this script specific to one docker image, you can modify it to work with any docker image.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I have and create a lot of Wordpress sites for clients. As of now, I manually create new Docker container, create a nginx (or <a href="/haproxy-as-a-static-reverse-proxy-for-docker-containers/">HAProxy</a>) config file so the site can be reached on port 80 from the outside. And it’s a pain.</p>
+<p>So I created this Python script that takes care of the container and config file creation. All you have to do i to reload nginx and the site will be up.</p>
+<p>Check it out: <a href="https://github.com/oskarhane/dockerpress/blob/master/dockerpress">Script to create wordpress docker container and nginx config file as reverse proxy</a>.</p>
+<p>This image illustrates what the setup will look like.  </p>
+<p><img src="/post_img/2014/03/orreMBA-2014-03-28-kl.-10.59.02.png" alt="nginx reverse proxy"></p>
+<p>Here’s how you use it.</p>]]>
+    
+    </summary>
+    
+      <category term="General" scheme="http://oskarhane.com/tags/General/"/>
+    
+      <category term="Server Side" scheme="http://oskarhane.com/tags/Server-Side/"/>
+    
+      <category term="WordPress" scheme="http://oskarhane.com/tags/WordPress/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Kevin Rose interview with Elon Musk. A great piece!]]></title>
+    <link href="http://oskarhane.com/kevin-rose-interview-with-elon-musk-a-great-piece/"/>
+    <id>http://oskarhane.com/kevin-rose-interview-with-elon-musk-a-great-piece/</id>
+    <published>2014-03-20T19:52:05.000Z</published>
+    <updated>2015-03-05T12:42:59.000Z</updated>
+    <content type="html"><![CDATA[<p>No Content Found</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>No Content Found</p>
+]]>
+    </summary>
+    
+      <category term="General" scheme="http://oskarhane.com/tags/General/"/>
+    
+      <category term="Impressive" scheme="http://oskarhane.com/tags/Impressive/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,787 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 7 | oskarhane.com</title>
+  <meta name="author" content="Oskar Hane">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="oskarhane.com"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="oskarhane.com" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">oskarhane.com</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-03-21T16:09:10.000Z"><a href="/transfer-e-mail-from-gmail-to-another-imap-server/">2013-03-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/transfer-e-mail-from-gmail-to-another-imap-server/">Transfer e-mail from GMail to another IMAP server</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>So, my e-mail server setup work really well so I decided so move my main email from Google Apps to a self hosted server instead.<br>I did some research on what tool to use since I really need to bring my mail with me. (note, this will not bring your contacts).</p>
+<p>I looked at <a href="http://code.google.com/p/imapcopy/">imapcopy</a> but some people were having issues with it and recommended <a href="http://imapsync.lamiral.info">imapsync</a> instead. This is a software the creator charges €50 for but <a href="http://www.joshualyman.com/2011/05/migrating-from-private-imap-to-google-apps-email/">this blog</a> recommended using <a href="https://fedorahosted.org/imapsync/">this site</a> to download it for free. And as far as I can see, it seems legit. You decide.</p>
+<p>The first step is to setup the server to start receive mail for that new domain. Login to <a href="/gui-for-your-mail-server-postfixadmin/">postfixadmin</a> and add a new domain and a new mailbox for your user. <a href="/sign-your-outgoing-email-with-dkim/">Make a DKIM</a>-key-pair. Routing new incoming email is easily done in the DNS by changing the MX records. Remember to look over your SPF-record as well, to see if it’s still ok after the switch.</p>
+<h2 id="<!-_more_->">
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/transfer-e-mail-from-gmail-to-another-imap-server/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-03-17T20:46:12.000Z"><a href="/apple-touch-icon-plugin-for-wordpress/">2013-03-17</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/apple-touch-icon-plugin-for-wordpress/">Apple Touch Icon Plugin for Wordpress</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This is just a short post about a small plugin for Wordpress I just did.<br>I needed t add a bookmark icon for Apple devices for this site and I couldn’t find a simple plugin for it.</p>
+<p>So, here’s how you do it.</p>
+<ol>
+<li>Add a new directory: wordpress/img/plugins/apple-touch-icon</li>
+<li>Add a new file in that dir. apple-touch-icon.php</li>
+<li>Put this in the file:</li>
+</ol>
+<pre><code><span class="string">';
+}
+
+add_action('</span>wp_head<span class="operator">'</span>, <span class="string">'addIcon'</span>);
+</code></pre><ol>
+<li>Upload a 114x114 px png image (the one you want) called apple-touch-icon-114x114-precomposed.png in that dir.</li>
+<li>Goto Admin-&gt;Plugins and activate your new plugin and, viola!</li>
+</ol>
+<p><img src="/post_img/2013/03/iphone-screenshot.png" alt="Cloud2go 17 mar 2013 22-38"></p>
+<p>You can download it <a href="/post_img/2013/03/apple-touch-icon.zip">here &gt;&gt;</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-03-15T10:32:40.000Z"><a href="/howto-encrypt-your-email/">2013-03-15</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/howto-encrypt-your-email/">Howto - Encrypt your email</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Email security today is all about having a secure connection (TLS/SSL) when sending/receiving/checking email.</p>
+<p>If you host your own mail server and that server get hacked, that connection security means no security at all. Your email lays there in plain text waiting for someone to read them.<br>What if someone hacks into your GMail account? Same thing.</p>
+<p>What you can do is to encrypt your email body so you have to have the right key file or certificate to even read the email.</p>
+<h2 id=""> </h2><h2 id="GPG_or_S/MIME">GPG or S/MIME</h2><p>There are two spread types of email encryption, GPG and S/MIME. This post will be about <a href="http://en.wikipedia.org/wiki/S/MIME">S/MIME</a> since it’s the easiest one. All major email clients support it out of the box. GPG often requires you to install extra software and thats not going to happen for the majority of people.</p>
+<h2 id="<!-_more_->">
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/howto-encrypt-your-email/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-03-13T15:11:36.000Z"><a href="/adding-dotdeb-repos-to-apt-in-debian/">2013-03-13</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/adding-dotdeb-repos-to-apt-in-debian/">Adding dotdeb repos to apt in Debian</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>No Content Found</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-03-13T08:46:24.000Z"><a href="/check-if-your-wordpress-installation-is-hacked/">2013-03-13</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/check-if-your-wordpress-installation-is-hacked/">Check if your WordPress installation is hacked</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Run these shell scripts in your WP-root to check for injected code.</p>
+<pre><code><span class="tag">grep</span> <span class="tag">-r</span> <span class="tag">base64_decode</span> *
+<span class="tag">grep</span> <span class="tag">-rp</span> “(?:\\\\<span class="tag">x</span><span class="attr_selector">[A-F0-9]</span><span class="rules">{<span class="rule">2}</span></span>)<span class="rules">{<span class="rule">5}</span></span>” *
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-03-11T15:07:58.000Z"><a href="/evernote-devcup-2013/">2013-03-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/evernote-devcup-2013/">Evernote Devcup 2013</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Evernote has a global hackathon called Evernote Devcup thats starts now.<br>Not sure if I’m interested though.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-03-07T20:11:52.000Z"><a href="/watch-your-server-logs-logwatch/">2013-03-07</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/watch-your-server-logs-logwatch/">Watch your server logs - logwatch</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This is just a tips of a nice program for your Linux server: logwatch.<br>Its a program that parses your server logs and sends you an summary email.</p>
+<p>To install, on Debian:</p>
+<pre><code><span class="id">#sudo</span> or as root
+apt-get install logwatch
+
+<span class="id">#Run</span> it every dag
+nano /etc/cron.daily/<span class="number">00</span>logwatch
+
+<span class="id">#edit</span> the line where it runs the program to this
+/usr/sbin/logwatch --output mail --mailto serveradmin@domain<span class="class">.com</span> --detail high
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-03-05T21:37:05.000Z"><a href="/vasaloppet-2013/">2013-03-05</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/vasaloppet-2013/">Vasaloppet 2013</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Då var Vasaloppet 2013 genomfört. Placering 1339 med tiden 5:24:00. Helt ok.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-02-26T08:00:05.000Z"><a href="/node-as-middleware-for-bitcoin-json-rpc/">2013-02-26</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/node-as-middleware-for-bitcoin-json-rpc/">Node as middleware for BitCoin JSON RPC</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I’ve written a Node.js proxy to act as middleware for bitcoind’s JSON RPC API.</p>
+<ul>
+<li>You dont want to expose the url to your wallet</li>
+</ul>
+<ul>
+<li>You want to share wallet with other people and give them an account each. You could use this as the auth layer.</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-02-25T20:41:20.000Z"><a href="/sign-your-outgoing-email-with-dkim/">2013-02-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/sign-your-outgoing-email-with-dkim/">Sign your outgoing email with DKIM</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>To make sure the email you send wont be classed as spam you should use SPF-records in your DNS (as I explained at the bottom <a href="/setup-your-own-mail-hosting-with-linux-postfix-dovecot-and-mysql/">here</a>) and sign your emails with DKIM (<a href="http://www.dkim.org">DomainKey Identified Mail</a>).</p>
+<p>It’s quite easy to do in Debian, just follow these steps.</p>
+<h2 id="Step_1">Step 1</h2><p>Install dkim-filter and open a socket for it.</p>
+<pre><code>apt-<span class="built_in">get</span> install dkim-<span class="built_in">filter</span>
+
+#edit the file /etc/<span class="keyword">default</span>/dkim-<span class="built_in">filter</span> and <span class="built_in">add</span> <span class="keyword">this</span>
+SOCKET=<span class="string">"inet:54321@localhost"</span>
+
+#Restart dkim-<span class="built_in">filter</span>
+/etc/init.d/dkim-<span class="built_in">filter</span> restart
+</code></pre><h2 id="Step_2">Step 2</h2><p>Make Postfix connect to the socket.<br>Type this to make Postfix connect to dkim-filter. One at a time.</p>
+<pre><code>postconf <span class="operator">-e</span> smtpd_milters=inet:<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">54321</span>
+postconf <span class="operator">-e</span> non_smtpd_milters=inet:<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">54321</span>
+postconf <span class="operator">-e</span> milter_default_action=accept
+</code></pre><p>The last line makes you receive emails with bad signatures, you can change this if you want.<br>Now, all your incoming emails are checked but your outgoing won’t be signed. We must have keys for that.</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/sign-your-outgoing-email-with-dkim/#more" class="more-link">Read More &amp;gt;&amp;gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-02-22T15:13:12.000Z"><a href="/webapp-tips-regexper/">2013-02-22</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/webapp-tips-regexper/">Webapp tips: Regexper</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>No Content Found</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-02-19T10:10:09.000Z"><a href="/os-x-tips-add-spacer-to-dock/">2013-02-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/os-x-tips-add-spacer-to-dock/">OS X Tips - Add spacer to Dock</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I like to have my Dock organized and spacers let me do that real easy and nice.<br>Open up your Terminal.app (search for Terminal in Spotlight or navigate to Applications-&gt;Utilites in Finder).</p>
+<p>Type this:</p>
+<pre><code>defaults <span class="keyword">write</span> com.apple.dock persistent-apps -<span class="keyword">array</span>-<span class="keyword">add</span> <span class="string">'{"tile-type"="spacer-tile";}'</span>
+</code></pre><p>You can type/paste that as many times as you like to have spacers.<br>Then, type this to restart the Dock.</p>
+<pre><code><span class="title">killall</span> Dock
+</code></pre><p>Now, you can move the spacers as any other app in the Dock, and if you’d like to remove a spacer, drag it out of the Dock and wait for 1 second and release it.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-02-19T09:14:57.000Z"><a href="/narmast-hittills/">2013-02-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/narmast-hittills/">Närmast hittills...</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>No Content Found</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-02-19T06:27:58.000Z"><a href="/easily-map-any-char-to-any-key-on-your-mac-os-x/">2013-02-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/easily-map-any-char-to-any-key-on-your-mac-os-x/">Easily map any char to any key on your Mac - OS X</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>No Content Found</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2013-02-18T14:25:13.000Z"><a href="/gui-for-your-mail-server-postfixadmin/">2013-02-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/gui-for-your-mail-server-postfixadmin/">GUI for your mail server - Postfixadmin</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <blockquote><strong><br>I’ve written a new post on this topic, with an easier setup using an installer that installs and set’s up everything.<br><br>See <a href="/setup-your-own-mail-server-postfix-dovecot-spamassassin-the-easy-way/">set up your own mail server &gt;&gt;</a></strong><br></blockquote>
+
+
+
+<p>If you’ve followed my last guide on <a href="/setup-your-own-mail-hosting-with-linux-postfix-dovecot-and-mysql/">how to setup your own mail server</a> you can see how not user friendly it is to add new domains and users for the mail server.<br>Since we have a MySQL back end there is a good tool for you to administrate your mail server.</p>
+<p><a href="http://sourceforge.net/projects/postfixadmin/" target="_blank" rel="external">Postfixadmin</a><br>It’s easy to install (just download, install and map a subdomain/path to it) and you’re all set. Now you can add domains and users real easy.</p>
+<p><strong>Next time, setup another MX server to fetch and hold your mail of your main MX server goes down.</strong></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/page/6/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/page/8/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="widget tag">
+  <img width="100%" height="auto" src="/post_img/2013/02/4f339050f44c11e1a3461231381315e1_7.jpg">
+    <h3 class="title"> MY LIFE CONSISTS OF…</h3>
+      <p class="entry">
+        ... coding, family, humor, and general whining about stuff that's not done right.
+        <br>
+        I'm an introvert (<a href="http://www.typelogic.com/intp.html">INTP</a>) who loves to program, build stuff, and solve problems.
+        <br>Works @ <a href="http://neo4j.com/">Neo4j</a>.
+        <br>I can be reached at <a href="http://twitter.com/oskarhane">@oskarhane</a>, &nbsp; <a href="http://www.facebook.com/ohane">ohane</a>
+        &nbsp; and &nbsp;
+        <a href="mailto:blog@oskrhane.com">blog@oskarhane.com</a>.
+      </p>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/angular-bootstrap-jade-stylus-coffeescript-boilerplate-webapp-with-yeoman/">Angular - Bootstrap - Jade - Stylus - CoffeeScript boilerplate webapp with Yeoman</a>
+      </li>
+    
+      <li>
+        <a href="/again-add-authorization-header-to-angularjs-http/">Again: Add Authorization header to AngularJS $http</a>
+      </li>
+    
+      <li>
+        <a href="/add-authorization-header-to-angularjs-http/">Add Authorization header to AngularJS $http</a>
+      </li>
+    
+      <li>
+        <a href="/create-a-nested-array-recursively-in-coffeescript/">Create a nested array recursively in CoffeeScript</a>
+      </li>
+    
+      <li>
+        <a href="/angularjs-watch-and-timeout/">AngularJS: $watch and $timeout</a>
+      </li>
+    
+      <li>
+        <a href="/neo4j-docker-image/">Neo4j Docker Image</a>
+      </li>
+    
+      <li>
+        <a href="/two-factor-auth-for-wordpress-5000-downloads/">Two Factor Auth for Wordpress &gt; 5000 downloads</a>
+      </li>
+    
+      <li>
+        <a href="/today-im-joining-the-neo4j-team/">Today I&#39;m joining the Neo4j team!</a>
+      </li>
+    
+      <li>
+        <a href="/note-to-self-on-updating-wordpress-plugins-via-git-svn/">Note to self on updating Wordpress plugins via git-svn</a>
+      </li>
+    
+      <li>
+        <a href="/use-your-synology-as-a-local-dns-cache/">Use your Synology as a local DNS cache</a>
+      </li>
+    
+      <li>
+        <a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">Make:r - How I did a fishing lure / jerk bait </a>
+      </li>
+    
+      <li>
+        <a href="/angular-js-filter-to-make-urls-in-text-clickable/">Angular.JS filter to make url:s in text clickable</a>
+      </li>
+    
+      <li>
+        <a href="/proxy-app-a-native-proxy-for-os-x/">Proxy.app - A native proxy for OS X</a>
+      </li>
+    
+      <li>
+        <a href="/does-that-html5-css3-thing-work-in/">Does that HTML5/ CSS3 thing work in ...?</a>
+      </li>
+    
+      <li>
+        <a href="/docker-image-wordpress-nginx-ssh-updated/">Docker image &quot;Wordpress NGiNX SSH&quot; updated</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/BitCoin/">BitCoin</a><small>2</small></li>
+  
+    <li><a href="/tags/Client-Side/">Client Side</a><small>34</small></li>
+  
+    <li><a href="/tags/Coding/">Coding</a><small>54</small></li>
+  
+    <li><a href="/tags/Crypto/">Crypto</a><small>11</small></li>
+  
+    <li><a href="/tags/Docker/">Docker</a><small>4</small></li>
+  
+    <li><a href="/tags/Food/">Food</a><small>2</small></li>
+  
+    <li><a href="/tags/General/">General</a><small>20</small></li>
+  
+    <li><a href="/tags/Hacks/">Hacks</a><small>17</small></li>
+  
+    <li><a href="/tags/Humor/">Humor</a><small>5</small></li>
+  
+    <li><a href="/tags/Impressive/">Impressive</a><small>13</small></li>
+  
+    <li><a href="/tags/Node-js/">Node.js</a><small>11</small></li>
+  
+    <li><a href="/tags/PHP/">PHP</a><small>5</small></li>
+  
+    <li><a href="/tags/Raspberry-Pi/">Raspberry Pi</a><small>5</small></li>
+  
+    <li><a href="/tags/Server-Side/">Server Side</a><small>59</small></li>
+  
+    <li><a href="/tags/Training/">Training</a><small>7</small></li>
+  
+    <li><a href="/tags/Whine/">Whine</a><small>6</small></li>
+  
+    <li><a href="/tags/WordPress/">WordPress</a><small>17</small></li>
+  
+    <li><a href="/tags/javascript-coffeescript/">javascript, coffeescript</a><small>0</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.hanehub.com/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//piwik.hanehub.com/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+
+</body>
+</html>
