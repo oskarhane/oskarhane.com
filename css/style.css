@@ -134,10 +134,11 @@ a:hover {
   float: left;
   margin-left: 30px;
 }
-.header-logo {
-  width: 120px;
-  height: 120px;
+span.header-logo {
+  font-size: 9em;
+  color: #111;
   border: 0;
+  line-height: 1.1em;
 }
 .aligncenter {
   margin: 10px auto;
@@ -808,4 +809,27 @@ pre .clojure .title {
 }
 pre .deletion {
   color: #dc322f;
+}
+@font-face {
+  font-family: 'oh-logo';
+  src: url("/css/font/oh-logo.eot?ffidl8");
+  src: url("/css/font/oh-logo.eot?#iefixffidl8") format('embedded-opentype'), url("/css/font/oh-logo.woff?ffidl8") format('woff'), url("/css/font/oh-logo.ttf?ffidl8") format('truetype'), url("/css/font/oh-logo.svg?ffidl8#oh-logo") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: 'oh-logo';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+/* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-oh-logo:before {
+  content: "\e600";
 }
