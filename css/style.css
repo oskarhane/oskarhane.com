@@ -137,6 +137,7 @@ a:hover {
 .header-logo {
   width: 120px;
   height: 120px;
+  border: 0;
 }
 .aligncenter {
   margin: 10px auto;
