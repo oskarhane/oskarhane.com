@@ -136,7 +136,7 @@ a:hover {
 }
 span.header-logo {
   font-size: 9em;
-  color: #111;
+  color: #231f20;
   border: 0;
   line-height: 1.1em;
 }
@@ -830,6 +830,9 @@ pre .deletion {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-oh-logo:before {
+.icon-oh-logo-05:before {
   content: "\e600";
+}
+.icon-oh-logo-052:before {
+  content: "\e601";
 }
