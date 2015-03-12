@@ -3,10 +3,12 @@
 <head>
   <meta charset="utf-8">
   
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
   <title>ROT / Shift cipher generator and solver | oskarhane</title>
   <meta name="author" content="Oskar Hane">
   
-  <meta name="description" content="[rot_solver]">
+  <meta name="description" content="Just playing around with ciphers again. No really use for this nowadays since it’s easilly broken, but I figured I’ll post it here anyway.        Here you can generate a cipher text based on rotation/shift in the alphabet.        Remember that the chars that will be shifted are ABCDEFGHIJKLMNOPQRSTUVWXYZ.
+    Genererate ciphertext            Plaintext/message:                                Shift steps        (i.e. type ‘13’ to get ROT13)                                Generate!                        Solve ciphertext            Ciphertext:                                Shift steps:                                Solve!">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -77,7 +79,12 @@
     </header>
     <div class="entry">
       
-        <p>[rot_solver]</p>
+        <p><script type="text/javascript" src="/js/ciphers.js"></script></p>
+<p></p><p><br>    Just playing around with ciphers again. No really use for this nowadays since it’s easilly broken, but I figured I’ll post it here anyway.<br>    <br><br>    Here you can generate a cipher text based on rotation/shift in the alphabet.<br>    <br><br>    Remember that the chars that will be shifted are ABCDEFGHIJKLMNOPQRSTUVWXYZ.<br></p><p></p>
+<div style="float:left; width: 270px"><br>    <h2>Genererate ciphertext</h2><br>    <p><br>        Plaintext/message:<br>        <br><br>        <input type="text" style="text-transform:uppercase; width: 85%" id="generate_plaintext_rot"><br>        <br><br><br>        Shift steps<br><br>        (i.e. type ‘13’ to get <a href="http://en.wikipedia.org/wiki/ROT13" target="_blank">ROT13</a>)<br>        <br><br>        <input type="text" style="text-transform:uppercase; width: 85%" id="generate_key_rot" value=""><br>        <br><br><br>        <button onclick="toHTML(jQuery('#generate_result_holder_rot'), ROT.generate(jQuery('#generate_plaintext_rot').val(), jQuery('#generate_key_rot').val()));">Generate!</button><br>        <br><br>        <div id="generate_result_holder_rot"></div><br>    </p><br></div><br><div style="float:left; width: 270px"><br>    <h2>Solve ciphertext</h2><br>    <p><br>        Ciphertext:<br>        <br><br>        <input type="text" style="text-transform:uppercase; width: 85%" id="solve_ciphertext_rot"><br>        <br><br><br><br>        Shift steps:<br>        <br><br>        <input type="text" style="text-transform:uppercase; width: 85%" id="solve_key_rot" value=""><br>        <br><br><br>        <button onclick="toHTML(jQuery('#solve_result_holder_rot'), ROT.solve(jQuery('#solve_ciphertext_rot').val(), jQuery('#solve_key_rot').val()));">Solve!</button><br>        <br><br>        <div id="solve_result_holder_rot"></div><br>    </p><br></div><br><div style="clear:both"></div>
+
+
+
 <hr>
 <a id="more"></a>
 <p>Here’s the javascript source:</p>
@@ -291,8 +298,7 @@
     <div class="clearfix"></div>
   </div>
   <footer id="footer" class="inner"></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

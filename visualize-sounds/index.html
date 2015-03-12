@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
   <title>Visualize sound | oskarhane</title>
   <meta name="author" content="Oskar Hane">
   
   <meta name="description" content="I find the visualization of sound interesting and I’ve found this fantastic js library to draw an audio file’s waveform on a canvas. Really cool stuff!
-I converted it to an image as well, just for fun. 
-Now I want an audio player that can play a waveform image, so if you’ve ever heard of one please let me know!">
+I converted it to an image as well, just for fun.Now I want an audio player that can play a waveform image, so if you’ve ever heard of one please let me know!">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -80,10 +80,80 @@ Now I want an audio player that can play a waveform image, so if you’ve ever h
     <div class="entry">
       
         <p>I find the visualization of sound interesting and I’ve found this fantastic js library to draw an audio file’s waveform on a canvas. Really cool stuff!</p>
-<p>I converted it to an image as well, just for fun. </p>
-<p>Now I want an audio player that can play a waveform image, so if you’ve ever heard of one please let me know!</p>
+<p>I converted it to an image as well, just for fun.<br>Now I want an audio player that can play a waveform image, so if you’ve ever heard of one please let me know!</p>
 <a id="more"></a>
-<p>[waveform]</p>
+<script type="text/javascript" src="/js/ws/wavesurfer.min.js"></script>
+
+<script type="text/javascript">
+
+  var wavesurfer = Object.create(WaveSurfer);
+  var img = null;
+  document.addEventListener('DOMContentLoaded', function () {
+      var options = {
+          container     : document.querySelector('#waveform'),
+          waveColor     : 'black',
+          progressColor : 'grey',
+          loaderColor   : 'grey',
+          cursorColor   : 'green',
+          markerWidth   : 0
+      };
+      options.minPxPerSec = 4000;
+      options.scrollParent = true;
+      options.normalize = false;
+      wavesurfer.init(options);
+      wavesurfer.load('/post_img/2014/03/hi_blog.m4a');
+      jQuery('#play').click(function() {
+        wavesurfer.play();
+      })
+      jQuery('#stop').click(function() {
+        wavesurfer.pause();
+      })
+      wavesurfer.bindDragNDrop('#drop');
+  })
+  wavesurfer.on('ready', function () {
+    jQuery('#wave-img').find('img').remove()
+      var canvas = jQuery('#waveform').find('canvas:first');
+      img = canvas[0].toDataURL("image/png");
+      jQuery('#wave-img').append(jQuery('<img src="' + img + '" />'));
+  });
+</script>
+
+<style>
+
+  #drop {
+    width: 70%;
+    background-color: #fbfba6;
+    height: 40px;
+    margin: 5px auto;
+    text-align: center;
+    padding-top: 15px;
+    border-radius: 4px;
+    border: 3px dashed #888;
+  }
+  #drop.wavesurfer-dragover {
+      border-color: #333;
+  }
+  #waveform {
+      position: relative;
+  }
+  #progress-bar {
+      position: absolute;
+      z-index: 10;
+      left: 0;
+      top: 50%;
+      margin-top: -10px;
+      left: 5%;
+      width: 90%;
+  }
+</style>
+
+<p>I find the visualization of sound interesting and I’ve found this fantastic js library to draw an audio file’s waveform on a canvas. Really cool stuff!</p>
+<p>I converted it to an image as well, just for fun.<br>Now I want an audio player that can play a waveform image, so if you’ve ever heard of one please let me know!</p>
+<p class="lead pull-center" id="drop"><br>    Drag’n’drop your own audio file here to view / listen to it.<br></p>
+
+<div id="waveform" style=""><br>  <h3>Interactive on a canvas</h3><br>  <p><br>    As a Waveform on canvas using <a href="https://github.com/katspaugh/wavesurfer.js" target="_blank" rel="external">Wavesurfer.js</a><br>  </p><br><div class="progress progress-striped active" id="progress-bar"><br>  <div class="progress-bar progress-bar-info"></div><br></div><br>                <!-- Here be the waveform --><br></div><br><div id="controls"><br><br><br>[<a href="javascript:void(0)" id="play" target="_blank" rel="external">Play</a>] | [<a href="javascript:void(0)" id="stop" target="_blank" rel="external">Pause</a>]<br><br><br><br></div><br><div id="wave-img"><br>  <h3>As PNG image (rightclick and save)</h3><br></div>
+
+<p>The above image are created using your browser in real time, it is not served form my server.</p>
 
       
     </div>
@@ -258,8 +328,7 @@ Now I want an audio player that can play a waveform image, so if you’ve ever h
     <div class="clearfix"></div>
   </div>
   <footer id="footer" class="inner"></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 

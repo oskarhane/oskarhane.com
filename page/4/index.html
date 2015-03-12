@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
   <title>Page 4 | oskarhane</title>
   <meta name="author" content="Oskar Hane">
   
@@ -386,7 +387,12 @@ console.log(<span class="keyword">count</span>(<span class="string">"ra ta ta ra
     </header>
     <div class="entry">
       
-        <p>[rot_solver]</p>
+        <p><script type="text/javascript" src="/js/ciphers.js"></script></p>
+<p><p><br>    Just playing around with ciphers again. No really use for this nowadays since it’s easilly broken, but I figured I’ll post it here anyway.<br>    <br><br>    Here you can generate a cipher text based on rotation/shift in the alphabet.<br>    <br><br>    Remember that the chars that will be shifted are ABCDEFGHIJKLMNOPQRSTUVWXYZ.<br></p></p>
+<div style="float:left; width: 270px"><br>    <h2>Genererate ciphertext</h2><br>    <p><br>        Plaintext/message:<br>        <br><br>        <input type="text" style="text-transform:uppercase; width: 85%" id="generate_plaintext_rot"></input><br>        <br><br><br>        Shift steps<br><br>        (i.e. type ‘13’ to get <a href="http://en.wikipedia.org/wiki/ROT13" target="_blank">ROT13</a>)<br>        <br><br>        <input type="text" style="text-transform:uppercase; width: 85%" id="generate_key_rot" value=""><br>        <br><br><br>        <button onclick="toHTML(jQuery('#generate_result_holder_rot'), ROT.generate(jQuery('#generate_plaintext_rot').val(), jQuery('#generate_key_rot').val()));">Generate!</button><br>        <br><br>        <div id="generate_result_holder_rot"></div><br>    </p><br></div><br><div style="float:left; width: 270px"><br>    <h2>Solve ciphertext</h2><br>    <p><br>        Ciphertext:<br>        <br><br>        <input type="text" style="text-transform:uppercase; width: 85%" id="solve_ciphertext_rot"></input><br>        <br><br><br><br>        Shift steps:<br>        <br><br>        <input type="text" style="text-transform:uppercase; width: 85%" id="solve_key_rot" value=""><br>        <br><br><br>        <button onclick="toHTML(jQuery('#solve_result_holder_rot'), ROT.solve(jQuery('#solve_ciphertext_rot').val(), jQuery('#solve_key_rot').val()));">Solve!</button><br>        <br><br>        <div id="solve_result_holder_rot"></div><br>    </p><br></div><br><div style="clear:both"></div>
+
+
+
 <hr>
       
     </div>
@@ -533,7 +539,9 @@ console.log(<span class="keyword">count</span>(<span class="string">"ra ta ta ra
     </header>
     <div class="entry">
       
-        <p>[vigenere_solver]</p>
+        <p><script type="text/javascript" src="/js/ciphers.js"></script></p>
+<p><p><br>    Here you can generate a Vigenère cipher or solve an existing one if you have the key.<br>    <br><br>    Remember that the accepted chars are ABCDEFGHIJKLMNOPQRSTUVWXYZ.<br></p></p>
+<div style="float:left; width: 270px"><br>    <h2>Genererate cipher</h2><br>    <p><br>        Plaintext/message:<br>        <br><br>        <input type="text" style="text-transform:uppercase; width: 85%" id="generate_plaintext"></input><br>        <br><br><br>        Key:<br>        <br><br>        <input type="text" style="text-transform:uppercase; width: 85%" id="generate_key" value=""><br>        <br><br><br>        <button onclick="toHTML(jQuery('#generate_result_holder'), Vigenere.generate(jQuery('#generate_plaintext').val(), jQuery('#generate_key').val()));">Generate!</button><br>        <br><br>        <div id="generate_result_holder"></div><br>    </p><br></div><br><div style="float:left; width: 270px"><br>    <h2>Solve cipher</h2><br>    <p><br>        Ciphertext:<br>        <br><br>        <input type="text" style="text-transform:uppercase; width: 85%" id="solve_ciphertext"></input><br>        <br><br><br>        Key:<br>        <br><br>        <input type="text" style="text-transform:uppercase; width: 85%" id="solve_key" value=""><br>        <br><br><br>        <button onclick="toHTML(jQuery('#solve_result_holder'), Vigenere.solve(jQuery('#solve_ciphertext').val(), jQuery('#solve_key').val()));">Solve!</button><br>        <br><br>        <div id="solve_result_holder"></div><br>    </p><br></div><br><div style="clear:both"></div>
       
     </div>
     <footer>
@@ -606,7 +614,7 @@ console.log(<span class="keyword">count</span>(<span class="string">"ra ta ta ra
 <p>Let’s make kind of a <a href="http://en.wikipedia.org/wiki/Vigenère_cipher" target="_blank" rel="external">Vigenère cipher</a> that makes ciphers that has many meanings depending on the key used to decipher it.</p>
 <p>This means that the ciphertext will have the length of the longest plaintext and the key will match that length as well. It may not be practical with such long keys, but it was a fun thing to do.</p>
 <p>I also modified the <a href="http://en.wikipedia.org/wiki/Tabula_recta" target="_blank" rel="external">Table Recta</a> to include upper and lower case chars as well as dash (-).</p>
-<p>Check out <a href="/deniable-vigenere-cipher/">the demo &gt;&gt;</a></p>
+<p>Check out <a href="/deniable-one-time-pad-with-vigeneres-tabula-recta-one-piece-of-text-many-solutions/">the demo &gt;&gt;</a></p>
 <p>It’s written in JavaScript so check the source of the demo if you’re interested.</p>
 <p>I’ve also made a Javascript implementation of real Vigenère cipher where you can encode and decode messages. Try out the post with <a href="/vigenere-cipher-helpers/">Vigenère cipher helpers &gt;&gt;</a></p>
 
@@ -766,8 +774,7 @@ console.log(<span class="keyword">count</span>(<span class="string">"ra ta ta ra
     <div class="clearfix"></div>
   </div>
   <footer id="footer" class="inner"></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
 
