@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://oskarhane.com/"/>
-  <updated>2015-03-05T12:42:59.000Z</updated>
+  <updated>2015-03-25T21:30:28.000Z</updated>
   <id>http://oskarhane.com/</id>
   
   <author>
@@ -13,6 +13,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Git - Feature branch model]]></title>
+    <link href="http://oskarhane.com/git-feature-branch-model/"/>
+    <id>http://oskarhane.com/git-feature-branch-model/</id>
+    <published>2015-03-25T20:56:54.000Z</published>
+    <updated>2015-03-25T21:30:28.000Z</updated>
+    <content type="html"><![CDATA[<p>Whether you use Git with a centralized repository (like Github or Bitbucket) or just a local copy, I would always advice you to use the <em>Feature branch model</em> as your Git workflow.</p>
+<p>Here are the key points that describes the Git feature branch workflow:</p>
+<ul>
+<li>No development happens or are pushed directly to the master branch.</li>
+<li>Create a new branch, a feature branch, when you start development on a new feature.</li>
+<li>Feature branches should have descriptive names, like <code>add-printing-stylesheet</code>.</li>
+<li>When the feature is finished, you merge in into master or create a pull request if you use a central repository and use pull requests / code review.</li>
+<li>When it’s merged, delete the feature branch. Keep the branches as short lived as possible.</li>
+</ul>
+<p>If you follow this you will always have a working master branch and all feature development is isolated from the main codebase until they are finished.  </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Whether you use Git with a centralized repository (like Github or Bitbucket) or just a local copy, I would always advice you to use the <]]>
+    </summary>
+    
+      <category term="Client Side" scheme="http://oskarhane.com/tags/Client-Side/"/>
+    
+      <category term="Git" scheme="http://oskarhane.com/tags/Git/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Angular - Bootstrap - Jade - Stylus - CoffeeScript boilerplate webapp with Yeoman]]></title>
@@ -660,25 +687,6 @@ service nginx reload
       <category term="Server Side" scheme="http://oskarhane.com/tags/Server-Side/"/>
     
       <category term="WordPress" scheme="http://oskarhane.com/tags/WordPress/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Kevin Rose interview with Elon Musk. A great piece!]]></title>
-    <link href="http://oskarhane.com/kevin-rose-interview-with-elon-musk-a-great-piece/"/>
-    <id>http://oskarhane.com/kevin-rose-interview-with-elon-musk-a-great-piece/</id>
-    <published>2014-03-20T19:52:05.000Z</published>
-    <updated>2015-03-05T12:42:59.000Z</updated>
-    <content type="html"><![CDATA[<p>No Content Found</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>No Content Found</p>
-]]>
-    </summary>
-    
-      <category term="General" scheme="http://oskarhane.com/tags/General/"/>
-    
-      <category term="Impressive" scheme="http://oskarhane.com/tags/Impressive/"/>
     
   </entry>
   

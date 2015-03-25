@@ -67,6 +67,51 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2014-02-05T10:34:11.000Z"><a href="/neo4j-cypher-if-not-exists-get-that-instead/">2014-02-05</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/neo4j-cypher-if-not-exists-get-that-instead/">Neo4j / Cypher: If not exists, get that instead</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I’m starting to learn Cypher recetly since I’m doing a project backed with a Neo4j database.</p>
+<p>One thing I bumped in to recently was a situation like this:</p>
+<blockquote><br><br>&gt;<br>&gt; A user can post a link. Users can comment on that link, and on other comments as well. (think reddit).<br>  If someone comments on your link or on one of your comments, you should get an email saying so.<br>&gt;<br>&gt;<br></blockquote>
+
+
+
+<p>So, we have: <code>(n:user)&lt;-[:POSTED_BY]-(m:link)</code> for the link.</p>
+<p>And for the comments we have <code>(n:user)-[:POSTED]-&gt;(o:comment)-[:COMMENT]-(m:link)</code></p>
+<p>When you post a link or add a comment, a SUBSCRIBES_TO relation is added. Like this:</p>
+<p><code>(n:user)-[:SUBSCRIBES_TO]-&gt;(m:link)</code><br>or<br><code>(n:user)-[:SUBSCRIBES_TO]-&gt;(o:comment)</code></p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/neo4j-cypher-if-not-exists-get-that-instead/#more" class="more-link">Read More &gt;&gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2014-01-21T20:34:53.000Z"><a href="/create-a-nested-array-recursively-in-javascript/">2014-01-21</a></time>
       
       
@@ -596,40 +641,6 @@ CUR_DIR=$(<span class="built_in">cd</span> -P -- <span class="string">"<span cla
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-09-30T04:27:06.000Z"><a href="/node-js-for-hardware/">2013-09-30</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/node-js-for-hardware/">Node.js for hardware</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>It’s no secret that I’m a Node.js fan even though Javascript is not, according to many people, a “good” programming language.</p>
-<p>I saw this project and it looks really interesting!<br>It’s like an Arduino with all the libs from npm.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -660,6 +671,10 @@ CUR_DIR=$(<span class="built_in">cd</span> -P -- <span class="string">"<span cla
 <div class="widget tag">
   <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/git-feature-branch-model/">Git - Feature branch model</a>
+      </li>
     
       <li>
         <a href="/angular-bootstrap-jade-stylus-coffeescript-boilerplate-webapp-with-yeoman/">Angular - Bootstrap - Jade - Stylus - CoffeeScript boilerplate webapp with Yeoman</a>
@@ -717,10 +732,6 @@ CUR_DIR=$(<span class="built_in">cd</span> -P -- <span class="string">"<span cla
         <a href="/does-that-html5-css3-thing-work-in/">Does that HTML5/ CSS3 thing work in ...?</a>
       </li>
     
-      <li>
-        <a href="/docker-image-wordpress-nginx-ssh-updated/">Docker image &quot;Wordpress NGiNX SSH&quot; updated</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -732,7 +743,7 @@ CUR_DIR=$(<span class="built_in">cd</span> -P -- <span class="string">"<span cla
   
     <li><a href="/tags/BitCoin/">BitCoin</a><small>2</small></li>
   
-    <li><a href="/tags/Client-Side/">Client Side</a><small>34</small></li>
+    <li><a href="/tags/Client-Side/">Client Side</a><small>35</small></li>
   
     <li><a href="/tags/Coding/">Coding</a><small>54</small></li>
   
@@ -743,6 +754,8 @@ CUR_DIR=$(<span class="built_in">cd</span> -P -- <span class="string">"<span cla
     <li><a href="/tags/Food/">Food</a><small>2</small></li>
   
     <li><a href="/tags/General/">General</a><small>20</small></li>
+  
+    <li><a href="/tags/Git/">Git</a><small>1</small></li>
   
     <li><a href="/tags/Hacks/">Hacks</a><small>17</small></li>
   

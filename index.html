@@ -67,6 +67,48 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2015-03-25T20:56:54.000Z"><a href="/git-feature-branch-model/">2015-03-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/git-feature-branch-model/">Git - Feature branch model</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Whether you use Git with a centralized repository (like Github or Bitbucket) or just a local copy, I would always advice you to use the <em>Feature branch model</em> as your Git workflow.</p>
+<p>Here are the key points that describes the Git feature branch workflow:</p>
+<ul>
+<li>No development happens or are pushed directly to the master branch.</li>
+<li>Create a new branch, a feature branch, when you start development on a new feature.</li>
+<li>Feature branches should have descriptive names, like <code>add-printing-stylesheet</code>.</li>
+<li>When the feature is finished, you merge in into master or create a pull request if you use a central repository and use pull requests / code review.</li>
+<li>When it’s merged, delete the feature branch. Keep the branches as short lived as possible.</li>
+</ul>
+<p>If you follow this you will always have a working master branch and all feature development is isolated from the main codebase until they are finished.  </p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2014-11-12T20:08:20.000Z"><a href="/angular-bootstrap-jade-stylus-coffeescript-boilerplate-webapp-with-yeoman/">2014-11-12</a></time>
       
       
@@ -647,42 +689,6 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-04-17T06:38:36.000Z"><a href="/docker-image-wordpress-nginx-ssh-updated/">2014-04-17</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/docker-image-wordpress-nginx-ssh-updated/">Docker image &quot;Wordpress NGiNX SSH&quot; updated</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Yesterday I updated my Docker image <a href="https://index.docker.io/u/oskarhane/docker-wordpress-nginx-ssh/" target="_blank" rel="external">docker-wordpress-nginx-ssh</a> <a href="https://github.com/oskarhane/docker-wordpress-nginx-ssh" target="_blank" rel="external">github</a> so it adds memcached and the superb Wordpress plugin <a href="http://wordpress.org/plugins/wp-ffpc/" target="_blank" rel="external">WP-FFPC</a> to Wordpress.</p>
-<p>This makes NGiNX serve cached pages straight from memcached without going into PHP and Wordpress. It’s amazingly fast (try to reload this page you’re on now).</p>
-<p>One thing though, you have to login and press the “Save” button on the settings page of WP-FFPC to activate it. But that’s all there’s to it, all NGiNX settings are already there.</p>
-<p>To try it, just type <code>docker pull  oskarhane/docker-wordpress-nginx-ssh</code> or to start a container straight away: <code>sudo docker run -p 80 -p 22 -d -t oskarhane/docker-wordpress-nginx-ssh</code></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -711,6 +717,10 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
 <div class="widget tag">
   <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/git-feature-branch-model/">Git - Feature branch model</a>
+      </li>
     
       <li>
         <a href="/angular-bootstrap-jade-stylus-coffeescript-boilerplate-webapp-with-yeoman/">Angular - Bootstrap - Jade - Stylus - CoffeeScript boilerplate webapp with Yeoman</a>
@@ -768,10 +778,6 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
         <a href="/does-that-html5-css3-thing-work-in/">Does that HTML5/ CSS3 thing work in ...?</a>
       </li>
     
-      <li>
-        <a href="/docker-image-wordpress-nginx-ssh-updated/">Docker image &quot;Wordpress NGiNX SSH&quot; updated</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -783,7 +789,7 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
   
     <li><a href="/tags/BitCoin/">BitCoin</a><small>2</small></li>
   
-    <li><a href="/tags/Client-Side/">Client Side</a><small>34</small></li>
+    <li><a href="/tags/Client-Side/">Client Side</a><small>35</small></li>
   
     <li><a href="/tags/Coding/">Coding</a><small>54</small></li>
   
@@ -794,6 +800,8 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
     <li><a href="/tags/Food/">Food</a><small>2</small></li>
   
     <li><a href="/tags/General/">General</a><small>20</small></li>
+  
+    <li><a href="/tags/Git/">Git</a><small>1</small></li>
   
     <li><a href="/tags/Hacks/">Hacks</a><small>17</small></li>
   

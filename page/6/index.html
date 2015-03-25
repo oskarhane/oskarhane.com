@@ -67,6 +67,50 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-04-18T13:05:08.000Z"><a href="/compile-node-js-apps/">2013-04-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/compile-node-js-apps/">Compile node.js apps</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I was looking for a way to distribute a node.js app I wrote without the receiver being forced to install node and all dependencies to my app.<br>Luckily I found <a href="https://github.com/crcn/nexe" target="_blank" rel="external">nexe</a>!</p>
+<p>This npm package compiles your node app with node and everything in it so you can run it on any (Linux and Mac) computer without any hassle. Cool.</p>
+<p>This is how you use it:</p>
+<pre><code><span class="id">#First</span>, install nexe
+npm install nexe
+
+<span class="id">#Compile</span> time! This takes <span class="tag">a</span> while.
+/path/to/nexe -<span class="tag">i</span> /path/to/node_app<span class="class">.js</span> -o /path/to/output_bundle
+
+<span class="id">#Run</span> your bundle
+/path/to/output_bundle
+</code></pre><p>One great thing with node.js being bundled is that you can upgrade node.js on your machine without the risk of breaking your current apps.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2013-04-17T14:46:51.000Z"><a href="/loopia-och-dyndns-med-raspberry-pi/">2013-04-17</a></time>
       
       
@@ -615,48 +659,6 @@ cat id_rsa-wp<span class="class">.pub</span> &gt;&gt; authorized_keys
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-03-21T18:17:19.000Z"><a href="/change-screen-shot-filename-type-and-target-dir/">2013-03-21</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/change-screen-shot-filename-type-and-target-dir/">Change Screen Shot Filename, Type and Target Dir</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>In OS X, you can change the default filename, filetype and location where the file ends up, with some Terminal magic.</p>
-<p>To change the prefix (the default varies by language, in US it’s “Screen Shot”) open Terminal and type this:</p>
-<pre><code>defaults write com<span class="class">.apple</span><span class="class">.screencapture</span> name <span class="string">"MacBook-Pro-SS"</span>
-</code></pre><p>To change the filetype of the screen shot. (png, pdf, tiff, gif, and jpg are available)<br>png is the default.</p>
-<pre><code>defaults write com<span class="class">.apple</span><span class="class">.screencapture</span> type pdf
-</code></pre><p>To change the save location to your homedir/ScreenShots/, you can type this</p>
-<pre><code>defaults write com<span class="class">.apple</span><span class="class">.screencapture</span> location ~/ScreenShots/
-</code></pre><p>When you’re done, type this to activate your new settings:</p>
-<pre><code><span class="title">killall</span> SystemUIServer
-</code></pre><p>Confirm by taking a screen shot. Either by cmd+shift+3 (the whole screen), cmd+shift+4 (to draw an area to capture), or cmd+shift+4 and then the spacebar (for a complete window).</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -687,6 +689,10 @@ cat id_rsa-wp<span class="class">.pub</span> &gt;&gt; authorized_keys
 <div class="widget tag">
   <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/git-feature-branch-model/">Git - Feature branch model</a>
+      </li>
     
       <li>
         <a href="/angular-bootstrap-jade-stylus-coffeescript-boilerplate-webapp-with-yeoman/">Angular - Bootstrap - Jade - Stylus - CoffeeScript boilerplate webapp with Yeoman</a>
@@ -744,10 +750,6 @@ cat id_rsa-wp<span class="class">.pub</span> &gt;&gt; authorized_keys
         <a href="/does-that-html5-css3-thing-work-in/">Does that HTML5/ CSS3 thing work in ...?</a>
       </li>
     
-      <li>
-        <a href="/docker-image-wordpress-nginx-ssh-updated/">Docker image &quot;Wordpress NGiNX SSH&quot; updated</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -759,7 +761,7 @@ cat id_rsa-wp<span class="class">.pub</span> &gt;&gt; authorized_keys
   
     <li><a href="/tags/BitCoin/">BitCoin</a><small>2</small></li>
   
-    <li><a href="/tags/Client-Side/">Client Side</a><small>34</small></li>
+    <li><a href="/tags/Client-Side/">Client Side</a><small>35</small></li>
   
     <li><a href="/tags/Coding/">Coding</a><small>54</small></li>
   
@@ -770,6 +772,8 @@ cat id_rsa-wp<span class="class">.pub</span> &gt;&gt; authorized_keys
     <li><a href="/tags/Food/">Food</a><small>2</small></li>
   
     <li><a href="/tags/General/">General</a><small>20</small></li>
+  
+    <li><a href="/tags/Git/">Git</a><small>1</small></li>
   
     <li><a href="/tags/Hacks/">Hacks</a><small>17</small></li>
   

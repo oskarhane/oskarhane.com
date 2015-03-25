@@ -67,6 +67,45 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-07-01T13:02:46.000Z"><a href="/playing-with-ciphers/">2013-07-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/playing-with-ciphers/">Playing with ciphers</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I’ve been playing a bit with ciphers lately and thought of a fun idea after reading about <a href="https://en.wikipedia.org/wiki/One-time_pad" target="_blank" rel="external">One Time Pads</a>.</p>
+<p>Let’s make kind of a <a href="http://en.wikipedia.org/wiki/Vigenère_cipher" target="_blank" rel="external">Vigenère cipher</a> that makes ciphers that has many meanings depending on the key used to decipher it.</p>
+<p>This means that the ciphertext will have the length of the longest plaintext and the key will match that length as well. It may not be practical with such long keys, but it was a fun thing to do.</p>
+<p>I also modified the <a href="http://en.wikipedia.org/wiki/Tabula_recta" target="_blank" rel="external">Table Recta</a> to include upper and lower case chars as well as dash (-).</p>
+<p>Check out <a href="/deniable-one-time-pad-with-vigeneres-tabula-recta-one-piece-of-text-many-solutions/">the demo &gt;&gt;</a></p>
+<p>It’s written in JavaScript so check the source of the demo if you’re interested.</p>
+<p>I’ve also made a Javascript implementation of real Vigenère cipher where you can encode and decode messages. Try out the post with <a href="/vigenere-cipher-helpers/">Vigenère cipher helpers &gt;&gt;</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2013-06-13T08:18:08.000Z"><a href="/add-language-support-to-your-wordpress-plugins/">2013-06-13</a></time>
       
       
@@ -666,50 +705,6 @@ cat /<span class="built_in">var</span>/<span class="keyword">log</span>/auth<spa
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-04-18T13:05:08.000Z"><a href="/compile-node-js-apps/">2013-04-18</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/compile-node-js-apps/">Compile node.js apps</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>I was looking for a way to distribute a node.js app I wrote without the receiver being forced to install node and all dependencies to my app.<br>Luckily I found <a href="https://github.com/crcn/nexe" target="_blank" rel="external">nexe</a>!</p>
-<p>This npm package compiles your node app with node and everything in it so you can run it on any (Linux and Mac) computer without any hassle. Cool.</p>
-<p>This is how you use it:</p>
-<pre><code><span class="id">#First</span>, install nexe
-npm install nexe
-
-<span class="id">#Compile</span> time! This takes <span class="tag">a</span> while.
-/path/to/nexe -<span class="tag">i</span> /path/to/node_app<span class="class">.js</span> -o /path/to/output_bundle
-
-<span class="id">#Run</span> your bundle
-/path/to/output_bundle
-</code></pre><p>One great thing with node.js being bundled is that you can upgrade node.js on your machine without the risk of breaking your current apps.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -740,6 +735,10 @@ npm install nexe
 <div class="widget tag">
   <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/git-feature-branch-model/">Git - Feature branch model</a>
+      </li>
     
       <li>
         <a href="/angular-bootstrap-jade-stylus-coffeescript-boilerplate-webapp-with-yeoman/">Angular - Bootstrap - Jade - Stylus - CoffeeScript boilerplate webapp with Yeoman</a>
@@ -797,10 +796,6 @@ npm install nexe
         <a href="/does-that-html5-css3-thing-work-in/">Does that HTML5/ CSS3 thing work in ...?</a>
       </li>
     
-      <li>
-        <a href="/docker-image-wordpress-nginx-ssh-updated/">Docker image &quot;Wordpress NGiNX SSH&quot; updated</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -812,7 +807,7 @@ npm install nexe
   
     <li><a href="/tags/BitCoin/">BitCoin</a><small>2</small></li>
   
-    <li><a href="/tags/Client-Side/">Client Side</a><small>34</small></li>
+    <li><a href="/tags/Client-Side/">Client Side</a><small>35</small></li>
   
     <li><a href="/tags/Coding/">Coding</a><small>54</small></li>
   
@@ -823,6 +818,8 @@ npm install nexe
     <li><a href="/tags/Food/">Food</a><small>2</small></li>
   
     <li><a href="/tags/General/">General</a><small>20</small></li>
+  
+    <li><a href="/tags/Git/">Git</a><small>1</small></li>
   
     <li><a href="/tags/Hacks/">Hacks</a><small>17</small></li>
   
