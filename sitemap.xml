@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://oskarhane.com/again-add-authorization-header-to-angularjs-http/</loc>
+    <lastmod>2015-04-16T08:27:54.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://oskarhane.com/git-feature-branch-model/</loc>
     <lastmod>2015-03-25T21:30:28.000Z</lastmod>
   </url>
@@ -39,11 +44,6 @@
   <url>
     <loc>http://oskarhane.com/icons/manifest.json</loc>
     <lastmod>2015-03-10T17:44:38.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://oskarhane.com/wordpress-updates-via-ssh/</loc>
-    <lastmod>2015-03-05T12:42:59.000Z</lastmod>
   </url>
   
   <url>
@@ -587,7 +587,7 @@
   </url>
   
   <url>
-    <loc>http://oskarhane.com/again-add-authorization-header-to-angularjs-http/</loc>
+    <loc>http://oskarhane.com/wordpress-updates-via-ssh/</loc>
     <lastmod>2015-03-05T12:42:59.000Z</lastmod>
   </url>
   
