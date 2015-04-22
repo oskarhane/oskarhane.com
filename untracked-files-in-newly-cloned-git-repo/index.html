@@ -4,18 +4,15 @@
   <meta charset="utf-8">
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-  <title>Cryptocat - Chat with privacy | oskarhane</title>
+  <title>Untracked files in newly cloned Git repo? | oskarhane</title>
   <meta name="author" content="Oskar Hane">
   
-  <meta name="description" content="Privacy and encryption should not be hard to use in a chat service. There’s a OTR option in Adium where users can start an encrypted chat.
-But seriously, have you ever used it? This should be the default option and users who want to chat in the open can request that.
-This is where Cryptocat comes in. It’s a chat service (based on XMPP I believe) that has OTR for all conversations, all the time. You don’t even have to option to skip it.
-Picka a name and a room to start.">
+  <meta name="description" content="It has happend a few times for me: I clone a remote Git repository, and when I do git status to see info one or more tracked files are listed.Pretty a">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Cryptocat - Chat with privacy"/>
+  <meta property="og:title" content="Untracked files in newly cloned Git repo?"/>
   <meta property="og:site_name" content="oskarhane"/>
 
   
@@ -71,31 +68,28 @@ Picka a name and a room to start.">
     <header>
       
         <div class="icon"></div>
-        <time datetime="2013-11-25T07:17:20.000Z"><a href="/cryptocat-chat-with-privacy/">2013-11-25</a></time>
+        <time datetime="2015-04-22T21:05:32.000Z"><a href="/untracked-files-in-newly-cloned-git-repo/">2015-04-22</a></time>
       
       
   
-    <h1 class="title">Cryptocat - Chat with privacy</h1>
+    <h1 class="title">Untracked files in newly cloned Git repo?</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>Privacy and encryption should not be hard to use in a chat service. There’s a OTR option in Adium where users can start an encrypted chat.</p>
-<p>But seriously, have you ever used it? This should be the default option and users who want to chat in the open can request that.</p>
-<p>This is where <a href="https://crypto.cat" target="_blank" rel="external">Cryptocat</a> comes in. It’s a chat service (based on XMPP I believe) that has OTR for all conversations, all the time. You don’t even have to option to skip it.</p>
-<p><img src="/post_img/2013/11/orreMBA-2013-11-25-kl.-08.42.37.png" alt="img1"><br><em>Picka a name and a room to start.</em><br><a id="more"></a><br>Right now, its a simple group conversations chat (you an chat 1-to-1 as well) and is available as browser plugins and standalone OS X app in the Mac App Store.</p>
-<p>I miss two things though.</p>
-<ol>
-<li>Password protect rooms. Right now anyone can join any room. You can set up your own servers and have private rooms that way but it’s too complicated for most users.</li>
-</ol>
-<ol>
-<li>Tabs for the OS X App. Right now it’s a window for every conversation. It gets messy after a while.</li>
-</ol>
-<p><img src="/post_img/2013/11/orreMBA-2013-11-25-kl.-08.42.57.png" alt="img2"><br><em>Generating secret keys.</em></p>
-<p><img src="/post_img/2013/11/orreMBA-2013-11-25-kl.-08.44.12.png" alt="img3"><br><em>Conversations in the lobby.</em></p>
-<p>Cryptocat does not make you anonymous. It makes sure no one can see your messages. If you want to be anonymous, just click the “Enable Tor” in the Cryptocat menu.</p>
-<p>I really like their design language, I mean check out their icon! Cool stuff.</p>
+        <p>It has happend a few times for me: I clone a remote Git repository, and when I do <code>git status</code> to see info one or more tracked files are listed.<br>Pretty annoying and I could see the pattern that the filenames of these files has special characters in them. </p>
+<p>But what to do?</p>
+<p>Do this: <code>git config core.precomposeunicode false</code> and they’re tracked.</p>
+<p>Why? </p>
+<p><strong>core.precomposeunicode</strong></p>
+<pre><code>This <span class="keyword">option</span> <span class="keyword">is</span> only used <span class="keyword">by</span> Mac OS implementation <span class="keyword">of</span> Git. <span class="keyword">When</span> core.precomposeunicode=<span class="literal">true</span>, 
+Git reverts the <span class="keyword">unicode</span> decomposition <span class="keyword">of</span> filenames done <span class="keyword">by</span> Mac OS. 
+This <span class="keyword">is</span> useful <span class="keyword">when</span> sharing a repository between Mac OS <span class="keyword">and</span> Linux <span class="keyword">or</span> Windows. 
+(Git <span class="keyword">for</span> Windows <span class="number">1.7</span><span class="number">.10</span> <span class="keyword">or</span> higher <span class="keyword">is</span> needed, <span class="keyword">or</span> Git under cygwin <span class="number">1.7</span>). 
+<span class="keyword">When</span> <span class="literal">false</span>, file names are handled fully transparent <span class="keyword">by</span> Git, which <span class="keyword">is</span> backward compatible <span class="keyword">with</span> 
+older versions <span class="keyword">of</span> Git.
+</code></pre><p>From <a href="http://git-scm.com/docs/git-config" target="_blank" rel="external">http://git-scm.com/docs/git-config</a></p>
 
       
     </div>
@@ -105,7 +99,7 @@ Picka a name and a room to start.">
         
   
   <div class="tags">
-    <a href="/tags/Client-Side/">Client Side</a>, <a href="/tags/Crypto/">Crypto</a>, <a href="/tags/Server-Side/">Server Side</a>
+    <a href="/tags/Client-Side/">Client Side</a>, <a href="/tags/Git/">Git</a>
   </div>
 
         

@@ -67,6 +67,39 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-04-20T03:19:06.000Z"><a href="/plugin-two-factor-auth-for-wordpress/">2013-04-20</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/plugin-two-factor-auth-for-wordpress/">Plugin: Two Factor Auth for WordPress</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>No Content Found</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2013-04-18T13:05:08.000Z"><a href="/compile-node-js-apps/">2013-04-18</a></time>
       
       
@@ -609,56 +642,6 @@ npm -v
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-03-24T18:17:09.000Z"><a href="/wordpress-updates-via-ssh/">2013-03-24</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/wordpress-updates-via-ssh/">Wordpress updates via SSH</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>So, you hate to manually upload theme and plugin upgrades to your Wordpress installation and you for sure don’t want to install FTP on your server since you work over SSH/SCP?</p>
-<p>Yep, me too.</p>
-<p>Wordpress can handle updates via SSH with SSH-keys!<br>First of all you need to have php5-ssh2 installed. Oh, yeah, this guide is for Debian/Ubuntu. Everybody else need to search how to compile PHP with the SSH2 package.</p>
-<pre><code>apt-<span class="keyword">get</span> install php5-ssh2
-</code></pre><p>Lets generate some SSH keys for WP to use.</p>
-<pre><code>ssh-keygen
-</code></pre><p>You will be prompted where to put the file and for a password. Name the file something like id_rsa-wp so you know what it is for. Leave password empty if you want.<br>Now, we have to put the public key in a file called authorized_keys so SSH can find it.</p>
-<pre><code>cd ~/<span class="class">.ssh</span>
-cat id_rsa-wp<span class="class">.pub</span> &gt;&gt; authorized_keys
-</code></pre><p>If WP/Apache run as your user, this is all you need to do. If it runs as www-data, you ned to set permissions</p>
-<pre><code>chmod 644 id_rsa-wp<span class="keyword">*</span>
-</code></pre><p>The next step is to put some info in your wp-config so you don’t have to enter the file path every time it’s time for an update.</p>
-<pre><code><span class="class"><span class="keyword">define</span></span>(<span class="string">'FTP_PUBKEY'</span>,<span class="string">'/home/your_user/.ssh/id_rsa-wp.pub'</span>);
-<span class="class"><span class="keyword">define</span></span>(<span class="string">'FTP_PRIKEY'</span>,<span class="string">'/home/your_user/.ssh/id_rsa-wp'</span>);
-<span class="class"><span class="keyword">define</span></span>(<span class="string">'FTP_USER'</span>,<span class="string">'your_user'</span>);
-<span class="class"><span class="keyword">define</span></span>(<span class="string">'FTP_PASS'</span>,<span class="string">''</span>);
-<span class="class"><span class="keyword">define</span></span>(<span class="string">'FTP_HOST'</span>,<span class="string">'your.server.com:22'</span>);
-</code></pre><p>And thats it!<br>Just click SSH2 on the update/install page in WP and smile!</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -689,6 +672,10 @@ cat id_rsa-wp<span class="class">.pub</span> &gt;&gt; authorized_keys
 <div class="widget tag">
   <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/untracked-files-in-newly-cloned-git-repo/">Untracked files in newly cloned Git repo?</a>
+      </li>
     
       <li>
         <a href="/git-feature-branch-model/">Git - Feature branch model</a>
@@ -746,10 +733,6 @@ cat id_rsa-wp<span class="class">.pub</span> &gt;&gt; authorized_keys
         <a href="/proxy-app-a-native-proxy-for-os-x/">Proxy.app - A native proxy for OS X</a>
       </li>
     
-      <li>
-        <a href="/does-that-html5-css3-thing-work-in/">Does that HTML5/ CSS3 thing work in ...?</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -761,7 +744,7 @@ cat id_rsa-wp<span class="class">.pub</span> &gt;&gt; authorized_keys
   
     <li><a href="/tags/BitCoin/">BitCoin</a><small>2</small></li>
   
-    <li><a href="/tags/Client-Side/">Client Side</a><small>35</small></li>
+    <li><a href="/tags/Client-Side/">Client Side</a><small>36</small></li>
   
     <li><a href="/tags/Coding/">Coding</a><small>54</small></li>
   
@@ -773,7 +756,7 @@ cat id_rsa-wp<span class="class">.pub</span> &gt;&gt; authorized_keys
   
     <li><a href="/tags/General/">General</a><small>20</small></li>
   
-    <li><a href="/tags/Git/">Git</a><small>1</small></li>
+    <li><a href="/tags/Git/">Git</a><small>2</small></li>
   
     <li><a href="/tags/Hacks/">Hacks</a><small>17</small></li>
   

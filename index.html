@@ -67,6 +67,50 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2015-04-22T21:05:32.000Z"><a href="/untracked-files-in-newly-cloned-git-repo/">2015-04-22</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/untracked-files-in-newly-cloned-git-repo/">Untracked files in newly cloned Git repo?</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>It has happend a few times for me: I clone a remote Git repository, and when I do <code>git status</code> to see info one or more tracked files are listed.<br>Pretty annoying and I could see the pattern that the filenames of these files has special characters in them. </p>
+<p>But what to do?</p>
+<p>Do this: <code>git config core.precomposeunicode false</code> and they’re tracked.</p>
+<p>Why? </p>
+<p><strong>core.precomposeunicode</strong></p>
+<pre><code>This <span class="keyword">option</span> <span class="keyword">is</span> only used <span class="keyword">by</span> Mac OS implementation <span class="keyword">of</span> Git. <span class="keyword">When</span> core.precomposeunicode=<span class="literal">true</span>, 
+Git reverts the <span class="keyword">unicode</span> decomposition <span class="keyword">of</span> filenames done <span class="keyword">by</span> Mac OS. 
+This <span class="keyword">is</span> useful <span class="keyword">when</span> sharing a repository between Mac OS <span class="keyword">and</span> Linux <span class="keyword">or</span> Windows. 
+(Git <span class="keyword">for</span> Windows <span class="number">1.7</span><span class="number">.10</span> <span class="keyword">or</span> higher <span class="keyword">is</span> needed, <span class="keyword">or</span> Git under cygwin <span class="number">1.7</span>). 
+<span class="keyword">When</span> <span class="literal">false</span>, file names are handled fully transparent <span class="keyword">by</span> Git, which <span class="keyword">is</span> backward compatible <span class="keyword">with</span> 
+older versions <span class="keyword">of</span> Git.
+</code></pre><p>From <a href="http://git-scm.com/docs/git-config" target="_blank" rel="external">http://git-scm.com/docs/git-config</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2015-03-25T20:56:54.000Z"><a href="/git-feature-branch-model/">2015-03-25</a></time>
       
       
@@ -656,39 +700,6 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-05-14T05:02:45.000Z"><a href="/does-that-html5-css3-thing-work-in/">2014-05-14</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/does-that-html5-css3-thing-work-in/">Does that HTML5/ CSS3 thing work in ...?</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>A nice resource to check what elements and API:s the different browsers supports.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -717,6 +728,10 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
 <div class="widget tag">
   <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/untracked-files-in-newly-cloned-git-repo/">Untracked files in newly cloned Git repo?</a>
+      </li>
     
       <li>
         <a href="/git-feature-branch-model/">Git - Feature branch model</a>
@@ -774,10 +789,6 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
         <a href="/proxy-app-a-native-proxy-for-os-x/">Proxy.app - A native proxy for OS X</a>
       </li>
     
-      <li>
-        <a href="/does-that-html5-css3-thing-work-in/">Does that HTML5/ CSS3 thing work in ...?</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -789,7 +800,7 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
   
     <li><a href="/tags/BitCoin/">BitCoin</a><small>2</small></li>
   
-    <li><a href="/tags/Client-Side/">Client Side</a><small>35</small></li>
+    <li><a href="/tags/Client-Side/">Client Side</a><small>36</small></li>
   
     <li><a href="/tags/Coding/">Coding</a><small>54</small></li>
   
@@ -801,7 +812,7 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
   
     <li><a href="/tags/General/">General</a><small>20</small></li>
   
-    <li><a href="/tags/Git/">Git</a><small>1</small></li>
+    <li><a href="/tags/Git/">Git</a><small>2</small></li>
   
     <li><a href="/tags/Hacks/">Hacks</a><small>17</small></li>
   

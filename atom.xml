@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://oskarhane.com/"/>
-  <updated>2015-03-25T21:30:28.000Z</updated>
+  <updated>2015-04-22T21:19:20.000Z</updated>
   <id>http://oskarhane.com/</id>
   
   <author>
@@ -13,6 +13,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Untracked files in newly cloned Git repo?]]></title>
+    <link href="http://oskarhane.com/untracked-files-in-newly-cloned-git-repo/"/>
+    <id>http://oskarhane.com/untracked-files-in-newly-cloned-git-repo/</id>
+    <published>2015-04-22T21:05:32.000Z</published>
+    <updated>2015-04-22T21:19:20.000Z</updated>
+    <content type="html"><![CDATA[<p>It has happend a few times for me: I clone a remote Git repository, and when I do <code>git status</code> to see info one or more tracked files are listed.<br>Pretty annoying and I could see the pattern that the filenames of these files has special characters in them. </p>
+<p>But what to do?</p>
+<p>Do this: <code>git config core.precomposeunicode false</code> and they’re tracked.</p>
+<p>Why? </p>
+<p><strong>core.precomposeunicode</strong></p>
+<pre><code>This <span class="keyword">option</span> <span class="keyword">is</span> only used <span class="keyword">by</span> Mac OS implementation <span class="keyword">of</span> Git. <span class="keyword">When</span> core.precomposeunicode=<span class="literal">true</span>, 
+Git reverts the <span class="keyword">unicode</span> decomposition <span class="keyword">of</span> filenames done <span class="keyword">by</span> Mac OS. 
+This <span class="keyword">is</span> useful <span class="keyword">when</span> sharing a repository between Mac OS <span class="keyword">and</span> Linux <span class="keyword">or</span> Windows. 
+(Git <span class="keyword">for</span> Windows <span class="number">1.7</span><span class="number">.10</span> <span class="keyword">or</span> higher <span class="keyword">is</span> needed, <span class="keyword">or</span> Git under cygwin <span class="number">1.7</span>). 
+<span class="keyword">When</span> <span class="literal">false</span>, file names are handled fully transparent <span class="keyword">by</span> Git, which <span class="keyword">is</span> backward compatible <span class="keyword">with</span> 
+older versions <span class="keyword">of</span> Git.
+</code></pre><p>From <a href="http://git-scm.com/docs/git-config" target="_blank" rel="external">http://git-scm.com/docs/git-config</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>It has happend a few times for me: I clone a remote Git repository, and when I do <code>git status</code> to see info one or more tracked]]>
+    </summary>
+    
+      <category term="Client Side" scheme="http://oskarhane.com/tags/Client-Side/"/>
+    
+      <category term="Git" scheme="http://oskarhane.com/tags/Git/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Git - Feature branch model]]></title>
@@ -635,58 +664,6 @@ sudo cp mksquashfs unsquashfs /usr/local/bin
       <category term="General" scheme="http://oskarhane.com/tags/General/"/>
     
       <category term="Hacks" scheme="http://oskarhane.com/tags/Hacks/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Nginx as a reverse proxy in front of your Docker containers]]></title>
-    <link href="http://oskarhane.com/nginx-as-a-reverse-proxy-in-front-of-your-docker-containers/"/>
-    <id>http://oskarhane.com/nginx-as-a-reverse-proxy-in-front-of-your-docker-containers/</id>
-    <published>2014-03-28T09:06:16.000Z</published>
-    <updated>2015-03-05T12:42:59.000Z</updated>
-    <content type="html"><![CDATA[<p>I have and create a lot of Wordpress sites for clients. As of now, I manually create new Docker container, create a nginx (or <a href="/haproxy-as-a-static-reverse-proxy-for-docker-containers/">HAProxy</a>) config file so the site can be reached on port 80 from the outside. And it’s a pain.</p>
-<p>So I created this Python script that takes care of the container and config file creation. All you have to do i to reload nginx and the site will be up.</p>
-<p>Check it out: <a href="https://github.com/oskarhane/dockerpress/blob/master/dockerpress" target="_blank" rel="external">Script to create wordpress docker container and nginx config file as reverse proxy</a>.</p>
-<p>This image illustrates what the setup will look like.  </p>
-<p><img src="/post_img/2014/03/orreMBA-2014-03-28-kl.-10.59.02.png" alt="nginx reverse proxy"></p>
-<p>Here’s how you use it.</p>
-<a id="more"></a>
-<pre><code>//Git clone <span class="built_in">and</span> <span class="keyword">cd</span> into the dir
-git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/oskarhane/dockerpress.git &amp;&amp; <span class="keyword">cd</span> $_
-
-//Add execution permission
-chmod +<span class="keyword">x</span> ./dockerpress
-
-//Create your <span class="keyword">first</span> site. The URL MUST <span class="built_in">match</span> the URL <span class="keyword">to</span> <span class="keyword">be</span> used.
-./dockerpress --url www.yoursite.<span class="keyword">com</span>
-
-//If <span class="keyword">all</span> <span class="keyword">is</span> ok, reload nginx
-service nginx reload
-//<span class="built_in">or</span>
-/etc/init.<span class="keyword">d</span>/nginx reload
-</code></pre><p>If you already pointed the A-record in the DNS to this servers IP, you should be able to see the site. If not, you can reach it via <code>http://server-ip:http-port</code>. You find the http-port by typing <code>docker ps</code> and read the port (49xxx something) forwarded to 80. It look something like this:</p>
-<blockquote><br>  0.0.0.0:49222-&gt;80/tcp<br></blockquote>
-
-
-
-<p>Wehere 49222 is the port number to enter.</p>
-<p>Even though this script specific to one docker image, you can modify it to work with any docker image.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>I have and create a lot of Wordpress sites for clients. As of now, I manually create new Docker container, create a nginx (or <a href="/haproxy-as-a-static-reverse-proxy-for-docker-containers/">HAProxy</a>) config file so the site can be reached on port 80 from the outside. And it’s a pain.</p>
-<p>So I created this Python script that takes care of the container and config file creation. All you have to do i to reload nginx and the site will be up.</p>
-<p>Check it out: <a href="https://github.com/oskarhane/dockerpress/blob/master/dockerpress">Script to create wordpress docker container and nginx config file as reverse proxy</a>.</p>
-<p>This image illustrates what the setup will look like.  </p>
-<p><img src="/post_img/2014/03/orreMBA-2014-03-28-kl.-10.59.02.png" alt="nginx reverse proxy"></p>
-<p>Here’s how you use it.</p>]]>
-    
-    </summary>
-    
-      <category term="General" scheme="http://oskarhane.com/tags/General/"/>
-    
-      <category term="Server Side" scheme="http://oskarhane.com/tags/Server-Side/"/>
-    
-      <category term="WordPress" scheme="http://oskarhane.com/tags/WordPress/"/>
     
   </entry>
   
