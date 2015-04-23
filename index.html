@@ -77,8 +77,8 @@
     </header>
     <div class="entry">
       
-        <p>It has happend a few times for me: I clone a remote Git repository, and when I do <code>git status</code> to see info one or more tracked files are listed.<br>Pretty annoying and I could see the pattern that the filenames of these files has special characters in them. </p>
-<p>But what to do?</p>
+        <p>It has happend a few times for me: I clone a remote Git repository, and when I do <code>git status</code> to see info one or more untracked files are listed.<br>It’s quite annoying and I could see the pattern that the filenames of these files has UTF-8 / special characters in them (åäö). </p>
+<p>What to do to resolve this?</p>
 <p>Do this: <code>git config core.precomposeunicode false</code> and they’re tracked.</p>
 <p>Why? </p>
 <p><strong>core.precomposeunicode</strong></p>
