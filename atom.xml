@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://oskarhane.com/"/>
-  <updated>2015-05-26T15:34:54.000Z</updated>
+  <updated>2015-05-26T15:36:41.000Z</updated>
   <id>http://oskarhane.com/</id>
   
   <author>
@@ -18,11 +18,11 @@
     <title><![CDATA[Offline mode in OS X]]></title>
     <link href="http://oskarhane.com/offline-mode-in-os-x/"/>
     <id>http://oskarhane.com/offline-mode-in-os-x/</id>
-    <published>2015-05-26T15:34:54.000Z</published>
-    <updated>2015-05-26T15:34:54.000Z</updated>
-    <content type="html"><![CDATA[<p>When working on web apps we have to keep in mind that the client might not have access to the internet all the time.  Chrome has a great feature for this:<br><img src="/post_img/2015/05/Oskar4j 2015-05-26-at-17.20.02.png" alt="Chrome network settings"></p>
+    <published>2015-05-26T15:36:41.000Z</published>
+    <updated>2015-05-26T15:36:41.000Z</updated>
+    <content type="html"><![CDATA[<p>When working on web apps we have to keep in mind that the client might not have access to the internet all the time.  Chrome has a great feature for this:<br><img src="/post_img/2015/05/Oskar4j-2015-05-26-at-17.20.02.png" alt="Chrome network settings"></p>
 <p>When working on a web app that make requests to a API located at <em>localhost</em> but also make requests to external API:s, it’s harder.<br>I solved this issue by creating a new <em>Location</em> in OS X <em>Network</em> part of <em>System Preferences</em>. The new <em>Location</em> has WiFi and Ethernet <em>Configure IPv4</em> set to <em>Off</em>, which means that it’s offline.</p>
-<p><img src="/post_img/2015/05/Oskar4j 2015-05-26-at-17.30.43.png" alt="OS X Network Location"></p>
+<p><img src="/post_img/2015/05/Oskar4j-2015-05-26-at-17.30.43.png" alt="OS X Network Location"></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>When working on web apps we have to keep in mind that the client might not have access to the internet all the time.  Chrome has a great ]]>
