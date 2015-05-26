@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://oskarhane.com/"/>
-  <updated>2015-04-23T06:12:56.000Z</updated>
+  <updated>2015-05-26T15:34:54.000Z</updated>
   <id>http://oskarhane.com/</id>
   
   <author>
@@ -13,6 +13,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Offline mode in OS X]]></title>
+    <link href="http://oskarhane.com/offline-mode-in-os-x/"/>
+    <id>http://oskarhane.com/offline-mode-in-os-x/</id>
+    <published>2015-05-26T15:34:54.000Z</published>
+    <updated>2015-05-26T15:34:54.000Z</updated>
+    <content type="html"><![CDATA[<p>When working on web apps we have to keep in mind that the client might not have access to the internet all the time.  Chrome has a great feature for this:<br><img src="/post_img/2015/05/Oskar4j 2015-05-26-at-17.20.02.png" alt="Chrome network settings"></p>
+<p>When working on a web app that make requests to a API located at <em>localhost</em> but also make requests to external API:s, it’s harder.<br>I solved this issue by creating a new <em>Location</em> in OS X <em>Network</em> part of <em>System Preferences</em>. The new <em>Location</em> has WiFi and Ethernet <em>Configure IPv4</em> set to <em>Off</em>, which means that it’s offline.</p>
+<p><img src="/post_img/2015/05/Oskar4j 2015-05-26-at-17.30.43.png" alt="OS X Network Location"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>When working on web apps we have to keep in mind that the client might not have access to the internet all the time.  Chrome has a great ]]>
+    </summary>
+    
+      <category term="Client Side" scheme="http://oskarhane.com/tags/Client-Side/"/>
+    
+      <category term="General" scheme="http://oskarhane.com/tags/General/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Untracked files in newly cloned Git repo?]]></title>
@@ -593,77 +613,6 @@ getNestedChildren = function(arr, parent) {
     </summary>
     
       <category term="General" scheme="http://oskarhane.com/tags/General/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Inspecting the firmware of a D-Link DWR-923 4G Modem]]></title>
-    <link href="http://oskarhane.com/inspecting-the-firmware-of-a-d-link-dwr-923-4g-modem/"/>
-    <id>http://oskarhane.com/inspecting-the-firmware-of-a-d-link-dwr-923-4g-modem/</id>
-    <published>2014-04-02T06:38:37.000Z</published>
-    <updated>2015-03-05T12:42:59.000Z</updated>
-    <content type="html"><![CDATA[<p>This will be a step by step on how to extract different parts of the firmware on a D-Link 4G router. This is just for fun and out of curiosity to see what they are using.</p>
-<p>First, let get some tools. When inspecting/extracting and reverse engineering something you can’t live without a tool called <a href="http://binwalk.org" target="_blank" rel="external">binwalk</a>. I downloaded 1.2.2 from <a href="https://code.google.com/p/binwalk/downloads/list" target="_blank" rel="external">here</a> and after <code>brew install libmagic</code> I got it to compile on OS X Mavericks.</p>
-<p>Remember to edit your <code>~/.bash_profile</code> and add <code>export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH</code> to it to get it to compile.</p>
-<p>The firmware for the modem I got from this <a href="http://tekniksmart.se/2013/d-link-dwr-923-ny-firmware-slppt-till-4g-modemet/" target="_blank" rel="external">Swedish tech site</a>.</p>
-<a id="more"></a>
-<h2 id="Lets_binwalk">Lets binwalk</h2><p>Open the terminal and go to the dir where your firmware is and type <code>binwalk OG3611_v1.4.18.37_gui.img</code>.  </p>
-<p><img src="/post_img/2014/04/orreMBA-2014-04-02-kl.-09.49.32.png" alt="binwalk"></p>
-<pre><code>DECIMAL     HEX         DESCRIPTION
-<span class="comment">-------------------------------------------------------------------------------------------------------------------</span>
-<span class="number">14156</span>       <span class="number">0x374C</span>      gzip compressed data, <span class="built_in">from</span> Unix, <span class="keyword">last</span> modified: Fri Oct  <span class="number">4</span> <span class="number">04</span>:<span class="number">31</span>:<span class="number">47</span> <span class="number">2013</span>, <span class="built_in">max</span> compression
-<span class="number">2589708</span>     <span class="number">0x27840C</span>    gzip compressed data, was <span class="string">"rootfs.ext2"</span>, <span class="built_in">from</span> Unix, <span class="keyword">last</span> modified: Fri Oct  <span class="number">4</span> <span class="number">04</span>:<span class="number">32</span>:<span class="number">16</span> <span class="number">2013</span>, <span class="built_in">max</span> compression
-<span class="number">4980736</span>     <span class="number">0x4C0000</span>    Squashfs filesystem, little endian, <span class="built_in">version</span> <span class="number">4.0</span>, compression:gzip, size: <span class="number">20383349</span> <span class="keyword">bytes</span>,  <span class="number">1506</span> inodes, blocksize: <span class="number">131072</span> <span class="keyword">bytes</span>, created: Fri Oct  <span class="number">4</span> <span class="number">04</span>:<span class="number">32</span>:<span class="number">55</span> <span class="number">2013</span> 
-</code></pre><p>As you can see, there are three layers in this image: [Some data][rootfs][filesystem].  </p>
-<p>Right now, I’m interested in the filesystem. As you can see, it’s a Squashfs filesystem (very common fs in firmwares).</p>
-<h2 id="Chop_off_what_we_want">Chop off what we want</h2><p>I want to check out the filesystem at the end of the firmware. To do that I use <code>dd</code> which exists in all Mac’s. I want to start the chopping as address <code>4980736</code> and I want it to be <code>20383349</code> bytes long.</p>
-<pre><code>dd <span class="variable">if=</span>OG3611_v1.<span class="number">4.18</span>.<span class="number">37</span>_gui.img <span class="variable">bs=</span><span class="number">1</span> <span class="variable">skip=</span><span class="number">4980736</span> <span class="variable">count=</span><span class="number">20383349</span> <span class="variable">of=</span>d923.squashfs
-</code></pre><p>That will create a file called d923.squashfs in the same dir as you’re in.</p>
-<h2 id="Read_squashfs">Read squashfs</h2><p>To read a squashfs filesystem, there is a tool called <a href="http://sourceforge.net/projects/squashfs/files/" target="_blank" rel="external">squashfs tools</a>.  </p>
-<p>Download and unpack it.  </p>
-<p>Install it on OS X like this.</p>
-<pre><code>cd squashfs-tools
-
-sed -<span class="tag">i</span><span class="class">.orig</span> <span class="string">'s/FNM_EXTMATCH/0/; s/sysinfo.h/sysctl.h/; s/^inline/static inline/'</span> mksquashfs<span class="class">.c</span> unsquashfs<span class="class">.c</span>
-
-<span class="comment">//Paste all these rows (until END) at the same time</span>
-cat &lt;&lt;END &gt;&gt; xattr<span class="class">.h</span>
-<span class="hexcolor">#def</span>ine <span class="function"><span class="title">llistxattr</span><span class="params">(path, list, size)</span></span> \
-(<span class="function"><span class="title">listxattr</span><span class="params">(path, list, size, XATTR_NOFOLLOW)</span></span>)
-<span class="hexcolor">#def</span>ine <span class="function"><span class="title">lgetxattr</span><span class="params">(path, name, value, size)</span></span> \
-(<span class="function"><span class="title">getxattr</span><span class="params">(path, name, value, size, <span class="number">0</span>, XATTR_NOFOLLOW)</span></span>)
-<span class="hexcolor">#def</span>ine <span class="function"><span class="title">lsetxattr</span><span class="params">(path, name, value, size, flags)</span></span> \
-(<span class="function"><span class="title">setxattr</span><span class="params">(path, name, value, size, <span class="number">0</span>, flags | XATTR_NOFOLLOW)</span></span>)
-END
-
-make
-
-sudo cp mksquashfs unsquashfs /usr/local/bin
-</code></pre><p>Lets try it.</p>
-<pre><code><span class="title">unsquashfs</span> d923.squashfs
-</code></pre><p>Wow, that creates a dir called <code>squashfs-root</code> in the dir.  </p>
-<p><img src="/post_img/2014/04/orreMBA-2014-04-02-kl.-10.26.24.png" alt="unsquashed"></p>
-<p>Now you can browse all files and check them out. In <code>/var/www</code> you have all HTML pages for the admin UI for the modem.  </p>
-<p><img src="/post_img/2014/04/orreMBA-2014-04-02-kl.-10.29.08.png" alt="www"></p>
-<p>All lua (lua is like a lightweight PHP, Python, Ruby, whatever that is commonly used in these types of firmware since it’s… well… lightweight) files are in <code>/share/lua/5.1/</code>.  </p>
-<p>And you can see that the creators of these files are TeamF1.</p>
-<p>And that’s it!  </p>
-<p>Let me know if you find anything interesting.</p>
-<p>This post was inspired by The Hacker blogs post on <a href="http://thehackerblog.com/linksys-wrt56g-backdoor-payload/" target="_blank" rel="external">backdooring the Linksys WRT54G</a>.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>This will be a step by step on how to extract different parts of the firmware on a D-Link 4G router. This is just for fun and out of curiosity to see what they are using.</p>
-<p>First, let get some tools. When inspecting/extracting and reverse engineering something you can’t live without a tool called <a href="http://binwalk.org">binwalk</a>. I downloaded 1.2.2 from <a href="https://code.google.com/p/binwalk/downloads/list">here</a> and after <code>brew install libmagic</code> I got it to compile on OS X Mavericks.</p>
-<p>Remember to edit your <code>~/.bash_profile</code> and add <code>export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH</code> to it to get it to compile.</p>
-<p>The firmware for the modem I got from this <a href="http://tekniksmart.se/2013/d-link-dwr-923-ny-firmware-slppt-till-4g-modemet/">Swedish tech site</a>.</p>]]>
-    
-    </summary>
-    
-      <category term="Coding" scheme="http://oskarhane.com/tags/Coding/"/>
-    
-      <category term="General" scheme="http://oskarhane.com/tags/General/"/>
-    
-      <category term="Hacks" scheme="http://oskarhane.com/tags/Hacks/"/>
     
   </entry>
   
