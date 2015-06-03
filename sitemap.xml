@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://oskarhane.com/writing-the-book-build-your-own-paas-with-docker/</loc>
+    <lastmod>2015-06-03T20:43:17.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://oskarhane.com/offline-mode-in-os-x/</loc>
     <lastmod>2015-05-26T15:38:21.000Z</lastmod>
   </url>
@@ -57,12 +62,12 @@
   </url>
   
   <url>
-    <loc>http://oskarhane.com/use-your-synology-as-a-local-dns-cache/</loc>
+    <loc>http://oskarhane.com/uppdatera-doman-till-raspberry-pi-med-dynamiskt-ip-pa-loopia/</loc>
     <lastmod>2015-03-05T12:42:59.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://oskarhane.com/uppdatera-doman-till-raspberry-pi-med-dynamiskt-ip-pa-loopia/</loc>
+    <loc>http://oskarhane.com/wordpress-json-api-plugin/</loc>
     <lastmod>2015-03-05T12:42:59.000Z</lastmod>
   </url>
   
@@ -157,7 +162,7 @@
   </url>
   
   <url>
-    <loc>http://oskarhane.com/wordpress-json-api-plugin/</loc>
+    <loc>http://oskarhane.com/wordfence-after-a-few-days-installed/</loc>
     <lastmod>2015-03-05T12:42:59.000Z</lastmod>
   </url>
   
@@ -187,7 +192,7 @@
   </url>
   
   <url>
-    <loc>http://oskarhane.com/wordfence-after-a-few-days-installed/</loc>
+    <loc>http://oskarhane.com/webapp-tips-regexper/</loc>
     <lastmod>2015-03-05T12:42:59.000Z</lastmod>
   </url>
   
@@ -208,6 +213,11 @@
   
   <url>
     <loc>http://oskarhane.com/os-x-10-9-mavericks/</loc>
+    <lastmod>2015-03-05T12:42:59.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://oskarhane.com/watch-your-server-logs-logwatch/</loc>
     <lastmod>2015-03-05T12:42:59.000Z</lastmod>
   </url>
   
@@ -307,7 +317,7 @@
   </url>
   
   <url>
-    <loc>http://oskarhane.com/leta-tidstjuvar/</loc>
+    <loc>http://oskarhane.com/wordpress/</loc>
     <lastmod>2015-03-05T12:42:59.000Z</lastmod>
   </url>
   
@@ -317,7 +327,7 @@
   </url>
   
   <url>
-    <loc>http://oskarhane.com/wordpress/</loc>
+    <loc>http://oskarhane.com/jonas-colting-har-fatt-nog-bra/</loc>
     <lastmod>2015-03-05T12:42:59.000Z</lastmod>
   </url>
   
@@ -372,7 +382,7 @@
   </url>
   
   <url>
-    <loc>http://oskarhane.com/webapp-tips-regexper/</loc>
+    <loc>http://oskarhane.com/ymerloppet-2013/</loc>
     <lastmod>2015-03-05T12:42:59.000Z</lastmod>
   </url>
   
@@ -382,7 +392,7 @@
   </url>
   
   <url>
-    <loc>http://oskarhane.com/watch-your-server-logs-logwatch/</loc>
+    <loc>http://oskarhane.com/wordpress-updates-via-ssh/</loc>
     <lastmod>2015-03-05T12:42:59.000Z</lastmod>
   </url>
   
@@ -422,7 +432,7 @@
   </url>
   
   <url>
-    <loc>http://oskarhane.com/ymerloppet-2013/</loc>
+    <loc>http://oskarhane.com/version-4-of-two-factor-auth-for-wordpress/</loc>
     <lastmod>2015-03-05T12:42:59.000Z</lastmod>
   </url>
   
@@ -587,7 +597,7 @@
   </url>
   
   <url>
-    <loc>http://oskarhane.com/wordpress-updates-via-ssh/</loc>
+    <loc>http://oskarhane.com/vasaloppet-2013/</loc>
     <lastmod>2015-03-05T12:42:59.000Z</lastmod>
   </url>
   
@@ -617,17 +627,12 @@
   </url>
   
   <url>
-    <loc>http://oskarhane.com/version-4-of-two-factor-auth-for-wordpress/</loc>
+    <loc>http://oskarhane.com/use-your-synology-as-a-local-dns-cache/</loc>
     <lastmod>2015-03-05T12:42:59.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://oskarhane.com/vasaloppet-2013/</loc>
-    <lastmod>2015-03-05T12:42:59.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://oskarhane.com/jonas-colting-har-fatt-nog-bra/</loc>
+    <loc>http://oskarhane.com/leta-tidstjuvar/</loc>
     <lastmod>2015-03-05T12:42:59.000Z</lastmod>
   </url>
   

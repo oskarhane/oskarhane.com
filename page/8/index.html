@@ -67,6 +67,44 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-02-19T10:10:09.000Z"><a href="/os-x-tips-add-spacer-to-dock/">2013-02-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/os-x-tips-add-spacer-to-dock/">OS X Tips - Add spacer to Dock</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I like to have my Dock organized and spacers let me do that real easy and nice.<br>Open up your Terminal.app (search for Terminal in Spotlight or navigate to Applications-&gt;Utilites in Finder).</p>
+<p>Type this:</p>
+<pre><code>defaults <span class="keyword">write</span> com.apple.dock persistent-apps -<span class="keyword">array</span>-<span class="keyword">add</span> <span class="string">'{"tile-type"="spacer-tile";}'</span>
+</code></pre><p>You can type/paste that as many times as you like to have spacers.<br>Then, type this to restart the Dock.</p>
+<pre><code><span class="title">killall</span> Dock
+</code></pre><p>Now, you can move the spacers as any other app in the Dock, and if you’d like to remove a spacer, drag it out of the Dock and wait for 1 second and release it.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2013-02-19T09:14:57.000Z"><a href="/narmast-hittills/">2013-02-19</a></time>
       
       
@@ -560,50 +598,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-02-13T11:30:56.000Z"><a href="/forsta-gnallet/">2013-02-13</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/forsta-gnallet/">Första gnället</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Inför Vasaloppet kan man seeda sig för att hamna i startled längre fram. Vilket led man hamnar i efter genomförd seedningstävling vet ingen hur de kommer fram till och jag misstänker att någon jag känner sitter där och fnissar.</p>
-<p>Jag har kört tre seedningslopp.</p>
-<ul>
-<li>I lopp 1 hamnade jag i led 4. 1 min från led 3.</li>
-</ul>
-<ul>
-<li>I lopp 2 hamnade jag i led 4. 2 min från led 3.</li>
-</ul>
-<ul>
-<li>I lopp 3 hamnade jag i led 4. 3 min från led 3.</li>
-</ul>
-<p>Nej, jag är inte bitter.<br>Nu kanske det blir så att jag skaver runt 10 varv på boråsbanan på söndag för att göra ett sista försök att komma i led 3.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -634,6 +628,10 @@
 <div class="widget tag">
   <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/writing-the-book-build-your-own-paas-with-docker/">Writing the book: Build your own PaaS with Docker</a>
+      </li>
     
       <li>
         <a href="/offline-mode-in-os-x/">Offline mode in OS X</a>
@@ -691,10 +689,6 @@
         <a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">Make:r - How I did a fishing lure / jerk bait </a>
       </li>
     
-      <li>
-        <a href="/angular-js-filter-to-make-urls-in-text-clickable/">Angular.JS filter to make url:s in text clickable</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -739,6 +733,10 @@
     <li><a href="/tags/Whine/">Whine</a><small>6</small></li>
   
     <li><a href="/tags/WordPress/">WordPress</a><small>17</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/paas/">paas</a><small>1</small></li>
   
   </ul>
 </div>

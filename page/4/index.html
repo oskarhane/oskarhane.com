@@ -67,6 +67,41 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-10-11T04:54:02.000Z"><a href="/os-x-list-folder-and-sizes-ordered-by-size/">2013-10-11</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/os-x-list-folder-and-sizes-ordered-by-size/">OS X - List folder and sizes ordered by size</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I had to see what was taking up so much space on my MacBook Air since I only had 1GB free on my SSD. Just open the terminal and invoke this to list all folders that are bigger than 500MB, ordered by size.</p>
+<pre><code><span class="variable">$ </span>du -m * | awk <span class="string">'$1 &gt; 500'</span> | sort -nr
+</code></pre><p>In my case, it was a tmp build of iOS Simulator 6.1. It was 47GB…</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2013-10-10T16:56:54.000Z"><a href="/add-new-domain-to-iredmail-with-dkim-signature/">2013-10-10</a></time>
       
       
@@ -601,41 +636,6 @@ console.log(<span class="keyword">count</span>(<span class="string">"ra ta ta ra
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-07-10T07:20:24.000Z"><a href="/heml-is-messenger/">2013-07-10</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/heml-is-messenger/">Heml.is messenger</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>It’s time for a secure messenger and three people from Sweden is determined to make it happen.</p>
-<p>It’s about end user encryption (with PGP over XMPP), the way it should be done.<br>Hopefully they deliver the service to all platforms (phones, computers) in the future and release the source.</p>
-<p>Click on the link to back their project.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -666,6 +666,10 @@ console.log(<span class="keyword">count</span>(<span class="string">"ra ta ta ra
 <div class="widget tag">
   <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/writing-the-book-build-your-own-paas-with-docker/">Writing the book: Build your own PaaS with Docker</a>
+      </li>
     
       <li>
         <a href="/offline-mode-in-os-x/">Offline mode in OS X</a>
@@ -723,10 +727,6 @@ console.log(<span class="keyword">count</span>(<span class="string">"ra ta ta ra
         <a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">Make:r - How I did a fishing lure / jerk bait </a>
       </li>
     
-      <li>
-        <a href="/angular-js-filter-to-make-urls-in-text-clickable/">Angular.JS filter to make url:s in text clickable</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -771,6 +771,10 @@ console.log(<span class="keyword">count</span>(<span class="string">"ra ta ta ra
     <li><a href="/tags/Whine/">Whine</a><small>6</small></li>
   
     <li><a href="/tags/WordPress/">WordPress</a><small>17</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/paas/">paas</a><small>1</small></li>
   
   </ul>
 </div>

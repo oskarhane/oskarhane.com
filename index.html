@@ -67,6 +67,47 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2015-06-03T20:36:16.000Z"><a href="/writing-the-book-build-your-own-paas-with-docker/">2015-06-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/writing-the-book-build-your-own-paas-with-docker/">Writing the book: Build your own PaaS with Docker</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>So, I’ve written a book. A real book that’s sold on Amazon (amongst other stores). Printed on paper (or as an ebook as well, of course).</p>
+<p>It was a lot harder than I thought.<br>Getting the language right (since I’m not a native english speaker) and getting a good flow within every chapter as well as through the whole book.<br>Authoring chapters that will give readers insights and knowledge. It’s hard.</p>
+<p>It took much longer than I thought. I’d just started working for <a href="http://neo4j.com" target="_blank" rel="external">Neo4j</a> and had 2,5 years old daughter that wanted attention all awake time.<br>So there were lots of late night writing done. Lots. Days before some deadlines I hardly didn’t sleep at all.</p>
+<p>The book is about how you can use <a href="http://docker.com" target="_blank" rel="external">Docker</a> to build your own Platform as a Service. Docker is still pretty young and breaking changes come pretty often which had the effect that I had to rewrite parts of the book from time to time to reflect these Docker changes.<br>And I wrote about <a href="http://www.fig.sh" target="_blank" rel="external">Fig</a> and they get acquired by Docker, changing it’s name to <a href="https://docs.docker.com/compose/" target="_blank" rel="external">Docker Compose</a> so I had to rewrite that part as well. You get the idea.</p>
+<p>It’s published by <a href="https://www.packtpub.com" target="_blank" rel="external">PACKT Publishing</a>, which is a brittish publishing company founded in 2004.</p>
+<p>If was a fun and educating experice and I wouldn’t mind writing another book. Not right now, but in the near future.<br>But I would choose a more stable topic and probably not have such short deadlines (I would write on my terms).</p>
+<p>I’m super exited that I’ve written a book and can call myself an author / published writer.<br>I’m also very self critical and find things I’m not happy with through out the whole book. On the other hand, the book would never have been published if I was to be happy with every sentence in it.</p>
+<p>The book is called <strong>Build your own PaaS with Docker</strong> and can be found on <a href="http://www.amazon.com/gp/product/1784393940" target="_blank" rel="external">Amazon</a> and in <a href="http://bit.ly/1J9j3ix" target="_blank" rel="external">Packts webshop</a>.<br>Check it out.</p>
+<p><img src="/post_img/2015/06/3496OT.jpg.png" alt="Cover"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2015-05-26T15:38:21.000Z"><a href="/offline-mode-in-os-x/">2015-05-26</a></time>
       
       
@@ -651,58 +692,6 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-06-02T06:00:46.000Z"><a href="/angular-js-filter-to-make-urls-in-text-clickable/">2014-06-02</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/angular-js-filter-to-make-urls-in-text-clickable/">Angular.JS filter to make url:s in text clickable</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This is a simple filter I made for Angular.JS to make url’s in text clickable. Make sure you place the content and filter in the <code>ng-bind-html</code> attribute of the HTML element. Otherwise the HTML won’t be parsed.</p>
-<p>E.g. <code>&lt;p ng-bind-html=&quot;comment.body | parseUrl&quot;&gt;&lt;/p&gt;</code></p>
-<p>Here’s the <code>parseUrl</code> filter:</p>
-<pre><code>angular.module(<span class="string">'filters'</span>, [])
-.<span class="built_in">filter</span>(<span class="string">'parseUrl'</span>, <span class="function"><span class="keyword">function</span>() {</span>
-    var urls = /(\b(<span class="keyword">https</span>?|<span class="keyword">ftp</span>):\/\/[A-Z0-<span class="number">9</span>+&amp;@<span class="comment">#\/%?=~_|!:,.;-]*[-A-Z0-9+&amp;@#\/%=~_|])/gim</span>
-    var emails = /(\w+@[<span class="operator">a</span>-zA-Z_]+?\.[<span class="operator">a</span>-zA-Z]{<span class="number">2</span>,<span class="number">6</span>})/gim
-
-    <span class="constant">return</span> <span class="function"><span class="keyword">function</span>(<span class="title">text</span>) {        </span>
-        <span class="keyword">if</span>(<span class="keyword">text</span>.match(urls)) {
-            <span class="keyword">text</span> = <span class="keyword">text</span>.<span class="built_in">replace</span>(urls, <span class="string">"&lt;a href=\"$1\" target=\"_blank\"&gt;$1&lt;/a&gt;"</span>)
-        }
-        <span class="keyword">if</span>(<span class="keyword">text</span>.match(emails)) {
-            <span class="keyword">text</span> = <span class="keyword">text</span>.<span class="built_in">replace</span>(emails, <span class="string">"&lt;a href=\"mailto:$1\"&gt;$1&lt;/a&gt;"</span>)
-        }
-
-        <span class="constant">return</span> <span class="keyword">text</span>       
-    }
-})
-</code></pre><p>Also, make sure you inject <code>filters</code> in your main module / app.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -731,6 +720,10 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
 <div class="widget tag">
   <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/writing-the-book-build-your-own-paas-with-docker/">Writing the book: Build your own PaaS with Docker</a>
+      </li>
     
       <li>
         <a href="/offline-mode-in-os-x/">Offline mode in OS X</a>
@@ -788,10 +781,6 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
         <a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">Make:r - How I did a fishing lure / jerk bait </a>
       </li>
     
-      <li>
-        <a href="/angular-js-filter-to-make-urls-in-text-clickable/">Angular.JS filter to make url:s in text clickable</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -836,6 +825,10 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
     <li><a href="/tags/Whine/">Whine</a><small>6</small></li>
   
     <li><a href="/tags/WordPress/">WordPress</a><small>17</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/paas/">paas</a><small>1</small></li>
   
   </ul>
 </div>

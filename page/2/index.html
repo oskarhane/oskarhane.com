@@ -67,6 +67,58 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2014-06-02T06:00:46.000Z"><a href="/angular-js-filter-to-make-urls-in-text-clickable/">2014-06-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/angular-js-filter-to-make-urls-in-text-clickable/">Angular.JS filter to make url:s in text clickable</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This is a simple filter I made for Angular.JS to make url’s in text clickable. Make sure you place the content and filter in the <code>ng-bind-html</code> attribute of the HTML element. Otherwise the HTML won’t be parsed.</p>
+<p>E.g. <code>&lt;p ng-bind-html=&quot;comment.body | parseUrl&quot;&gt;&lt;/p&gt;</code></p>
+<p>Here’s the <code>parseUrl</code> filter:</p>
+<pre><code>angular.module(<span class="string">'filters'</span>, [])
+.<span class="built_in">filter</span>(<span class="string">'parseUrl'</span>, <span class="function"><span class="keyword">function</span>() {</span>
+    var urls = /(\b(<span class="keyword">https</span>?|<span class="keyword">ftp</span>):\/\/[A-Z0-<span class="number">9</span>+&amp;@<span class="comment">#\/%?=~_|!:,.;-]*[-A-Z0-9+&amp;@#\/%=~_|])/gim</span>
+    var emails = /(\w+@[<span class="operator">a</span>-zA-Z_]+?\.[<span class="operator">a</span>-zA-Z]{<span class="number">2</span>,<span class="number">6</span>})/gim
+
+    <span class="constant">return</span> <span class="function"><span class="keyword">function</span>(<span class="title">text</span>) {        </span>
+        <span class="keyword">if</span>(<span class="keyword">text</span>.match(urls)) {
+            <span class="keyword">text</span> = <span class="keyword">text</span>.<span class="built_in">replace</span>(urls, <span class="string">"&lt;a href=\"$1\" target=\"_blank\"&gt;$1&lt;/a&gt;"</span>)
+        }
+        <span class="keyword">if</span>(<span class="keyword">text</span>.match(emails)) {
+            <span class="keyword">text</span> = <span class="keyword">text</span>.<span class="built_in">replace</span>(emails, <span class="string">"&lt;a href=\"mailto:$1\"&gt;$1&lt;/a&gt;"</span>)
+        }
+
+        <span class="constant">return</span> <span class="keyword">text</span>       
+    }
+})
+</code></pre><p>Also, make sure you inject <code>filters</code> in your main module / app.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2014-05-23T11:47:14.000Z"><a href="/proxy-app-a-native-proxy-for-os-x/">2014-05-23</a></time>
       
       
@@ -708,45 +760,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-02-25T08:59:52.000Z"><a href="/haproxy-as-a-static-reverse-proxy-for-docker-containers/">2014-02-25</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/haproxy-as-a-static-reverse-proxy-for-docker-containers/">HAProxy as a static reverse proxy for Docker containers</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>I like <a href="https://www.docker.io">Docker</a>. A lot.  </p>
-<p>Everything I build and deploy now ends up in their own container on some server/VPS of mine. One reason for this is because of how easy it is to move the site or service to another server if needed. Just export and import the Docker container and you’re done. No config on web and database servers needed, it’s all done.</p>
-<p>But there’s one thing you need to do. You can’t have lots of containers listening on the same public port 80, so you have to have your containers listening on some random port like 4553, 4566, 4333 etc. But your site’s visitors are coming to port 80 so you need to somehow listen to port 80 and forward requests to the right Docker container on the right port.</p>
-<p>There are several ways to do this and I started out with Nginx as a reverse proxy. This works fine but I don’t want a web server doing that. I’ve used <a href="http://haproxy.1wt.eu">HAProxy</a> in the past for load balancing. And it is actually just what I need, a load balancer is made for forwarding requests.</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/haproxy-as-a-static-reverse-proxy-for-docker-containers/#more" class="more-link">Read More &gt;&gt;</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -777,6 +790,10 @@
 <div class="widget tag">
   <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/writing-the-book-build-your-own-paas-with-docker/">Writing the book: Build your own PaaS with Docker</a>
+      </li>
     
       <li>
         <a href="/offline-mode-in-os-x/">Offline mode in OS X</a>
@@ -834,10 +851,6 @@
         <a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">Make:r - How I did a fishing lure / jerk bait </a>
       </li>
     
-      <li>
-        <a href="/angular-js-filter-to-make-urls-in-text-clickable/">Angular.JS filter to make url:s in text clickable</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -882,6 +895,10 @@
     <li><a href="/tags/Whine/">Whine</a><small>6</small></li>
   
     <li><a href="/tags/WordPress/">WordPress</a><small>17</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/paas/">paas</a><small>1</small></li>
   
   </ul>
 </div>

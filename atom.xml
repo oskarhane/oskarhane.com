@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://oskarhane.com/"/>
-  <updated>2015-05-26T15:38:21.000Z</updated>
+  <updated>2015-06-03T20:43:17.000Z</updated>
   <id>http://oskarhane.com/</id>
   
   <author>
@@ -13,6 +13,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Writing the book: Build your own PaaS with Docker]]></title>
+    <link href="http://oskarhane.com/writing-the-book-build-your-own-paas-with-docker/"/>
+    <id>http://oskarhane.com/writing-the-book-build-your-own-paas-with-docker/</id>
+    <published>2015-06-03T20:36:16.000Z</published>
+    <updated>2015-06-03T20:43:17.000Z</updated>
+    <content type="html"><![CDATA[<p>So, I’ve written a book. A real book that’s sold on Amazon (amongst other stores). Printed on paper (or as an ebook as well, of course).</p>
+<p>It was a lot harder than I thought.<br>Getting the language right (since I’m not a native english speaker) and getting a good flow within every chapter as well as through the whole book.<br>Authoring chapters that will give readers insights and knowledge. It’s hard.</p>
+<p>It took much longer than I thought. I’d just started working for <a href="http://neo4j.com" target="_blank" rel="external">Neo4j</a> and had 2,5 years old daughter that wanted attention all awake time.<br>So there were lots of late night writing done. Lots. Days before some deadlines I hardly didn’t sleep at all.</p>
+<p>The book is about how you can use <a href="http://docker.com" target="_blank" rel="external">Docker</a> to build your own Platform as a Service. Docker is still pretty young and breaking changes come pretty often which had the effect that I had to rewrite parts of the book from time to time to reflect these Docker changes.<br>And I wrote about <a href="http://www.fig.sh" target="_blank" rel="external">Fig</a> and they get acquired by Docker, changing it’s name to <a href="https://docs.docker.com/compose/" target="_blank" rel="external">Docker Compose</a> so I had to rewrite that part as well. You get the idea.</p>
+<p>It’s published by <a href="https://www.packtpub.com" target="_blank" rel="external">PACKT Publishing</a>, which is a brittish publishing company founded in 2004.</p>
+<p>If was a fun and educating experice and I wouldn’t mind writing another book. Not right now, but in the near future.<br>But I would choose a more stable topic and probably not have such short deadlines (I would write on my terms).</p>
+<p>I’m super exited that I’ve written a book and can call myself an author / published writer.<br>I’m also very self critical and find things I’m not happy with through out the whole book. On the other hand, the book would never have been published if I was to be happy with every sentence in it.</p>
+<p>The book is called <strong>Build your own PaaS with Docker</strong> and can be found on <a href="http://www.amazon.com/gp/product/1784393940" target="_blank" rel="external">Amazon</a> and in <a href="http://bit.ly/1J9j3ix" target="_blank" rel="external">Packts webshop</a>.<br>Check it out.</p>
+<p><img src="/post_img/2015/06/3496OT.jpg.png" alt="Cover"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>So, I’ve written a book. A real book that’s sold on Amazon (amongst other stores). Printed on paper (or as an ebook as well, of course).<]]>
+    </summary>
+    
+      <category term="docker" scheme="http://oskarhane.com/tags/docker/"/>
+    
+      <category term="paas" scheme="http://oskarhane.com/tags/paas/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Offline mode in OS X]]></title>
@@ -597,23 +623,6 @@ getNestedChildren = function(arr, parent) {
       <category term="Hacks" scheme="http://oskarhane.com/tags/Hacks/"/>
     
       <category term="Impressive" scheme="http://oskarhane.com/tags/Impressive/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[A simple terminal / bash password generator]]></title>
-    <link href="http://oskarhane.com/a-simple-terminal-bash-password-generator/"/>
-    <id>http://oskarhane.com/a-simple-terminal-bash-password-generator/</id>
-    <published>2014-04-11T17:11:44.000Z</published>
-    <updated>2015-03-05T12:42:59.000Z</updated>
-    <content type="html"><![CDATA[<p><code>n=$RANDOM; r=$((n%20+10)); pw=$(head -c$r /dev/urandom | base64); echo $pw</code></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p><code>n=$RANDOM; r=$((n%20+10)); pw=$(head -c$r /dev/urandom | base64); echo $pw</code></p>
-]]>
-    </summary>
-    
-      <category term="General" scheme="http://oskarhane.com/tags/General/"/>
     
   </entry>
   
