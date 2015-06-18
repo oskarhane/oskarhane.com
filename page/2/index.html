@@ -67,6 +67,45 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2014-06-12T07:08:10.000Z"><a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">2014-06-12</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">Make:r - How I did a fishing lure / jerk bait </a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This is going to be a odd post in contrast to all other posts I’ve written. I like to make things, it doesn’t matter if it’s software or hardware. Recently I started to fish again after a few years on hold.</p>
+<p>This time I wanted to fish for pike with a method called jerk bait fishing. These baits/lures does not have their own movement pattern like most lures has. These baits you have to jerk to get them moving in a, for the fish, compelling way. So it’s one step back to a more manual way of fishing.  </p>
+<p>To be able to jerk efficiently you have to have a really stiff and short pole (pun intended) and a non elastic wire.</p>
+<p>What’s nice with these baits is that you quite easily can make your own since they don’t have to move by them selves in a specific way.<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/maker-how-i-did-a-fishing-lure-jerk-bait/#more" class="more-link">Read More &gt;&gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2014-06-02T06:00:46.000Z"><a href="/angular-js-filter-to-make-urls-in-text-clickable/">2014-06-02</a></time>
       
       
@@ -578,188 +617,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-03-03T09:12:40.000Z"><a href="/deniable-one-time-pad-with-vigeneres-tabula-recta-one-piece-of-text-many-solutions/">2014-03-03</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/deniable-one-time-pad-with-vigeneres-tabula-recta-one-piece-of-text-many-solutions/">Deniable One Time Pad with Vigenére&#39;s Tabula Recta. One piece of text, many solutions.</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <script type="text/javascript">
-  String.prototype.rpad = function(padString, length) {
-    var str = this;
-      while (str.length < length)
-          str = str + padString;
-      return str;
-  }
-
-
-
-  $(document).ready(function()
-  {
-    $('#generate_btn').click(function()
-    {
-      var enc_res = generateCipherFromPlainTexts([$('#plain1').val(), $('#plain2').val(), $('#plain3').val()]);
-      insertResultToHTML(enc_res, 'cipher_holder');
-    });
-
-    $('#decrypt_btn').click(function()
-    {
-      var dec_res = generatePlainFromCipherAndKey($('#cipher').val(), $('#key').val());
-      insertResultToHTML([dec_res], 'plaintext_holder');
-    });
-  });
-
-  function insertResultToHTML(res, holder_id)
-  {
-    var holder = $('#' + holder_id);
-    holder.empty();
-    var lb = '<br>';
-
-    for(var i in res)
-    {
-      var row = $(document.createElement('div'));
-      var subject = $(document.createElement('strong'));
-      subject.append('#' + (parseInt(i)+1));
-
-      var cipher = 'Cipher: ' + res[i].cipher;
-      var key = 'Key: ' + res[i].key;
-      var plain = 'Plain: ' + res[i].plain;
-      row.append(subject, lb, cipher, lb, key, lb, plain, lb, lb);
-      holder.append(row);
-    }
-  }
-
-
-
-  var chars = 'abcdefghijklmnopqrstuvwxyz';
-  chars += chars.toUpperCase() + '-';
-
-  /**
-  * Decrypts to plaintext
-  */
-  function generatePlainFromCipherAndKey(cipher, key)
-  {
-    if(cipher.length != key.length)
-      return {plain: 'ERROR, length of key and cipher must match'};
-
-    var plain = '';
-
-    for(var i = 0; i < cipher.length; i++)
-    {
-      var cipher_index = chars.indexOf(cipher.charAt(i));
-      var key_index = chars.indexOf(key.charAt(i));
-
-      var plain_index = cipher_index + key_index;
-      plain_index = plain_index > (chars.length-1) ? plain_index - chars.length : plain_index;
-
-      plain = plain + chars.charAt(plain_index);
-    }
-
-    return {plain: plain, key: key, cipher: cipher};
-  }
-
-  /**
-  * Generates ciphoer objects from plains texts.
-  * Takes array with plain texts
-  */
-  function generateCipherFromPlainTexts(plains)
-  {
-    var output = [];
-    var cipher_len = 0;
-    var cipher = '';
-
-    //Figure out the length of the cipher
-    for(var i in plains)
-      cipher_len = plains[i].length > cipher_len ? plains[i].length : cipher_len;
-
-    for(var i = 0; i < cipher_len; i++)
-      cipher = cipher + grabRandomChar();
-
-    for(var i in plains)
-    {
-      var plain = plains[i];
-
-      if(!plain.length)
-        continue;
-
-      plain = plain.length < cipher_len ? plain.rpad('-', cipher_len) : plain;
-
-      var info_obj = {};
-      var key = '';
-      for(var ii = 0; ii < plain.length; ii++)
-      {
-        var cipher_char = cipher.charAt(ii);
-        var cipher_char_index = chars.indexOf(cipher_char);
-
-        var plain_char = plain.charAt(ii);
-        var plain_char_index = chars.indexOf(plain_char);
-
-        var key_char_index = getCharDiff(plain_char_index, cipher_char_index);
-        var key_char = chars.charAt(key_char_index);
-
-        key = key + '' + key_char;
-      }
-      output.push({plain: plain, cipher: cipher, key: key});
-    }
-
-    return output;
-  }
-
-  function log(str)
-  {
-    console.log(str);
-  }
-
-  function getCharDiff(p_index, c_index)
-  {
-    if(p_index >= c_index)
-      return p_index - c_index;
-
-    return p_index - (c_index - chars.length);
-  }
-
-  function grabRandomChar()
-  {
-    var a = chars.charAt(parseInt((Math.random()*chars.length)));
-    return a;
-  }
-</script>
-
-<p></p><h2>Encrypt</h2><p></p>
-<p></p><p><br>  Here you can generate a cipher that carries many messages depending on the key used.<br>  A so called <a href="https://en.wikipedia.org/wiki/Deniable_encryption" target="_blank">Deniable Encryption</a>.<br>  <br><br>  Shorter plaintexts will be padded with -‘s so they match the length of the longest one.<br></p><p></p>
-<p></p><p><br>  Enter up to three different plaintexts blow and I’ll give you the keys and ciphertext for them.<br>  <br><br>  Only dash and english letters are valid, upper- and lowercase. No spaces or other chars.<br>  <br><br>  <br><br>  <input type="text" id="plain1"> - 1:st plaintext<br>  <br><br>  <input type="text" id="plain2"> - 2:nd plaintext<br>  <br><br>  <input type="text" id="plain3"> - 3:rd plaintext<br>  <br><br>  <input id="generate_btn" type="button" value="Generate ciphertext and keys >>"><br>  <br><br></p><p></p>
-<div id="cipher_holder"></div>
-
-<p></p><h2>Decrypt</h2><p></p>
-<p></p><p><br>  Enter a cipher and a key to decrypt it.<br></p><p></p>
-<p></p><p><br>  <input type="text" id="cipher"> - Ciphertext<br>  <br><br>  <input type="text" id="key"> - Key<br>  <br><br>  <input id="decrypt_btn" type="button" value="Click to decrypt >>"><br></p><p></p>
-<div id="plaintext_holder"></div>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -790,6 +647,10 @@
 <div class="widget tag">
   <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/Throttle-function-calls/">Throttle function calls</a>
+      </li>
     
       <li>
         <a href="/writing-the-book-build-your-own-paas-with-docker/">Writing the book: Build your own PaaS with Docker</a>
@@ -847,10 +708,6 @@
         <a href="/use-your-synology-as-a-local-dns-cache/">Use your Synology as a local DNS cache</a>
       </li>
     
-      <li>
-        <a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">Make:r - How I did a fishing lure / jerk bait </a>
-      </li>
-    
   </ul>
 </div>
 
@@ -896,7 +753,11 @@
   
     <li><a href="/tags/WordPress/">WordPress</a><small>17</small></li>
   
+    <li><a href="/tags/coffeescript/">coffeescript</a><small>1</small></li>
+  
     <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>1</small></li>
   
     <li><a href="/tags/paas/">paas</a><small>1</small></li>
   

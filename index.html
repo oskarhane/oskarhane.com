@@ -67,6 +67,87 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2015-06-18T19:58:25.000Z"><a href="/Throttle-function-calls/">2015-06-18</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/Throttle-function-calls/">Throttle function calls</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>A throttle function is a function that limit the number of calls to 1 per x time units.<br>I recently wanted to capture the <code>mousemove</code> event and reset a timer when the mouse was moved. Since the <code>mousemove</code> event is triggered several times per second I don’t want my reset function to be called every time. It would be fine for my reset function to be called once every 5 seconds or something like that.<br>Resetting a timer is quite cheap, but if I wanted to do something expensive the app would be very sluggish doing these expensive operations too often.</p>
+<p>So I came up with this function, written in Coffeescript.</p>
+<pre><code><span class="function"><span class="title">throttle</span> = <span class="params">(func, wait)</span> -&gt;</span>
+  last_timestamp = <span class="literal">null</span>
+  limit = wait<span class="function">
+  -&gt;</span>
+    context = @
+    args = arguments
+    now = Date.now()
+    <span class="keyword">if</span> !last_timestamp || now - last_timestamp &gt;= limit
+      last_timestamp = now
+      func.apply(context, args)
+
+mythrottle = throttle(
+  <span class="function"><span class="params">(e)</span> -&gt;</span>
+    <span class="built_in">console</span>.log e
+,
+  <span class="number">5000</span>
+)
+
+elem.bind<span class="function"><span class="params">(<span class="string">'mousemove'</span>, (e)-&gt;
+  mythrottle(e)
+)</span></span>
+</code></pre><p>And in Javascript.</p>
+<pre><code><span class="keyword">var</span> throttle = <span class="function"><span class="keyword">function</span><span class="params">(func, wait)</span> </span>{
+  <span class="keyword">var</span> last_timestamp, limit;
+  last_timestamp = <span class="literal">null</span>;
+  limit = wait;
+  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+    <span class="keyword">var</span> args, context, now;
+    context = <span class="keyword">this</span>;
+    args = <span class="built_in">arguments</span>;
+    now = <span class="built_in">Date</span>.now();
+    <span class="keyword">if</span> (!last_timestamp || now - last_timestamp &gt;= limit) {
+      last_timestamp = now;
+      <span class="keyword">return</span> func.apply(context, args);
+    }
+  };
+};
+
+<span class="keyword">var</span> mythrottle = throttle(<span class="function"><span class="keyword">function</span><span class="params">(e)</span> </span>{
+  <span class="keyword">return</span> <span class="built_in">console</span>.log(e);
+}, <span class="number">5000</span>);
+
+elem.bind(<span class="string">'mousemove'</span>, <span class="function"><span class="keyword">function</span><span class="params">(e)</span> </span>{
+  <span class="keyword">return</span> mythrottle(e);
+});    
+</code></pre><p><code>elem</code> is the selected element, like <code>$(&#39;#id&#39;)</code> in jQuery.</p>
+<p>We’re calling <code>mythrottle(e)</code> every 5 seconds on constant mousemove now, instead of several times every second.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2015-06-03T20:36:16.000Z"><a href="/writing-the-book-build-your-own-paas-with-docker/">2015-06-03</a></time>
       
       
@@ -653,45 +734,6 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-06-12T07:08:10.000Z"><a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">2014-06-12</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">Make:r - How I did a fishing lure / jerk bait </a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This is going to be a odd post in contrast to all other posts I’ve written. I like to make things, it doesn’t matter if it’s software or hardware. Recently I started to fish again after a few years on hold.</p>
-<p>This time I wanted to fish for pike with a method called jerk bait fishing. These baits/lures does not have their own movement pattern like most lures has. These baits you have to jerk to get them moving in a, for the fish, compelling way. So it’s one step back to a more manual way of fishing.  </p>
-<p>To be able to jerk efficiently you have to have a really stiff and short pole (pun intended) and a non elastic wire.</p>
-<p>What’s nice with these baits is that you quite easily can make your own since they don’t have to move by them selves in a specific way.<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/maker-how-i-did-a-fishing-lure-jerk-bait/#more" class="more-link">Read More &gt;&gt;</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -720,6 +762,10 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
 <div class="widget tag">
   <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/Throttle-function-calls/">Throttle function calls</a>
+      </li>
     
       <li>
         <a href="/writing-the-book-build-your-own-paas-with-docker/">Writing the book: Build your own PaaS with Docker</a>
@@ -777,10 +823,6 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
         <a href="/use-your-synology-as-a-local-dns-cache/">Use your Synology as a local DNS cache</a>
       </li>
     
-      <li>
-        <a href="/maker-how-i-did-a-fishing-lure-jerk-bait/">Make:r - How I did a fishing lure / jerk bait </a>
-      </li>
-    
   </ul>
 </div>
 
@@ -826,7 +868,11 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
   
     <li><a href="/tags/WordPress/">WordPress</a><small>17</small></li>
   
+    <li><a href="/tags/coffeescript/">coffeescript</a><small>1</small></li>
+  
     <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>1</small></li>
   
     <li><a href="/tags/paas/">paas</a><small>1</small></li>
   

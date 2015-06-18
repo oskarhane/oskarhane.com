@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://oskarhane.com/"/>
-  <updated>2015-06-03T20:43:17.000Z</updated>
+  <updated>2015-06-18T20:02:05.000Z</updated>
   <id>http://oskarhane.com/</id>
   
   <author>
@@ -13,6 +13,72 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Throttle function calls]]></title>
+    <link href="http://oskarhane.com/Throttle-function-calls/"/>
+    <id>http://oskarhane.com/Throttle-function-calls/</id>
+    <published>2015-06-18T19:58:25.000Z</published>
+    <updated>2015-06-18T20:02:05.000Z</updated>
+    <content type="html"><![CDATA[<p>A throttle function is a function that limit the number of calls to 1 per x time units.<br>I recently wanted to capture the <code>mousemove</code> event and reset a timer when the mouse was moved. Since the <code>mousemove</code> event is triggered several times per second I don’t want my reset function to be called every time. It would be fine for my reset function to be called once every 5 seconds or something like that.<br>Resetting a timer is quite cheap, but if I wanted to do something expensive the app would be very sluggish doing these expensive operations too often.</p>
+<p>So I came up with this function, written in Coffeescript.</p>
+<pre><code><span class="function"><span class="title">throttle</span> = <span class="params">(func, wait)</span> -&gt;</span>
+  last_timestamp = <span class="literal">null</span>
+  limit = wait<span class="function">
+  -&gt;</span>
+    context = @
+    args = arguments
+    now = Date.now()
+    <span class="keyword">if</span> !last_timestamp || now - last_timestamp &gt;= limit
+      last_timestamp = now
+      func.apply(context, args)
+
+mythrottle = throttle(
+  <span class="function"><span class="params">(e)</span> -&gt;</span>
+    <span class="built_in">console</span>.log e
+,
+  <span class="number">5000</span>
+)
+
+elem.bind<span class="function"><span class="params">(<span class="string">'mousemove'</span>, (e)-&gt;
+  mythrottle(e)
+)</span></span>
+</code></pre><p>And in Javascript.</p>
+<pre><code><span class="keyword">var</span> throttle = <span class="function"><span class="keyword">function</span><span class="params">(func, wait)</span> </span>{
+  <span class="keyword">var</span> last_timestamp, limit;
+  last_timestamp = <span class="literal">null</span>;
+  limit = wait;
+  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+    <span class="keyword">var</span> args, context, now;
+    context = <span class="keyword">this</span>;
+    args = <span class="built_in">arguments</span>;
+    now = <span class="built_in">Date</span>.now();
+    <span class="keyword">if</span> (!last_timestamp || now - last_timestamp &gt;= limit) {
+      last_timestamp = now;
+      <span class="keyword">return</span> func.apply(context, args);
+    }
+  };
+};
+
+<span class="keyword">var</span> mythrottle = throttle(<span class="function"><span class="keyword">function</span><span class="params">(e)</span> </span>{
+  <span class="keyword">return</span> <span class="built_in">console</span>.log(e);
+}, <span class="number">5000</span>);
+
+elem.bind(<span class="string">'mousemove'</span>, <span class="function"><span class="keyword">function</span><span class="params">(e)</span> </span>{
+  <span class="keyword">return</span> mythrottle(e);
+});    
+</code></pre><p><code>elem</code> is the selected element, like <code>$(&#39;#id&#39;)</code> in jQuery.</p>
+<p>We’re calling <code>mythrottle(e)</code> every 5 seconds on constant mousemove now, instead of several times every second.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>A throttle function is a function that limit the number of calls to 1 per x time units.<br>I recently wanted to capture the <code>mousemo]]>
+    </summary>
+    
+      <category term="coffeescript" scheme="http://oskarhane.com/tags/coffeescript/"/>
+    
+      <category term="javascript" scheme="http://oskarhane.com/tags/javascript/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Writing the book: Build your own PaaS with Docker]]></title>
@@ -601,28 +667,6 @@ getNestedChildren = function(arr, parent) {
       <category term="Server Side" scheme="http://oskarhane.com/tags/Server-Side/"/>
     
       <category term="WordPress" scheme="http://oskarhane.com/tags/WordPress/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Matrix in the terminal]]></title>
-    <link href="http://oskarhane.com/matrix-in-the-terminal/"/>
-    <id>http://oskarhane.com/matrix-in-the-terminal/</id>
-    <published>2014-04-11T17:29:22.000Z</published>
-    <updated>2015-03-05T12:42:59.000Z</updated>
-    <content type="html"><![CDATA[<p>Paste this your terminal.</p>
-<pre><code><span class="built_in">echo</span> <span class="operator">-e</span> <span class="string">"\e[1;40m"</span> ; clear ; <span class="keyword">while</span> :; <span class="keyword">do</span> <span class="built_in">echo</span> <span class="variable">$LINES</span> <span class="variable">$COLUMNS</span> $(( <span class="variable">$RANDOM</span> % <span class="variable">$COLUMNS</span>)) $(( <span class="variable">$RANDOM</span> % <span class="number">72</span> )) ;sleep <span class="number">0.05</span>; <span class="keyword">done</span>|awk <span class="string">'{ letters="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&amp;*()"; c=$4; letter=substr(letters,c,1);a[$3]=0;for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s",o,x,letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,letter;if (a[x] &gt;= $1) { a[x]=0; } }}'</span>
-</code></pre>]]></content>
-    <summary type="html">
-    <![CDATA[<p>Paste this your terminal.</p>
-<pre><code><span class="built_in">echo</span> <span class="operator">-e</span> <span class="string">"\e[1;4]]>
-    </summary>
-    
-      <category term="Coding" scheme="http://oskarhane.com/tags/Coding/"/>
-    
-      <category term="Hacks" scheme="http://oskarhane.com/tags/Hacks/"/>
-    
-      <category term="Impressive" scheme="http://oskarhane.com/tags/Impressive/"/>
     
   </entry>
   
