@@ -67,6 +67,56 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-02-25T20:41:20.000Z"><a href="/sign-your-outgoing-email-with-dkim/">2013-02-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/sign-your-outgoing-email-with-dkim/">Sign your outgoing email with DKIM</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>To make sure the email you send wont be classed as spam you should use SPF-records in your DNS (as I explained at the bottom <a href="/setup-your-own-mail-hosting-with-linux-postfix-dovecot-and-mysql/">here</a>) and sign your emails with DKIM (<a href="http://www.dkim.org">DomainKey Identified Mail</a>).</p>
+<p>It’s quite easy to do in Debian, just follow these steps.</p>
+<h2 id="Step_1">Step 1</h2><p>Install dkim-filter and open a socket for it.</p>
+<pre><code>apt-<span class="built_in">get</span> install dkim-<span class="built_in">filter</span>
+
+#edit the file /etc/<span class="keyword">default</span>/dkim-<span class="built_in">filter</span> and <span class="built_in">add</span> <span class="keyword">this</span>
+SOCKET=<span class="string">"inet:54321@localhost"</span>
+
+#Restart dkim-<span class="built_in">filter</span>
+/etc/init.d/dkim-<span class="built_in">filter</span> restart
+</code></pre><h2 id="Step_2">Step 2</h2><p>Make Postfix connect to the socket.<br>Type this to make Postfix connect to dkim-filter. One at a time.</p>
+<pre><code>postconf <span class="operator">-e</span> smtpd_milters=inet:<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">54321</span>
+postconf <span class="operator">-e</span> non_smtpd_milters=inet:<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">54321</span>
+postconf <span class="operator">-e</span> milter_default_action=accept
+</code></pre><p>The last line makes you receive emails with bad signatures, you can change this if you want.<br>Now, all your incoming emails are checked but your outgoing won’t be signed. We must have keys for that.</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/sign-your-outgoing-email-with-dkim/#more" class="more-link">Read More &gt;&gt;</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2013-02-22T15:13:12.000Z"><a href="/webapp-tips-regexper/">2013-02-22</a></time>
       
       
@@ -555,39 +605,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-02-14T07:06:29.000Z"><a href="/jonas-colting-har-fatt-nog-bra/">2013-02-14</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/jonas-colting-har-fatt-nog-bra/">Jonas Colting har fått nog. Bra!</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>No Content Found</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -618,6 +635,10 @@
 <div class="widget tag">
   <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/functional-programming-in-javascript-the-basics/">Functional programming in Javascript: The basics</a>
+      </li>
     
       <li>
         <a href="/Throttle-function-calls/">Throttle function calls</a>
@@ -675,10 +696,6 @@
         <a href="/note-to-self-on-updating-wordpress-plugins-via-git-svn/">Note to self on updating Wordpress plugins via git-svn</a>
       </li>
     
-      <li>
-        <a href="/use-your-synology-as-a-local-dns-cache/">Use your Synology as a local DNS cache</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -700,6 +717,8 @@
   
     <li><a href="/tags/Food/">Food</a><small>2</small></li>
   
+    <li><a href="/tags/Functional-programming/">Functional programming</a><small>1</small></li>
+  
     <li><a href="/tags/General/">General</a><small>21</small></li>
   
     <li><a href="/tags/Git/">Git</a><small>2</small></li>
@@ -709,6 +728,8 @@
     <li><a href="/tags/Humor/">Humor</a><small>5</small></li>
   
     <li><a href="/tags/Impressive/">Impressive</a><small>13</small></li>
+  
+    <li><a href="/tags/Javascript/">Javascript</a><small>1</small></li>
   
     <li><a href="/tags/Node-js/">Node.js</a><small>11</small></li>
   

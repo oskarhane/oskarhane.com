@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://oskarhane.com/"/>
-  <updated>2015-06-18T20:02:05.000Z</updated>
+  <updated>2015-11-27T10:17:56.000Z</updated>
   <id>http://oskarhane.com/</id>
   
   <author>
@@ -13,6 +13,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Functional programming in Javascript: The basics]]></title>
+    <link href="http://oskarhane.com/functional-programming-in-javascript-the-basics/"/>
+    <id>http://oskarhane.com/functional-programming-in-javascript-the-basics/</id>
+    <published>2015-11-27T13:17:37.000Z</published>
+    <updated>2015-11-27T10:17:56.000Z</updated>
+    <content type="html"><![CDATA[<p>This post will be an intro to the very basics of functional programming style. Before I begin, let’s defins what I mean by <code>functional</code>.  </p>
+<p>Functional programming is a paradigm, style, just like object oriented programming is.<br>There are two differences you must understand if you’re coming from a OO background.</p>
+<p><strong>Composition over inheritance</strong>: In functional programming there’s no inheritance. Objects and functions are composed to become what you want.</p>
+<p><strong>Functions must be pure / have no side effects</strong>: A function should never mutate / change the value of anything outside it’s own scope. It must always leave it untouced so that calling the function has no side effects in our app and we should always expect the same result if we call it multiple times.</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myVar = <span class="string">'Hello'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pureReverseString</span><span class="params">(s)</span> &#123;</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">s</span>.<span class="built_in">split</span>(<span class="string">''</span>).<span class="built_in">reverse</span>().<span class="built_in">join</span>(<span class="string">''</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unPureReverseString</span><span class="params">(s)</span> &#123;</span></span><br><span class="line">  myVar = <span class="keyword">s</span>.<span class="built_in">split</span>(<span class="string">''</span>).<span class="built_in">reverse</span>().<span class="built_in">join</span>(<span class="string">''</span>)</span><br><span class="line">  <span class="keyword">return</span> myVar</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const rev1 = pureReverseString(myVar)</span><br><span class="line">console.<span class="built_in">log</span>(myVar, rev1) // Outputs <span class="string">'Hello'</span> <span class="string">'olleH'</span></span><br><span class="line">const rev11 = pureReverseString(myVar)</span><br><span class="line">console.<span class="built_in">log</span>(myVar, rev11) // Outputs <span class="string">'Hello'</span> <span class="string">'olleH'</span></span><br><span class="line"></span><br><span class="line">const rev2 = unPureReverseString(myVar)</span><br><span class="line">console.<span class="built_in">log</span>(myVar, rev2) // Outputs <span class="string">'olleH'</span> <span class="string">'olleH'</span></span><br><span class="line">const rev21 = unPureReverseString(myVar)</span><br><span class="line">console.<span class="built_in">log</span>(myVar, rev21) // Outputs <span class="string">'Hello'</span> <span class="string">'Hello'</span></span><br></pre></td></tr></table></figure>
+<p>Quite silly example, but we clearly see that the second function mutates the <code>myVar</code> variable which could have side effects on our app. And also, when calling it multiple times with the same input variable we get different results.<br>Hard to test and debug.</p>
+<p>This is the basics.</p>
+<p>Functional programming also uses something called <em>partial functions</em>. This is a quite cool and handy way of composing functions that can be used later over and over again.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This function just returns a new function</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(what)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">(num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> what+num</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> addFive = add(<span class="number">5</span>) <span class="comment">// Partial function</span></span><br><span class="line"><span class="keyword">const</span> addThree = add(<span class="number">3</span>) <span class="comment">// Partial function</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(addFive(<span class="number">4</span>)) <span class="comment">// Outputs 9</span></span><br><span class="line"><span class="built_in">console</span>.log(addFive(<span class="number">4</span>)) <span class="comment">// Outputs 9</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(addThree(<span class="number">4</span>)) <span class="comment">// Outputs 7</span></span><br><span class="line"><span class="built_in">console</span>.log(addThree(<span class="number">4</span>)) <span class="comment">// Outputs 7</span></span><br></pre></td></tr></table></figure>
+<p>Again, not super useful example but consider a role play where <code>addFive</code> could be something like <code>swordHit</code> and <code>addThree</code> might be <code>knifeHit</code>.</p>
+<p>I’ll continue exploring functional programming in Javascript more in depth in future posts.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>This post will be an intro to the very basics of functional programming style. Before I begin, let’s defins what I mean by <code>function]]>
+    </summary>
+    
+      <category term="Functional programming" scheme="http://oskarhane.com/tags/Functional-programming/"/>
+    
+      <category term="Javascript" scheme="http://oskarhane.com/tags/Javascript/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Throttle function calls]]></title>
@@ -646,27 +674,6 @@ getNestedChildren = function(arr, parent) {
     </summary>
     
       <category term="Client Side" scheme="http://oskarhane.com/tags/Client-Side/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Docker image "Wordpress NGiNX SSH" updated]]></title>
-    <link href="http://oskarhane.com/docker-image-wordpress-nginx-ssh-updated/"/>
-    <id>http://oskarhane.com/docker-image-wordpress-nginx-ssh-updated/</id>
-    <published>2014-04-17T06:38:36.000Z</published>
-    <updated>2015-03-05T12:42:59.000Z</updated>
-    <content type="html"><![CDATA[<p>Yesterday I updated my Docker image <a href="https://index.docker.io/u/oskarhane/docker-wordpress-nginx-ssh/" target="_blank" rel="external">docker-wordpress-nginx-ssh</a> <a href="https://github.com/oskarhane/docker-wordpress-nginx-ssh" target="_blank" rel="external">github</a> so it adds memcached and the superb Wordpress plugin <a href="http://wordpress.org/plugins/wp-ffpc/" target="_blank" rel="external">WP-FFPC</a> to Wordpress.</p>
-<p>This makes NGiNX serve cached pages straight from memcached without going into PHP and Wordpress. It’s amazingly fast (try to reload this page you’re on now).</p>
-<p>One thing though, you have to login and press the “Save” button on the settings page of WP-FFPC to activate it. But that’s all there’s to it, all NGiNX settings are already there.</p>
-<p>To try it, just type <code>docker pull  oskarhane/docker-wordpress-nginx-ssh</code> or to start a container straight away: <code>sudo docker run -p 80 -p 22 -d -t oskarhane/docker-wordpress-nginx-ssh</code></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Yesterday I updated my Docker image <a href="https://index.docker.io/u/oskarhane/docker-wordpress-nginx-ssh/" target="_blank" rel="extern]]>
-    </summary>
-    
-      <category term="Server Side" scheme="http://oskarhane.com/tags/Server-Side/"/>
-    
-      <category term="WordPress" scheme="http://oskarhane.com/tags/WordPress/"/>
     
   </entry>
   

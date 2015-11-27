@@ -67,6 +67,49 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2015-11-27T13:17:37.000Z"><a href="/functional-programming-in-javascript-the-basics/">2015-11-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/functional-programming-in-javascript-the-basics/">Functional programming in Javascript: The basics</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>This post will be an intro to the very basics of functional programming style. Before I begin, let’s defins what I mean by <code>functional</code>.  </p>
+<p>Functional programming is a paradigm, style, just like object oriented programming is.<br>There are two differences you must understand if you’re coming from a OO background.</p>
+<p><strong>Composition over inheritance</strong>: In functional programming there’s no inheritance. Objects and functions are composed to become what you want.</p>
+<p><strong>Functions must be pure / have no side effects</strong>: A function should never mutate / change the value of anything outside it’s own scope. It must always leave it untouced so that calling the function has no side effects in our app and we should always expect the same result if we call it multiple times.</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myVar = <span class="string">'Hello'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pureReverseString</span><span class="params">(s)</span> &#123;</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">s</span>.<span class="built_in">split</span>(<span class="string">''</span>).<span class="built_in">reverse</span>().<span class="built_in">join</span>(<span class="string">''</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unPureReverseString</span><span class="params">(s)</span> &#123;</span></span><br><span class="line">  myVar = <span class="keyword">s</span>.<span class="built_in">split</span>(<span class="string">''</span>).<span class="built_in">reverse</span>().<span class="built_in">join</span>(<span class="string">''</span>)</span><br><span class="line">  <span class="keyword">return</span> myVar</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const rev1 = pureReverseString(myVar)</span><br><span class="line">console.<span class="built_in">log</span>(myVar, rev1) // Outputs <span class="string">'Hello'</span> <span class="string">'olleH'</span></span><br><span class="line">const rev11 = pureReverseString(myVar)</span><br><span class="line">console.<span class="built_in">log</span>(myVar, rev11) // Outputs <span class="string">'Hello'</span> <span class="string">'olleH'</span></span><br><span class="line"></span><br><span class="line">const rev2 = unPureReverseString(myVar)</span><br><span class="line">console.<span class="built_in">log</span>(myVar, rev2) // Outputs <span class="string">'olleH'</span> <span class="string">'olleH'</span></span><br><span class="line">const rev21 = unPureReverseString(myVar)</span><br><span class="line">console.<span class="built_in">log</span>(myVar, rev21) // Outputs <span class="string">'Hello'</span> <span class="string">'Hello'</span></span><br></pre></td></tr></table></figure>
+<p>Quite silly example, but we clearly see that the second function mutates the <code>myVar</code> variable which could have side effects on our app. And also, when calling it multiple times with the same input variable we get different results.<br>Hard to test and debug.</p>
+<p>This is the basics.</p>
+<p>Functional programming also uses something called <em>partial functions</em>. This is a quite cool and handy way of composing functions that can be used later over and over again.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This function just returns a new function</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(what)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">(num)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> what+num</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> addFive = add(<span class="number">5</span>) <span class="comment">// Partial function</span></span><br><span class="line"><span class="keyword">const</span> addThree = add(<span class="number">3</span>) <span class="comment">// Partial function</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(addFive(<span class="number">4</span>)) <span class="comment">// Outputs 9</span></span><br><span class="line"><span class="built_in">console</span>.log(addFive(<span class="number">4</span>)) <span class="comment">// Outputs 9</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(addThree(<span class="number">4</span>)) <span class="comment">// Outputs 7</span></span><br><span class="line"><span class="built_in">console</span>.log(addThree(<span class="number">4</span>)) <span class="comment">// Outputs 7</span></span><br></pre></td></tr></table></figure>
+<p>Again, not super useful example but consider a role play where <code>addFive</code> could be something like <code>swordHit</code> and <code>addThree</code> might be <code>knifeHit</code>.</p>
+<p>I’ll continue exploring functional programming in Javascript more in depth in future posts.</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2015-06-18T19:58:25.000Z"><a href="/Throttle-function-calls/">2015-06-18</a></time>
       
       
@@ -697,43 +740,6 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-06-30T13:02:54.000Z"><a href="/use-your-synology-as-a-local-dns-cache/">2014-06-30</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/use-your-synology-as-a-local-dns-cache/">Use your Synology as a local DNS cache</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>It is totally unnecessary to have all your computers, iPad’s and iPhone’s ask your router to resolve domain names to an external DNS server whenever you click a link or enter a domain name.  </p>
-<p>Why not have something that sits on your local network and forwards unknown DNS requests and then saves the cache so the next time that request would take ≈ 1 ms instead of ≈ 50 ms (or ever more if you use your ISP’s DNS service)?  </p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/use-your-synology-as-a-local-dns-cache/#more" class="more-link">Read More &gt;&gt;</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -762,6 +768,10 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
 <div class="widget tag">
   <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/functional-programming-in-javascript-the-basics/">Functional programming in Javascript: The basics</a>
+      </li>
     
       <li>
         <a href="/Throttle-function-calls/">Throttle function calls</a>
@@ -819,10 +829,6 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
         <a href="/note-to-self-on-updating-wordpress-plugins-via-git-svn/">Note to self on updating Wordpress plugins via git-svn</a>
       </li>
     
-      <li>
-        <a href="/use-your-synology-as-a-local-dns-cache/">Use your Synology as a local DNS cache</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -844,6 +850,8 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
   
     <li><a href="/tags/Food/">Food</a><small>2</small></li>
   
+    <li><a href="/tags/Functional-programming/">Functional programming</a><small>1</small></li>
+  
     <li><a href="/tags/General/">General</a><small>21</small></li>
   
     <li><a href="/tags/Git/">Git</a><small>2</small></li>
@@ -853,6 +861,8 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
     <li><a href="/tags/Humor/">Humor</a><small>5</small></li>
   
     <li><a href="/tags/Impressive/">Impressive</a><small>13</small></li>
+  
+    <li><a href="/tags/Javascript/">Javascript</a><small>1</small></li>
   
     <li><a href="/tags/Node-js/">Node.js</a><small>11</small></li>
   
