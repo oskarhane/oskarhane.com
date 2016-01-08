@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://oskarhane.com/"/>
-  <updated>2016-01-08T14:30:44.000Z</updated>
+  <updated>2016-01-08T14:34:13.000Z</updated>
   <id>http://oskarhane.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://oskarhane.com/eight-queens-puzzle/"/>
     <id>http://oskarhane.com/eight-queens-puzzle/</id>
     <published>2016-01-08T13:17:25.000Z</published>
-    <updated>2016-01-08T14:30:44.000Z</updated>
+    <updated>2016-01-08T14:34:13.000Z</updated>
     <content type="html"><![CDATA[<p><img src="https://oskarhane-dropshare-eu.s3-eu-central-1.amazonaws.com/Oskar4j-2016-01-08-at-15.18.56-fu2hyn657n/Oskar4j-2016-01-08-at-15.18.56.png" alt="solutions"></p>
 <p>Here’s a classic puzzle: the <a href="https://en.wikipedia.org/wiki/Eight_queens_puzzle" target="_blank" rel="external">eight queens puzzle</a>.  </p>
 <p>Quoted from Wikipedia:  </p>
@@ -27,6 +27,7 @@
 <p>The eight queens puzzle is the problem of placing eight chess queens on an 8×8 chessboard so that no two queens threaten each other. Thus, a solution requires that no two queens share the same row, column, or diagonal. The eight queens puzzle is an example of the more general n-queens problem of placing n queens on an n×n chessboard, where solutions exist for all natural numbers n with the exception of n=2 and n=3.[1]</p>
 </blockquote>
 <p>I solve puzzles from time to time to keep my motivation up and to get some exercise for my brain. But mostly for fun.</p>
+<p>In this puzzle on a standard 8x8 chess board there are 92 solutions where no two queens threaten each other.</p>
 <p>What could a solution in Javascript for this puzzle look like?<br>I’ve moved more and more into <a href="https://en.wikipedia.org/wiki/Functional_programming" target="_blank" rel="external">functional programming</a> lately so this is my take on it.  </p>
 <pre><code><span class="regexp">//</span> Solve queens puzzle.
 <span class="regexp">//</span> <span class="attribute">https</span>:<span class="regexp">//</span>en.wikipedia.org/wiki/Eight_queens_puzzle
