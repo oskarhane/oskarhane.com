@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://oskarhane.com/"/>
-  <updated>2015-11-27T10:52:30.000Z</updated>
+  <updated>2016-01-08T14:21:52.000Z</updated>
   <id>http://oskarhane.com/</id>
   
   <author>
@@ -13,6 +13,78 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Eight queens puzzle]]></title>
+    <link href="http://oskarhane.com/eight-queens-puzzle/"/>
+    <id>http://oskarhane.com/eight-queens-puzzle/</id>
+    <published>2016-01-08T13:17:25.000Z</published>
+    <updated>2016-01-08T14:21:52.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="https://oskarhane-dropshare-eu.s3-eu-central-1.amazonaws.com/Oskar4j-2016-01-08-at-15.18.56-fu2hyn657n/Oskar4j-2016-01-08-at-15.18.56.png" alt="solutions"></p>
+<p>Here’s a classic puzzle: the <a href="https://en.wikipedia.org/wiki/Eight_queens_puzzle" target="_blank" rel="external">eight queens puzzle</a>.  </p>
+<p>Quoted from Wikipedia:  </p>
+<blockquote>
+<p>The eight queens puzzle is the problem of placing eight chess queens on an 8×8 chessboard so that no two queens threaten each other. Thus, a solution requires that no two queens share the same row, column, or diagonal. The eight queens puzzle is an example of the more general n-queens problem of placing n queens on an n×n chessboard, where solutions exist for all natural numbers n with the exception of n=2 and n=3.[1]</p>
+</blockquote>
+<p>I solve puzzles from time to time to keep my motivation up and to get some exercise for my brain. But mostly for fun.</p>
+<p>What could a solution in Javascript for this puzzle look like?<br>I’ve moved more and more into <a href="https://en.wikipedia.org/wiki/Functional_programming" target="_blank" rel="external">functional programming</a> lately so this is my take on it.  </p>
+<pre><code><span class="regexp">//</span> Solve queens puzzle.
+<span class="regexp">//</span> <span class="attribute">https</span>:<span class="regexp">//</span>en.wikipedia.org/wiki/Eight_queens_puzzle
+
+<span class="reserved">const</span> doCollide = <span class="function"><span class="params">(arr1, arr2)</span> =&gt;</span> {
+  <span class="reserved">const</span> shorter = arr1.length &lt; arr2.length ? arr1 : arr2
+  <span class="reserved">const</span> longer = arr2.length &gt; arr1.length ? arr2 : arr1
+  <span class="reserved">const</span> collisionsRemoved = shorter.filter(<span class="function"><span class="params">(val, i)</span> =&gt;</span> shorter[i] != longer[i])
+  <span class="keyword">return</span> collisionsRemoved.length != shorter.length
+}
+
+<span class="reserved">const</span> okToAdd = <span class="function"><span class="params">(base, candidate, fn)</span> =&gt;</span> {
+  <span class="reserved">const</span> candVector = base.reduce(<span class="function"><span class="params">(last, curr, index)</span> =&gt;</span> {
+    <span class="keyword">return</span> [].concat(last, [fn(candidate, index)])
+  }, [])
+  <span class="keyword">return</span> !doCollide(candVector, base)
+}
+
+<span class="reserved">const</span> upStep = <span class="function"><span class="params">(num, index)</span> =&gt;</span> parseInt(num) + index + <span class="number">1</span>
+<span class="reserved">const</span> downStep = <span class="function"><span class="params">(num, index)</span> =&gt;</span> parseInt(num) - index - <span class="number">1</span>
+<span class="reserved">const</span> levelStep = num =&gt; parseInt(num)
+<span class="reserved">const</span> getArr = <span class="function"><span class="params">(num)</span> =&gt;</span> Array.apply(<span class="literal">null</span>, Array(num))
+
+<span class="reserved">const</span> addQueen = <span class="function"><span class="params">(bases, candidates)</span> =&gt;</span> {
+  <span class="keyword">return</span> bases.map(<span class="function"><span class="params">(base)</span> =&gt;</span> {
+    <span class="keyword">return</span> candidates.filter(<span class="function"><span class="params">(cand)</span> =&gt;</span> {
+      <span class="keyword">return</span> [upStep, downStep, levelStep].every(<span class="function"><span class="params">(fn)</span> =&gt;</span> okToAdd(base, cand, fn))
+    }).map(val =&gt; [val].concat(base))
+  }).reduce(<span class="function"><span class="params">(all, curr)</span> =&gt;</span> {
+    <span class="keyword">return</span> all.concat(curr)
+  }, [])
+}
+
+<span class="reserved">const</span> solve = <span class="function"><span class="params">(numTiles)</span> =&gt;</span> {
+  <span class="keyword">return</span> getArr(numTiles).reduce(<span class="function"><span class="params">(solutions, depth, index)</span> =&gt;</span> {
+    <span class="reserved">const</span> candidates = getArr(numTiles).map(<span class="function"><span class="params">(_, i)</span> =&gt;</span> i)
+    <span class="keyword">return</span> addQueen(solutions, candidates)
+  }, [[]])
+}
+
+<span class="regexp">//</span> <span class="number">8</span> tiles = normal chess board
+<span class="reserved">const</span> solution = solve(<span class="number">8</span>)
+<span class="built_in">console</span>.log(<span class="string">'solutions'</span>, solution)
+<span class="built_in">console</span>.log(<span class="string">'number of solutions: '</span> + solution.length)
+</code></pre><p>You can try it out in this JSBin: <a href="http://jsbin.com/qubeye/6/edit?js,console" target="_blank" rel="external">http://jsbin.com/qubeye/6/edit?js,console</a><br>Have you any ideas for improvement?  </p>
+<p>Comment below!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><img src="https://oskarhane-dropshare-eu.s3-eu-central-1.amazonaws.com/Oskar4j-2016-01-08-at-15.18.56-fu2hyn657n/Oskar4j-2016-01-08-at-15]]>
+    </summary>
+    
+      <category term="ES2015" scheme="http://oskarhane.com/tags/ES2015/"/>
+    
+      <category term="Javascript" scheme="http://oskarhane.com/tags/Javascript/"/>
+    
+      <category term="Puzzle" scheme="http://oskarhane.com/tags/Puzzle/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Functional programming in Javascript: The basics]]></title>
@@ -657,23 +729,6 @@ getNestedChildren = function(arr, parent) {
       <category term="Client Side" scheme="http://oskarhane.com/tags/Client-Side/"/>
     
       <category term="Hacks" scheme="http://oskarhane.com/tags/Hacks/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Does that HTML5/ CSS3 thing work in ...?]]></title>
-    <link href="http://oskarhane.com/does-that-html5-css3-thing-work-in/"/>
-    <id>http://oskarhane.com/does-that-html5-css3-thing-work-in/</id>
-    <published>2014-05-14T05:02:45.000Z</published>
-    <updated>2015-03-05T12:42:59.000Z</updated>
-    <content type="html"><![CDATA[<p>A nice resource to check what elements and API:s the different browsers supports.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>A nice resource to check what elements and API:s the different browsers supports.</p>
-]]>
-    </summary>
-    
-      <category term="Client Side" scheme="http://oskarhane.com/tags/Client-Side/"/>
     
   </entry>
   

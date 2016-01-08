@@ -67,6 +67,47 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2013-11-03T19:05:04.000Z"><a href="/nginx-http-server-second-edition/">2013-11-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/nginx-http-server-second-edition/">Nginx HTTP Server - Second Edition</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>I’ve recently read a new book about nginx called <a href="http://www.packtpub.com/nginx-http-server-second-edition/book" target="_blank" rel="external">Nginx HTTP Server - Second Edition</a>.</p>
+<p>This is a good book that covers the basics from installing, configuring and running a nginx server. It’s well written and uses a simple language so everybody can understand.</p>
+<p>Chapter 1 takes you through downloading and installing nginx on your server. I always use Debian so I didn’t really pay much attention to this chapter.</p>
+<p>Chapter 2 is about basic config and talks about what modules are.</p>
+<p>Chapter 3 goes through all http configuration directives with short descriptions making it easy to read as well. This is a good chapter. You can of course read about all this online, but the book is good at explaining the most common directives.</p>
+<p>Chapter 4 is about module configurations and writes a lot about the rewrite module and explains some basic regex patterns and rules as well. Good intro to someone!</p>
+<p>Chapters 5 explains what FastCGI is and how you can make nginx communicate with PHP-FPM and Python via sockets and TCP. This is the best chapter in the book and shows how you can scale up your app by adding dedicated PHP servers behind the nginx server.</p>
+<p>Chapter 6 covers how you can run Apache and nginx next to each other where would be nginx taking over all static file delivery and Apache still handling the dynamic parts and chapter 7 is about how you migrate your web app from Apache to nginx with lots of good rewrite examples.</p>
+<p>Overall, a very good book on nginx for the beginner! Even I, a rather advanced nginx user learned a few tricks. :)</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2013-10-25T07:10:38.000Z"><a href="/two-factor-auth-for-wordpress-v-4-3-is-out/">2013-10-25</a></time>
       
       
@@ -594,48 +635,6 @@ console.log(<span class="keyword">count</span>(<span class="string">"ra ta ta ra
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2013-07-31T13:10:21.000Z"><a href="/rot-shift-cipher-generator-and-solver/">2013-07-31</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/rot-shift-cipher-generator-and-solver/">ROT / Shift cipher generator and solver</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p><script type="text/javascript" src="/js/ciphers.js"></script></p>
-<p><p><br>    Just playing around with ciphers again. No really use for this nowadays since it’s easilly broken, but I figured I’ll post it here anyway.<br>    <br><br>    Here you can generate a cipher text based on rotation/shift in the alphabet.<br>    <br><br>    Remember that the chars that will be shifted are ABCDEFGHIJKLMNOPQRSTUVWXYZ.<br></p></p>
-<div style="float:left; width: 270px"><br>    <h2>Genererate ciphertext</h2><br>    <p><br>        Plaintext/message:<br>        <br><br>        <input type="text" style="text-transform:uppercase; width: 85%" id="generate_plaintext_rot"></input><br>        <br><br><br>        Shift steps<br><br>        (i.e. type ‘13’ to get <a href="http://en.wikipedia.org/wiki/ROT13" target="_blank">ROT13</a>)<br>        <br><br>        <input type="text" style="text-transform:uppercase; width: 85%" id="generate_key_rot" value=""><br>        <br><br><br>        <button onclick="toHTML(jQuery('#generate_result_holder_rot'), ROT.generate(jQuery('#generate_plaintext_rot').val(), jQuery('#generate_key_rot').val()));">Generate!</button><br>        <br><br>        <div id="generate_result_holder_rot"></div><br>    </p><br></div><br><div style="float:left; width: 270px"><br>    <h2>Solve ciphertext</h2><br>    <p><br>        Ciphertext:<br>        <br><br>        <input type="text" style="text-transform:uppercase; width: 85%" id="solve_ciphertext_rot"></input><br>        <br><br><br><br>        Shift steps:<br>        <br><br>        <input type="text" style="text-transform:uppercase; width: 85%" id="solve_key_rot" value=""><br>        <br><br><br>        <button onclick="toHTML(jQuery('#solve_result_holder_rot'), ROT.solve(jQuery('#solve_ciphertext_rot').val(), jQuery('#solve_key_rot').val()));">Solve!</button><br>        <br><br>        <div id="solve_result_holder_rot"></div><br>    </p><br></div><br><div style="clear:both"></div>
-
-
-
-<hr>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/rot-shift-cipher-generator-and-solver/#more" class="more-link">Read More &gt;&gt;</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -666,6 +665,10 @@ console.log(<span class="keyword">count</span>(<span class="string">"ra ta ta ra
 <div class="widget tag">
   <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/eight-queens-puzzle/">Eight queens puzzle</a>
+      </li>
     
       <li>
         <a href="/functional-programming-in-javascript-the-basics/">Functional programming in Javascript: The basics</a>
@@ -723,10 +726,6 @@ console.log(<span class="keyword">count</span>(<span class="string">"ra ta ta ra
         <a href="/today-im-joining-the-neo4j-team/">Today I&#39;m joining the Neo4j team!</a>
       </li>
     
-      <li>
-        <a href="/note-to-self-on-updating-wordpress-plugins-via-git-svn/">Note to self on updating Wordpress plugins via git-svn</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -746,6 +745,8 @@ console.log(<span class="keyword">count</span>(<span class="string">"ra ta ta ra
   
     <li><a href="/tags/Docker/">Docker</a><small>4</small></li>
   
+    <li><a href="/tags/ES2015/">ES2015</a><small>1</small></li>
+  
     <li><a href="/tags/Food/">Food</a><small>2</small></li>
   
     <li><a href="/tags/Functional-programming/">Functional programming</a><small>1</small></li>
@@ -760,11 +761,13 @@ console.log(<span class="keyword">count</span>(<span class="string">"ra ta ta ra
   
     <li><a href="/tags/Impressive/">Impressive</a><small>13</small></li>
   
-    <li><a href="/tags/Javascript/">Javascript</a><small>1</small></li>
+    <li><a href="/tags/Javascript/">Javascript</a><small>2</small></li>
   
     <li><a href="/tags/Node-js/">Node.js</a><small>11</small></li>
   
     <li><a href="/tags/PHP/">PHP</a><small>5</small></li>
+  
+    <li><a href="/tags/Puzzle/">Puzzle</a><small>1</small></li>
   
     <li><a href="/tags/Raspberry-Pi/">Raspberry Pi</a><small>5</small></li>
   

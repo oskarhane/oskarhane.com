@@ -67,6 +67,91 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-01-08T13:17:25.000Z"><a href="/eight-queens-puzzle/">2016-01-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/eight-queens-puzzle/">Eight queens puzzle</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><img src="https://oskarhane-dropshare-eu.s3-eu-central-1.amazonaws.com/Oskar4j-2016-01-08-at-15.18.56-fu2hyn657n/Oskar4j-2016-01-08-at-15.18.56.png" alt="solutions"></p>
+<p>Here’s a classic puzzle: the <a href="https://en.wikipedia.org/wiki/Eight_queens_puzzle" target="_blank" rel="external">eight queens puzzle</a>.  </p>
+<p>Quoted from Wikipedia:  </p>
+<blockquote>
+<p>The eight queens puzzle is the problem of placing eight chess queens on an 8×8 chessboard so that no two queens threaten each other. Thus, a solution requires that no two queens share the same row, column, or diagonal. The eight queens puzzle is an example of the more general n-queens problem of placing n queens on an n×n chessboard, where solutions exist for all natural numbers n with the exception of n=2 and n=3.[1]</p>
+</blockquote>
+<p>I solve puzzles from time to time to keep my motivation up and to get some exercise for my brain. But mostly for fun.</p>
+<p>What could a solution in Javascript for this puzzle look like?<br>I’ve moved more and more into <a href="https://en.wikipedia.org/wiki/Functional_programming" target="_blank" rel="external">functional programming</a> lately so this is my take on it.  </p>
+<pre><code><span class="regexp">//</span> Solve queens puzzle.
+<span class="regexp">//</span> <span class="attribute">https</span>:<span class="regexp">//</span>en.wikipedia.org/wiki/Eight_queens_puzzle
+
+<span class="reserved">const</span> doCollide = <span class="function"><span class="params">(arr1, arr2)</span> =&gt;</span> {
+  <span class="reserved">const</span> shorter = arr1.length &lt; arr2.length ? arr1 : arr2
+  <span class="reserved">const</span> longer = arr2.length &gt; arr1.length ? arr2 : arr1
+  <span class="reserved">const</span> collisionsRemoved = shorter.filter(<span class="function"><span class="params">(val, i)</span> =&gt;</span> shorter[i] != longer[i])
+  <span class="keyword">return</span> collisionsRemoved.length != shorter.length
+}
+
+<span class="reserved">const</span> okToAdd = <span class="function"><span class="params">(base, candidate, fn)</span> =&gt;</span> {
+  <span class="reserved">const</span> candVector = base.reduce(<span class="function"><span class="params">(last, curr, index)</span> =&gt;</span> {
+    <span class="keyword">return</span> [].concat(last, [fn(candidate, index)])
+  }, [])
+  <span class="keyword">return</span> !doCollide(candVector, base)
+}
+
+<span class="reserved">const</span> upStep = <span class="function"><span class="params">(num, index)</span> =&gt;</span> parseInt(num) + index + <span class="number">1</span>
+<span class="reserved">const</span> downStep = <span class="function"><span class="params">(num, index)</span> =&gt;</span> parseInt(num) - index - <span class="number">1</span>
+<span class="reserved">const</span> levelStep = num =&gt; parseInt(num)
+<span class="reserved">const</span> getArr = <span class="function"><span class="params">(num)</span> =&gt;</span> Array.apply(<span class="literal">null</span>, Array(num))
+
+<span class="reserved">const</span> addQueen = <span class="function"><span class="params">(bases, candidates)</span> =&gt;</span> {
+  <span class="keyword">return</span> bases.map(<span class="function"><span class="params">(base)</span> =&gt;</span> {
+    <span class="keyword">return</span> candidates.filter(<span class="function"><span class="params">(cand)</span> =&gt;</span> {
+      <span class="keyword">return</span> [upStep, downStep, levelStep].every(<span class="function"><span class="params">(fn)</span> =&gt;</span> okToAdd(base, cand, fn))
+    }).map(val =&gt; [val].concat(base))
+  }).reduce(<span class="function"><span class="params">(all, curr)</span> =&gt;</span> {
+    <span class="keyword">return</span> all.concat(curr)
+  }, [])
+}
+
+<span class="reserved">const</span> solve = <span class="function"><span class="params">(numTiles)</span> =&gt;</span> {
+  <span class="keyword">return</span> getArr(numTiles).reduce(<span class="function"><span class="params">(solutions, depth, index)</span> =&gt;</span> {
+    <span class="reserved">const</span> candidates = getArr(numTiles).map(<span class="function"><span class="params">(_, i)</span> =&gt;</span> i)
+    <span class="keyword">return</span> addQueen(solutions, candidates)
+  }, [[]])
+}
+
+<span class="regexp">//</span> <span class="number">8</span> tiles = normal chess board
+<span class="reserved">const</span> solution = solve(<span class="number">8</span>)
+<span class="built_in">console</span>.log(<span class="string">'solutions'</span>, solution)
+<span class="built_in">console</span>.log(<span class="string">'number of solutions: '</span> + solution.length)
+</code></pre><p>You can try it out in this JSBin: <a href="http://jsbin.com/qubeye/6/edit?js,console" target="_blank" rel="external">http://jsbin.com/qubeye/6/edit?js,console</a><br>Have you any ideas for improvement?  </p>
+<p>Comment below!</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2015-11-27T13:17:37.000Z"><a href="/functional-programming-in-javascript-the-basics/">2015-11-27</a></time>
       
       
@@ -700,46 +785,6 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-07-29T11:12:45.000Z"><a href="/note-to-self-on-updating-wordpress-plugins-via-git-svn/">2014-07-29</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/note-to-self-on-updating-wordpress-plugins-via-git-svn/">Note to self on updating Wordpress plugins via git-svn</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>I host my <a href="http://wordpress.org/plugins/two-factor-auth/" target="_blank" rel="external">Two Factor Auth Wordpress Plugin</a> on <a href="https://github.com/oskarhane/wp-two-factor-auth" target="_blank" rel="external">Github</a> and I run <a href="https://www.kernel.org/pub/software/scm/git/docs/git-svn.html" target="_blank" rel="external">git svn</a> locally to be able to sync the Github git repo with the Wordpress plugins SVN repo.</p>
-<p>But, it’s a bit of a hassle and I don’t update the plugin often enough to remember what step to take.</p>
-<p>The assumption is that you’ve followed <a href="https://gist.github.com/kasparsd/3749872" target="_blank" rel="external">this guide</a> to setup you local repo with svn and git remotes.</p>
-<h2 id="1">1</h2><p>Write code in local git feature branches as usual. Push the finished code to Githubs master branch and add a git tag.</p>
-<h2 id="2">2</h2><p>Create a new local git branch (or use a clean old one) and merge local master branch (remember to squash all commits!) into this one. It has to have a straight history.</p>
-<h2 id="3">3</h2><p>Run <code>git svn rebase</code> the see that the history matches with the remote Worpress svn repo.</p>
-<h2 id="4">4</h2><p>Run <code>git svn dcommit --username yourusername</code> to push the code to Wordpress svn repo. Remember that you have to change all the tags in your readme.txt and you main plugin file to match the new release version.</p>
-<h2 id="5">5</h2><p>Run <code>git svn tag x.x</code> to copy trunk and create a new remote tag/release from it.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -768,6 +813,10 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
 <div class="widget tag">
   <h3 class="title">Recent Posts</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/eight-queens-puzzle/">Eight queens puzzle</a>
+      </li>
     
       <li>
         <a href="/functional-programming-in-javascript-the-basics/">Functional programming in Javascript: The basics</a>
@@ -825,10 +874,6 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
         <a href="/today-im-joining-the-neo4j-team/">Today I&#39;m joining the Neo4j team!</a>
       </li>
     
-      <li>
-        <a href="/note-to-self-on-updating-wordpress-plugins-via-git-svn/">Note to self on updating Wordpress plugins via git-svn</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -848,6 +893,8 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
   
     <li><a href="/tags/Docker/">Docker</a><small>4</small></li>
   
+    <li><a href="/tags/ES2015/">ES2015</a><small>1</small></li>
+  
     <li><a href="/tags/Food/">Food</a><small>2</small></li>
   
     <li><a href="/tags/Functional-programming/">Functional programming</a><small>1</small></li>
@@ -862,11 +909,13 @@ angular.<span class="keyword">module</span>(<span class="string">'app'</span>)
   
     <li><a href="/tags/Impressive/">Impressive</a><small>13</small></li>
   
-    <li><a href="/tags/Javascript/">Javascript</a><small>1</small></li>
+    <li><a href="/tags/Javascript/">Javascript</a><small>2</small></li>
   
     <li><a href="/tags/Node-js/">Node.js</a><small>11</small></li>
   
     <li><a href="/tags/PHP/">PHP</a><small>5</small></li>
+  
+    <li><a href="/tags/Puzzle/">Puzzle</a><small>1</small></li>
   
     <li><a href="/tags/Raspberry-Pi/">Raspberry Pi</a><small>5</small></li>
   
