@@ -118,7 +118,7 @@
 }
 
 <span class="reserved">const</span> solve = <span class="function"><span class="params">(numTiles)</span> =&gt;</span> {
-  <span class="keyword">return</span> getArr(numTiles).reduce(<span class="function"><span class="params">(solutions, depth, index)</span> =&gt;</span> {
+  <span class="keyword">return</span> getArr(numTiles).reduce(<span class="function"><span class="params">(solutions, depth)</span> =&gt;</span> {
     <span class="reserved">const</span> candidates = getArr(numTiles).map(<span class="function"><span class="params">(_, i)</span> =&gt;</span> i)
     <span class="keyword">return</span> addQueen(solutions, candidates)
   }, [[]])

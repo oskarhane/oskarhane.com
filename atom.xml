@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://oskarhane.com/"/>
-  <updated>2016-01-08T14:21:52.000Z</updated>
+  <updated>2016-01-08T14:30:44.000Z</updated>
   <id>http://oskarhane.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://oskarhane.com/eight-queens-puzzle/"/>
     <id>http://oskarhane.com/eight-queens-puzzle/</id>
     <published>2016-01-08T13:17:25.000Z</published>
-    <updated>2016-01-08T14:21:52.000Z</updated>
+    <updated>2016-01-08T14:30:44.000Z</updated>
     <content type="html"><![CDATA[<p><img src="https://oskarhane-dropshare-eu.s3-eu-central-1.amazonaws.com/Oskar4j-2016-01-08-at-15.18.56-fu2hyn657n/Oskar4j-2016-01-08-at-15.18.56.png" alt="solutions"></p>
 <p>Here’s a classic puzzle: the <a href="https://en.wikipedia.org/wiki/Eight_queens_puzzle" target="_blank" rel="external">eight queens puzzle</a>.  </p>
 <p>Quoted from Wikipedia:  </p>
@@ -61,7 +61,7 @@
 }
 
 <span class="reserved">const</span> solve = <span class="function"><span class="params">(numTiles)</span> =&gt;</span> {
-  <span class="keyword">return</span> getArr(numTiles).reduce(<span class="function"><span class="params">(solutions, depth, index)</span> =&gt;</span> {
+  <span class="keyword">return</span> getArr(numTiles).reduce(<span class="function"><span class="params">(solutions, depth)</span> =&gt;</span> {
     <span class="reserved">const</span> candidates = getArr(numTiles).map(<span class="function"><span class="params">(_, i)</span> =&gt;</span> i)
     <span class="keyword">return</span> addQueen(solutions, candidates)
   }, [[]])
