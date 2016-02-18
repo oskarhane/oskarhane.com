@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://oskarhane.com/"/>
-  <updated>2016-02-18T16:20:57.000Z</updated>
+  <updated>2016-02-18T16:24:36.000Z</updated>
   <id>http://oskarhane.com/</id>
   
   <author>
@@ -19,8 +19,9 @@
     <link href="http://oskarhane.com/generate-ascii-tables-in-javascript/"/>
     <id>http://oskarhane.com/generate-ascii-tables-in-javascript/</id>
     <published>2016-02-18T11:40:46.000Z</published>
-    <updated>2016-02-18T16:20:57.000Z</updated>
+    <updated>2016-02-18T16:24:36.000Z</updated>
     <content type="html"><![CDATA[<p>In the graph database Neo4j:s client, called Neo4j Browser, we present the result of<br>a query in a few different ways since our users have different methods of interpreting<br>the data.<br>Some might want to see visual patterns, so there’s a graph visualization for them:<br><img src="/post_img/2016/02/graph-viz.png" alt="graph viz"></p>
+<a id="more"></a>
 <p>Some might just want to get a fast overview of what returned, so there’s a html rows view:<br><img src="/post_img/2016/02/rows.png" alt="rows"></p>
 <p>It’s not uncommon for users to want to copy the result and paste it in Slack, a bug report, an email<br>etc, so we have provided a ascii version of the rows view:<br><img src="/post_img/2016/02/ascii.png" alt="ascii"></p>
 <p>What’s cool in this ascii version is that we added the ability to dynamically change the maximum<br>column width of the table. As you can see in the screenshot above the text is wrapped after a certain<br>number of characters.<br>We added a slider so you can change that so it fits your medium where it’s going to be pasted.<br><img src="/post_img/2016/02/ascii-slider.gif" alt="ascii-slider"></p>
@@ -29,10 +30,33 @@
 <p>I really enjoyed writing the tests for this module since it’s very visually pleasing: <a href="https://github.com/oskarhane/ascii-data-table/blob/master/test/ascii-data-table-test.js" target="_blank" rel="external">Tests file</a></p>
 <p>The Github repo can be found here: <a href="https://github.com/oskarhane/ascii-data-table" target="_blank" rel="external">https://github.com/oskarhane/ascii-data-table</a><br>The npm module can be found here: <a href="https://www.npmjs.com/package/ascii-data-table" target="_blank" rel="external">https://www.npmjs.com/package/ascii-data-table</a></p>
 <p>btw, here’s a copied result from the ascii table:</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">+================+</span>======<span class="code">+================================+</span>=================+</span><br><span class="line"><span class="header">|reviewer        |rating|summary                         |movie            |</span><br><span class="line">+================+======+================================+=================+</span></span><br><span class="line"><span class="header">|Jessica Thompson|92    |You had me at Jerry             |Jerry Maguire    |</span><br><span class="line">+----------------+------+--------------------------------+-----------------+</span></span><br><span class="line"><span class="header">|Jessica Thompson|65    |Silly, but fun                  |The Replacements |</span><br><span class="line">+----------------+------+--------------------------------+-----------------+</span></span><br><span class="line"><span class="header">|Angela Scope    |62    |Pretty funny at times           |The Replacements |</span><br><span class="line">+----------------+------+--------------------------------+-----------------+</span></span><br><span class="line"><span class="header">|James Thompson  |100   |The coolest football movie ever |The Replacements |</span><br><span class="line">+----------------+------+--------------------------------+-----------------+</span></span><br><span class="line">|Jessica Thompson|45    |Slapstick redeemed only by the R|The Birdcage     |</span><br><span class="line">|                |      |obin Williams and Gene Hackman's|                 |</span><br><span class="line"><span class="header">|                |      | stellar performances           |                 |</span><br><span class="line">+----------------+------+--------------------------------+-----------------+</span></span><br><span class="line"><span class="header">|Jessica Thompson|85    |Dark, but compelling            |Unforgiven       |</span><br><span class="line">+----------------+------+--------------------------------+-----------------+</span></span><br><span class="line"><span class="header">|Jessica Thompson|95    |An amazing journey              |Cloud Atlas      |</span><br><span class="line">+----------------+------+--------------------------------+-----------------+</span></span><br><span class="line"><span class="header">|James Thompson  |65    |Fun, but a little far fetched   |The Da Vinci Code|</span><br><span class="line">+----------------+------+--------------------------------+-----------------+</span></span><br><span class="line"><span class="header">|Jessica Thompson|68    |A solid romp                    |The Da Vinci Code|</span><br><span class="line">+----------------+------+--------------------------------+-----------------+</span></span><br></pre></td></tr></table></figure>
-]]></content>
+<pre><code><span class="code">+================+</span>======<span class="code">+================================+</span>=================+
+<span class="header">|reviewer        |rating|summary                         |movie            |
++================+======+================================+=================+</span>
+<span class="header">|Jessica Thompson|92    |You had me at Jerry             |Jerry Maguire    |
++----------------+------+--------------------------------+-----------------+</span>
+<span class="header">|Jessica Thompson|65    |Silly, but fun                  |The Replacements |
++----------------+------+--------------------------------+-----------------+</span>
+<span class="header">|Angela Scope    |62    |Pretty funny at times           |The Replacements |
++----------------+------+--------------------------------+-----------------+</span>
+<span class="header">|James Thompson  |100   |The coolest football movie ever |The Replacements |
++----------------+------+--------------------------------+-----------------+</span>
+|Jessica Thompson|45    |Slapstick redeemed only by the R|The Birdcage     |
+|                |      |obin Williams and Gene Hackman's|                 |
+<span class="header">|                |      | stellar performances           |                 |
++----------------+------+--------------------------------+-----------------+</span>
+<span class="header">|Jessica Thompson|85    |Dark, but compelling            |Unforgiven       |
++----------------+------+--------------------------------+-----------------+</span>
+<span class="header">|Jessica Thompson|95    |An amazing journey              |Cloud Atlas      |
++----------------+------+--------------------------------+-----------------+</span>
+<span class="header">|James Thompson  |65    |Fun, but a little far fetched   |The Da Vinci Code|
++----------------+------+--------------------------------+-----------------+</span>
+<span class="header">|Jessica Thompson|68    |A solid romp                    |The Da Vinci Code|
++----------------+------+--------------------------------+-----------------+</span>
+</code></pre>]]></content>
     <summary type="html">
-    <![CDATA[<p>In the graph database Neo4j:s client, called Neo4j Browser, we present the result of<br>a query in a few different ways since our users h]]>
+    <![CDATA[<p>In the graph database Neo4j:s client, called Neo4j Browser, we present the result of<br>a query in a few different ways since our users have different methods of interpreting<br>the data.<br>Some might want to see visual patterns, so there’s a graph visualization for them:<br><img src="/post_img/2016/02/graph-viz.png" alt="graph viz"></p>]]>
+    
     </summary>
     
       <category term="Client Side" scheme="http://oskarhane.com/tags/Client-Side/"/>
