@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://oskarhane.com/"/>
-  <updated>2016-02-18T16:24:36.000Z</updated>
+  <updated>2016-02-18T16:29:08.000Z</updated>
   <id>http://oskarhane.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://oskarhane.com/generate-ascii-tables-in-javascript/"/>
     <id>http://oskarhane.com/generate-ascii-tables-in-javascript/</id>
     <published>2016-02-18T11:40:46.000Z</published>
-    <updated>2016-02-18T16:24:36.000Z</updated>
+    <updated>2016-02-18T16:29:08.000Z</updated>
     <content type="html"><![CDATA[<p>In the graph database Neo4j:s client, called Neo4j Browser, we present the result of<br>a query in a few different ways since our users have different methods of interpreting<br>the data.<br>Some might want to see visual patterns, so there’s a graph visualization for them:<br><img src="/post_img/2016/02/graph-viz.png" alt="graph viz"></p>
 <a id="more"></a>
 <p>Some might just want to get a fast overview of what returned, so there’s a html rows view:<br><img src="/post_img/2016/02/rows.png" alt="rows"></p>
